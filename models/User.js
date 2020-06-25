@@ -28,7 +28,11 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      aptNumber: {
+      city: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      state: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -41,7 +45,7 @@ module.exports = function (sequelize, DataTypes) {
       role: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: "User",
+        defaultValue: "Neighbor",
       },
     },
     {}
