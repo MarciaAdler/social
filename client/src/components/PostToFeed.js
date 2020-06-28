@@ -18,7 +18,7 @@ export default function PostToFeed() {
             </InputGroup.Prepend>
             <FormControl as="textarea" aria-label="With textarea" />
           </InputGroup>
-          <Button>Post</Button>
+          <Button className="mt-2">Post</Button>
         </Form>
       </Container>
     </div>
