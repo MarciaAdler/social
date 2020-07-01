@@ -10,4 +10,9 @@ router.post(
   passport.authenticate("local"),
   usersController.findOne
 );
+
+router.route("/api/post").post(usersController.createPost);
+
+router.route("/api/post").get(usersController.getPosts);
+
 module.exports = router;

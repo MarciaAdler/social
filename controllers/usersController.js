@@ -30,4 +30,31 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  createPost: function (req, res) {
+    db.FeedPost.create({
+      post: req.body.post,
+      UserId: req.body.UserId,
+    })
+      .then(function () {
+        res.json(req.body);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getPosts: function (req, res) {
+    db.FeedPost.findAll({
+      order: [["createdAt", "DESC"]],
+      include: [
+        {
+          model: db.User,
+          as: "User",
+        },
+      ],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };
