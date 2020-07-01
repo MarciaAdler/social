@@ -12,11 +12,33 @@ export default function SignupForm() {
   const nameRef = useRef();
   const passwordRef = useRef();
   const confirmRef = useRef();
+  const cityRef = useRef();
+  const stateRef = useRef();
   const renderRedirect = () => {
     if (sendLogin && state.currentUser.id === 0) {
       return <Redirect to="/" />;
     }
   };
+  function signUp(event) {
+    event.preventDefault();
+    if (passwordRef.current.value !== confirmRef.current.value) {
+      return alert("Passwords must match");
+    } else {
+      API.createUser({
+        firstName: firstRef.current.value,
+        email: emailRef.current.value,
+        username: nameRef.current.value,
+        password: passwordRef.current.value,
+        city: cityRef.current.value,
+        state: stateRef.current.value,
+      })
+        .then((res) => {
+          console.log(res);
+          setSendLogin(true);
+        })
+        .catch((err) => alert("Username already exists"));
+    }
+  }
   return (
     <Container className="signupform--wrapper">
       <Form className="signupform--container div-to-align" id="myForm">
@@ -55,7 +77,28 @@ export default function SignupForm() {
             />
           </Col>
         </Form.Row>
-
+        <Form.Row className="justify-content-center">
+          <Col className="col-8 col-md-4">
+            <Form.Group controlId="formGroupUsername">
+              <Form.Label>City</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter username"
+                required
+                ref={cityRef}
+              />
+            </Form.Group>
+          </Col>
+          <Col className="col-8 col-md-4">
+            <Form.Label>State</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="First name"
+              required
+              ref={stateRef}
+            />
+          </Col>
+        </Form.Row>
         <Form.Row className="justify-content-center signupform--row">
           <Col className="col-8 col-md-4">
             <Form.Group controlId="formGroupPassword">
@@ -84,7 +127,7 @@ export default function SignupForm() {
 
         <Form.Row className="justify-content-center signupform--row">
           <Col className="col-8">
-            <Button className="button" type="submit">
+            <Button className="button" type="submit" onClick={signUp}>
               Submit
             </Button>
 
