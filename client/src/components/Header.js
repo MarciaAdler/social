@@ -36,7 +36,12 @@ export default function Header() {
   };
   return (
     <div>
-      <Navbar collapseOnSelect expand="lg" bg="info" className="header">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg="info"
+        className="header fixed-top"
+      >
         {state.loggedin === true ? (
           <Navbar.Brand href="/home">
             <img
