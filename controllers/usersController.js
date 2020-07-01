@@ -17,4 +17,17 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  findOne: function (req, res) {
+    db.User.findOne({
+      where: {
+        username: req.body.username,
+      },
+    })
+      .then(function (user) {
+        res.json(user);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

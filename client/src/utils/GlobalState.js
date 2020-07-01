@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useContext } from "react";
 
-import { SET_CURRENT_USER } from "./actions";
+import { SET_CURRENT_USER, LOGGEDIN } from "./actions";
 
 const StoreContext = createContext();
 const { Provider } = StoreContext;
@@ -14,9 +14,14 @@ const reducer = (state, action) => {
           id: action.currentUser.id,
           username: action.currentUser.username,
           firstName: action.currentUser.firstName,
-          city: action.currentuser.city,
+          city: action.currentUser.city,
           state: action.currentUser.state,
         },
+      };
+    case LOGGEDIN:
+      return {
+        ...state,
+        loggedin: true,
       };
     default:
       return state;
@@ -32,6 +37,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       city: "",
       state: "",
     },
+    loggedin: false,
   });
   return <Provider value={[state, dispatch]} {...props} />;
 };
