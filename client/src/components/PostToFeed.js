@@ -28,7 +28,9 @@ export default function PostToFeed() {
               </InputGroup>
             </Col>
             <Col className="col-12 col-md-1">
-              <Button className="mt-2 post">Post</Button>
+              <Button variant="secondary" className="mt-2 post">
+                Post
+              </Button>
             </Col>
           </Row>
         </Form>

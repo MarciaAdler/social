@@ -36,7 +36,7 @@ export default function Header() {
   };
   return (
     <div>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="info">
         {state.loggedin === true ? (
           <Navbar.Brand href="/home">
             <img

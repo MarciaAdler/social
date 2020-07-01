@@ -127,7 +127,12 @@ export default function SignupForm() {
 
         <Form.Row className="justify-content-center signupform--row">
           <Col className="col-8">
-            <Button className="button" type="submit" onClick={signUp}>
+            <Button
+              variant="secondary"
+              className="button"
+              type="submit"
+              onClick={signUp}
+            >
               Submit
             </Button>
 

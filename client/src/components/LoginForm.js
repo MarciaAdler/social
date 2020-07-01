@@ -80,7 +80,12 @@ export default function LoginForm() {
           />
         </Form.Group>
 
-        <Button className="button" type="submit" onClick={login}>
+        <Button
+          className="button"
+          variant="secondary"
+          type="submit"
+          onClick={login}
+        >
           Sign-in
         </Button>
         <span className="ml-3">
