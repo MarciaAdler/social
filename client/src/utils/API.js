@@ -12,4 +12,8 @@ export default {
   getPosts: function (req) {
     return axios.get("/api/post", req);
   },
+  uploadPostImage: function (image) {
+    console.log(image);
+    return axios.post("/api/postimages", image);
+  },
 };

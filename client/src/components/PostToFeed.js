@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { Fragment, useRef, useEffect, useState } from "react";
 import {
   Container,
   InputGroup,
@@ -15,6 +15,9 @@ import { SET_POSTS } from "../utils/actions";
 export default function PostToFeed() {
   const [state, dispatch] = useStoreContext();
   const postRef = useRef();
+  const [image1, setImage1] = useState("");
+  const [image1name, setImage1Name] = useState("");
+
   useEffect(() => {
     getPosts(state.posts);
   }, []);
@@ -30,18 +33,42 @@ export default function PostToFeed() {
     API.createPost({
       post: postRef.current.value,
       UserId: state.currentUser.id,
+      image1: image1name,
     }).then((res) => {
       getPosts(res);
       const form = document.getElementById("myForm");
       form.reset();
     });
   }
+  const onChange = (e) => {
+    setImage1(e.target.files[0]);
+    setImage1Name(state.currentUser.id + "-" + e.target.files[0].name);
+  };
+  function uploadPostImage(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image1", image1);
+    formData.append("id", state.currentUser.id);
+    API.uploadPostImage(formData, {
+      headers: {
+        "Content Type": "multipart/form-data",
+      },
+    })
+      .then((res) => {
+        console.log(image1);
+        console.log(res.statusText);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <div>
       <Container>
         <Form className="my-3" id="myForm">
           <Row>
-            <Col className="col-11">
+            <Col className="col-12">
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text className="posttofeed--post">
@@ -57,6 +84,40 @@ export default function PostToFeed() {
                 />
               </InputGroup>
             </Col>
+          </Row>
+          <Row>
+            <Col className="col-12 col-md-8">
+              <label className="mt-2">Upload Image</label>
+              <Row>
+                <Fragment>
+                  <Col className="col-8">
+                    <div className="custom-file mb-4">
+                      <input
+                        type="file"
+                        onChange={onChange}
+                        className="custom-file-input"
+                        id="customFile"
+                      />
+
+                      <label className="custom-file-label" htmlFor="customFile">
+                        {image1name}
+                      </label>
+                    </div>
+                  </Col>
+                  <Col className="col-2">
+                    <Button
+                      type="button"
+                      className="profileform--upload-button ml-3"
+                      onClick={uploadPostImage}
+                    >
+                      Upload
+                    </Button>
+                  </Col>
+                </Fragment>
+              </Row>
+            </Col>
+          </Row>
+          <Row>
             <Col className="col-12 col-md-1">
               <Button
                 variant="secondary"

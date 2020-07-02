@@ -1,5 +1,6 @@
 const db = require("../models");
 var fs = require("fs");
+const { runInNewContext } = require("vm");
 module.exports = {
   createUser: function (req, res) {
     db.User.create({
@@ -31,9 +32,11 @@ module.exports = {
       });
   },
   createPost: function (req, res) {
+    console.log(req.body);
     db.FeedPost.create({
       post: req.body.post,
       UserId: req.body.UserId,
+      image1: req.body.image1,
     })
       .then(function () {
         res.json(req.body);

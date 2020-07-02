@@ -32,6 +32,18 @@ export default function Feed() {
                 <ListGroup.Item key={post.id}>
                   {post.post}
                   <br />
+                  {post.image1 !== "no image" ? (
+                    <img
+                      className="feed--image"
+                      src={
+                        process.env.PUBLIC_URL + `/postimages/${post.image1}`
+                      }
+                      alt={post.id}
+                    />
+                  ) : (
+                    ""
+                  )}
+                  <br />
                   <small>Posted By: {post.User.username}</small>
                   <br />
                   <small>

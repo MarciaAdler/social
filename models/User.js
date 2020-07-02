@@ -44,6 +44,10 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         defaultValue: "Neighbor",
       },
+      image: {
+        type: DataTypes.STRING,
+        defaulValue: "no image",
+      },
     },
     {}
   );

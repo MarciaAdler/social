@@ -5,6 +5,14 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    image1: {
+      type: DataTypes.STRING,
+      defaultValue: "no image",
+    },
+    image2: {
+      type: DataTypes.STRING,
+      defaultValue: "no image",
+    },
   });
   FeedPost.associate = function (models) {
     // We're saying that a Post should belong to an Author
