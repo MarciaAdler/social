@@ -7,7 +7,6 @@ module.exports = function (sequelize, DataTypes) {
     },
     image1: {
       type: DataTypes.STRING,
-      defaultValue: "no image",
     },
     image2: {
       type: DataTypes.STRING,

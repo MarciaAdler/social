@@ -16,7 +16,7 @@ export default function PostToFeed() {
   const [state, dispatch] = useStoreContext();
   const postRef = useRef();
   const [image1, setImage1] = useState("");
-  const [image1name, setImage1Name] = useState("");
+  const [image1name, setImage1Name] = useState(null);
 
   useEffect(() => {
     getPosts(state.posts);
@@ -86,7 +86,7 @@ export default function PostToFeed() {
             </Col>
           </Row>
           <Row>
-            <Col className="col-12 col-md-8">
+            <Col className="col-12 col-md-8 text-left">
               <label className="mt-2">Upload Image</label>
               <Row>
                 <Fragment>

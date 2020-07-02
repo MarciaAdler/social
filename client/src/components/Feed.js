@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, ListGroup } from "react-bootstrap";
+import { Container, ListGroup, Row, Col } from "react-bootstrap";
 import API from "../utils/API";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_POSTS } from "../utils/actions";
@@ -30,9 +30,12 @@ export default function Feed() {
           ? state.posts.map((post) => {
               return (
                 <ListGroup.Item key={post.id}>
-                  {post.post}
-                  <br />
-                  {post.image1 !== "no image" ? (
+                  <h6 className="text-left">
+                    <strong>{post.User.username} says: </strong>
+                    {post.post}
+                  </h6>
+
+                  {post.image1 !== null ? (
                     <img
                       className="feed--image"
                       src={
@@ -44,16 +47,17 @@ export default function Feed() {
                     ""
                   )}
                   <br />
-                  <small>Posted By: {post.User.username}</small>
-                  <br />
-                  <small>
-                    Posted On:{" "}
-                    {dateFormat(
-                      `${post.createdAt}`,
-                      "dddd, mmmm, dS, yyyy, h:MM TT"
-                    )}{" "}
-                    {"EST"}s{" "}
-                  </small>
+
+                  <p className="text-right">
+                    <small>
+                      Posted On:{" "}
+                      {dateFormat(
+                        `${post.createdAt}`,
+                        "dddd, mmmm, dS, yyyy, h:MM TT"
+                      )}{" "}
+                      {"EST"}s{" "}
+                    </small>
+                  </p>
                 </ListGroup.Item>
               );
             })
