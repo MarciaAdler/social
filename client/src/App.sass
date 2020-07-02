@@ -16,9 +16,19 @@ body
     &--icon
         height: 50px
         border-radius: .5em
+    &--profileimage
+        height: 50px
+        border-radius: .5em
+    &--rightlink
+        @include media-breakpoint-only(lg)
+            padding-top: 20px
+
 .home
     &--container
         width: 80%
+        @include media-breakpoint-only(xs)
+            width: 100%
+            text-align: center
 .posttofeed
     &--post
         width: auto
@@ -29,6 +39,9 @@ body
 .feed
     &--image
         height: 150px
+        @include media-breakpoint-only(xs)
+            height: auto
+            width: 50%
 
 .footer
     &--container

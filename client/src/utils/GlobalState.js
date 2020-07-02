@@ -16,6 +16,7 @@ const reducer = (state, action) => {
           firstName: action.currentUser.firstName,
           city: action.currentUser.city,
           state: action.currentUser.state,
+          image: action.currentUser.image,
         },
       };
     case LOGGEDIN:
@@ -37,6 +38,7 @@ const reducer = (state, action) => {
           firstName: "",
           city: "",
           state: "",
+          image: "",
         },
         loggedin: false,
         posts: [],
@@ -54,6 +56,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       firstName: "",
       city: "",
       state: "",
+      image: "",
     },
     loggedin: false,
     posts: [],
