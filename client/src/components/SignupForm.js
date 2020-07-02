@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
@@ -14,6 +14,8 @@ export default function SignupForm() {
   const confirmRef = useRef();
   const cityRef = useRef();
   const stateRef = useRef();
+  const [image, setImage] = useState("");
+  const [imagename, setImageName] = useState(null);
   const renderRedirect = () => {
     if (sendLogin && state.currentUser.id === 0) {
       return <Redirect to="/" />;
@@ -31,6 +33,7 @@ export default function SignupForm() {
         password: passwordRef.current.value,
         city: cityRef.current.value,
         state: stateRef.current.value,
+        image: imagename,
       })
         .then((res) => {
           console.log(res);
@@ -39,6 +42,29 @@ export default function SignupForm() {
         .catch((err) => alert("Username already exists"));
     }
   }
+  const onChange = (e) => {
+    setImage(e.target.files[0]);
+    setImageName(nameRef.current.value + "-" + e.target.files[0].name);
+  };
+  function uploadProfileImage(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("username", nameRef.current.value);
+    API.uploadProfileImage(formData, {
+      headers: {
+        "Content Type": "multipart/form-data",
+      },
+    })
+      .then((res) => {
+        console.log(image);
+        console.log(res.statusText);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <Container className="signupform--wrapper">
       <Form className="signupform--container div-to-align" id="myForm">
@@ -99,6 +125,7 @@ export default function SignupForm() {
             />
           </Col>
         </Form.Row>
+
         <Form.Row className="justify-content-center signupform--row">
           <Col className="col-8 col-md-4">
             <Form.Group controlId="formGroupPassword">
@@ -123,6 +150,33 @@ export default function SignupForm() {
               />
             </Form.Group>
           </Col>
+        </Form.Row>
+        <Form.Row>
+          <Fragment>
+            <Col className="col-8">
+              <div className="custom-file mb-4">
+                <input
+                  type="file"
+                  onChange={onChange}
+                  className="custom-file-input"
+                  id="customFile"
+                />
+
+                <label className="custom-file-label" htmlFor="customFile">
+                  {imagename}
+                </label>
+              </div>
+            </Col>
+            <Col className="col-2">
+              <Button
+                type="button"
+                className="profileform--upload-button ml-3"
+                onClick={uploadProfileImage}
+              >
+                Upload
+              </Button>
+            </Col>
+          </Fragment>
         </Form.Row>
 
         <Form.Row className="justify-content-center signupform--row">

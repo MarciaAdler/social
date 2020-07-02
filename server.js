@@ -46,10 +46,10 @@ app.post("/api/profileimage", (req, res) => {
     return res.status(500).send({ msg: "file is not found" });
   }
   // accessing the file
-  const myFile = req.files;
+  const myFile = req.files.image;
   //  mv() method places the file inside public directory
   myFile.mv(
-    `${__dirname}/client/public/profileimages/${req.body.id}-${myFile.name}`,
+    `${__dirname}/client/public/profileimages/${req.body.username}-${myFile.name}`,
     function (err) {
       if (err) {
         console.log(err);
@@ -62,7 +62,6 @@ app.post("/api/profileimage", (req, res) => {
 });
 // create image files for posts
 app.post("/api/postimages", (req, res) => {
-  console.log(req.body);
   if (!req.files) {
     return res.status(500).send({ msg: "file is not found" });
   }

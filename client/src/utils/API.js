@@ -1,6 +1,7 @@
 const axios = require("axios");
 export default {
   createUser: function (req) {
+    console.log(req);
     return axios.post("/api/signup", req);
   },
   getUser: function (req) {
@@ -13,7 +14,9 @@ export default {
     return axios.get("/api/post", req);
   },
   uploadPostImage: function (image) {
-    console.log(image);
     return axios.post("/api/postimages", image);
+  },
+  uploadProfileImage: function (image) {
+    return axios.post("/api/profileimage", image);
   },
 };

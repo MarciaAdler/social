@@ -10,6 +10,7 @@ module.exports = {
       password: req.body.password,
       city: req.body.city,
       state: req.body.state,
+      image: req.body.image,
     })
       .then(function () {
         res.json(req.body);
