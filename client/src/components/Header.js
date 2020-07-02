@@ -67,26 +67,25 @@ export default function Header() {
               <Nav.Link href="#pricing">Pricing</Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link className="header--rightlink" href="#deets">
+              <Nav.Link className="" href="#deets">
                 More deets
               </Nav.Link>
-              <Nav.Link
-                className="header--rightlink"
-                eventKey={2}
-                href="/"
-                onClick={logOut}
-              >
+              <Nav.Link className="" eventKey={2} href="/" onClick={logOut}>
                 Logout
               </Nav.Link>
-              <Nav.Link href="/profile">
-                <img
-                  className="header--profileimage"
-                  src={
-                    process.env.PUBLIC_URL +
-                    `/profileimages/${state.currentUser.image}`
-                  }
-                />
-              </Nav.Link>
+              {state.currentUser.image !== null ? (
+                <Nav.Link href="/profile">
+                  <img
+                    className="header--profileimage"
+                    src={
+                      process.env.PUBLIC_URL +
+                      `/profileimages/${state.currentUser.image}`
+                    }
+                  />
+                </Nav.Link>
+              ) : (
+                <Nav.Link href="/profile">Profile</Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         ) : (

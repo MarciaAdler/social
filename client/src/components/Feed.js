@@ -31,6 +31,17 @@ export default function Feed() {
               return (
                 <ListGroup.Item key={post.id}>
                   <h6 className="text-left">
+                    {post.User.image !== null ? (
+                      <img
+                        className="feed--profileimage"
+                        src={
+                          process.env.PUBLIC_URL +
+                          `/profileimages/${post.User.image}`
+                        }
+                      />
+                    ) : (
+                      ""
+                    )}
                     <strong>{post.User.username} says: </strong>
                     {post.post}
                   </h6>
