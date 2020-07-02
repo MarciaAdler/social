@@ -37,6 +37,7 @@ export default function SignupForm() {
       })
         .then((res) => {
           console.log(res);
+          uploadProfileImage();
           setSendLogin(true);
         })
         .catch((err) => alert("Username already exists"));
@@ -47,7 +48,6 @@ export default function SignupForm() {
     setImageName(nameRef.current.value + "-" + e.target.files[0].name);
   };
   function uploadProfileImage(e) {
-    e.preventDefault();
     const formData = new FormData();
     formData.append("image", image);
     formData.append("username", nameRef.current.value);
@@ -167,7 +167,7 @@ export default function SignupForm() {
                 </label>
               </div>
             </Col>
-            <Col className="col-2">
+            {/* <Col className="col-2">
               <Button
                 type="button"
                 className="profileform--upload-button ml-3"
@@ -175,7 +175,7 @@ export default function SignupForm() {
               >
                 Upload
               </Button>
-            </Col>
+            </Col> */}
           </Fragment>
         </Form.Row>
 

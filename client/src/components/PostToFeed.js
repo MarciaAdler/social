@@ -35,6 +35,7 @@ export default function PostToFeed() {
       UserId: state.currentUser.id,
       image1: image1name,
     }).then((res) => {
+      uploadPostImage();
       getPosts(res);
       const form = document.getElementById("myForm");
       form.reset();
@@ -45,7 +46,6 @@ export default function PostToFeed() {
     setImage1Name(state.currentUser.id + "-" + e.target.files[0].name);
   };
   function uploadPostImage(e) {
-    e.preventDefault();
     const formData = new FormData();
     formData.append("image1", image1);
     formData.append("id", state.currentUser.id);
@@ -105,13 +105,13 @@ export default function PostToFeed() {
                     </div>
                   </Col>
                   <Col className="col-2">
-                    <Button
+                    {/* <Button
                       type="button"
                       className="profileform--upload-button ml-3"
                       onClick={uploadPostImage}
                     >
                       Upload
-                    </Button>
+                    </Button> */}
                   </Col>
                 </Fragment>
               </Row>
