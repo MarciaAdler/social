@@ -22,10 +22,36 @@ body
     &--rightlink
         @include media-breakpoint-only(lg)
             padding-top: 20px
-
+.signupform
+    &--wrapper
+        width: 80%
+        display: block
+        text-align: center
+        margin-top: 50px
+        @include media-breakpoint-only(xs)
+            width: 100%
+    &--container
+        dispaly: inline-block
+        margin-left: auto
+        margin-right: auto
+        text-align: left
+    &--submitbuttoncol
+        text-align: center
+.loginform
+    &--wrapper
+        display: block
+        text-align: center
+        margin-top: 50px
+    &--form
+        dispaly: inline-block
+        margin-left: auto
+        margin-right: auto
+        text-align: left
+        width: 60%
 .home
     &--container
         width: 80%
+
         @include media-breakpoint-only(xs)
             width: 100%
             text-align: center

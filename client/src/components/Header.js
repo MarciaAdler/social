@@ -43,7 +43,7 @@ export default function Header() {
         className="header fixed-top"
       >
         {state.loggedin === true ? (
-          <Navbar.Brand href="/home">
+          <Navbar.Brand href="/">
             <img
               src={require("../images/Neighbor-icon.png")}
               alt="Neighbor"
@@ -51,7 +51,7 @@ export default function Header() {
             ></img>
           </Navbar.Brand>
         ) : (
-          <Navbar.Brand href="/">
+          <Navbar.Brand href="/signin">
             <img
               src={require("../images/Neighbor-icon.png")}
               alt="Neighbor"
@@ -92,6 +92,7 @@ export default function Header() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="/signup">Signup</Nav.Link>
+              <Nav.Link href="/signin">Login</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         )}

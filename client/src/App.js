@@ -15,9 +15,9 @@ function App() {
         <Header />
         <Router>
           <Switch>
-            <Route exact path="/" component={Login} />
+            <Route exact path="/signin" component={Login} />
             <Route exact path="/signup" component={Signup} />
-            <Route path="/home" component={Home} />
+            <Route path="/" component={Home} />
           </Switch>
         </Router>
       </StoreProvider>

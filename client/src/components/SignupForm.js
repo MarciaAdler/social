@@ -18,7 +18,7 @@ export default function SignupForm() {
   const [imagename, setImageName] = useState(null);
   const renderRedirect = () => {
     if (sendLogin && state.currentUser.id === 0) {
-      return <Redirect to="/" />;
+      return <Redirect to="/signin" />;
     }
   };
   function signUp(event) {
@@ -68,7 +68,7 @@ export default function SignupForm() {
   return (
     <Container className="signupform--wrapper">
       <Form className="signupform--container div-to-align" id="myForm">
-        <Form.Row className="mb-3 justify-content-center">
+        <Form.Row className="justify-content-center">
           <Col className="col-8 col-md-8 col-lg-5">
             <Form.Group controlId="formGroupEmail">
               <Form.Label>Email address</Form.Label>
@@ -151,7 +151,7 @@ export default function SignupForm() {
             </Form.Group>
           </Col>
         </Form.Row>
-        <Form.Row>
+        <Form.Row className="justify-content-center">
           <Fragment>
             <Col className="col-8">
               <div className="custom-file mb-4">
@@ -180,7 +180,7 @@ export default function SignupForm() {
         </Form.Row>
 
         <Form.Row className="justify-content-center signupform--row">
-          <Col className="col-8">
+          <Col className="col-8 signupform--submitbuttoncol">
             <Button
               variant="secondary"
               className="button"
@@ -192,7 +192,7 @@ export default function SignupForm() {
 
             <span>
               &nbsp; If you already have an account{" "}
-              <a href="/">
+              <a href="/signin">
                 <strong>click here</strong>
               </a>{" "}
               to login

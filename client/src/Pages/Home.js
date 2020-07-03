@@ -4,7 +4,9 @@ import PostToFeed from "../components/PostToFeed";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_CURRENT_USER, LOGGEDIN } from "../utils/actions";
 import { Container } from "react-bootstrap";
+
 export default function Home() {
+  const [state, dispatch] = useStoreContext();
   return (
     <div className="text-center">
       <Container className="home--container">
@@ -13,7 +15,8 @@ export default function Home() {
           src={require("../images/Neighbor-icon.png")}
           alt="icon"
         />
-        <PostToFeed />
+        {state.loggedin === true ? <PostToFeed /> : ""}
+
         <Feed />
       </Container>
     </div>

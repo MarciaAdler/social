@@ -11,7 +11,7 @@ export default function LoginForm() {
   const passwordRef = useRef();
   const renderRedirect = () => {
     if (state.loggedin) {
-      return <Redirect to="/home" />;
+      return <Redirect to="/" />;
     }
   };
   function login(event) {
