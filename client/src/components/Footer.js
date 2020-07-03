@@ -14,7 +14,7 @@ export default function Footer() {
           Neighbor
         </Col>
         <Col className="footer--about">
-          <a href="/about" className="footer--aboutlink">
+          <a href="#About" className="footer--aboutlink">
             About
           </a>
         </Col>
