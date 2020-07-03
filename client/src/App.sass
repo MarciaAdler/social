@@ -37,17 +37,31 @@ body
         text-align: left
     &--submitbuttoncol
         text-align: center
+.login
+    &--icon
+        margin-top: 40px
+        height: 250px
+        width: auto
+        @include media-breakpoint-only(xs)
+            height: 200px
+    &--container
+        margin-top: 30px
 .loginform
     &--wrapper
+        width: 70%
         display: block
         text-align: center
         margin-top: 50px
+        @include media-breakpoint-only(xs)
+            width: 100%
+            margin-top: 20px
     &--form
         dispaly: inline-block
         margin-left: auto
         margin-right: auto
         text-align: left
-        width: 60%
+        width: 80%
+
 .home
     &--container
         width: 80%

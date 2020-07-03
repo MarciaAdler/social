@@ -59,7 +59,7 @@ export default function LoginForm() {
 
   return (
     <div className="loginform--wrapper">
-      <Form className="loginform--form div-to-align">
+      <Form className="loginform--form div-to-align justify-content-center">
         <Form.Group controlId="formUsername">
           <Form.Label>
             <strong>Username</strong>
