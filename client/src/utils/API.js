@@ -19,4 +19,8 @@ export default {
   uploadProfileImage: function (image) {
     return axios.post("/api/profileimage", image);
   },
+  deletePost: function (post) {
+    console.log(post);
+    return axios.delete("/api/deletepost/" + post);
+  },
 };

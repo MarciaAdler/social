@@ -61,4 +61,15 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  deletePost: function (req, res) {
+    db.FeedPost.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

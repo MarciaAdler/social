@@ -20,6 +20,14 @@ export default function Feed() {
       })
       .catch((err) => console.log(err));
   }
+
+  function deletePost(post) {
+    API.deletePost(post)
+      .then((res) => {
+        getPosts(state.posts);
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <div>
       <Container>
@@ -59,16 +67,27 @@ export default function Feed() {
                   )}
                   <br />
 
-                  <p className="text-right">
-                    <small>
-                      Posted On:{" "}
-                      {dateFormat(
-                        `${post.createdAt}`,
-                        "dddd, mmmm, dS, yyyy, h:MM TT"
-                      )}{" "}
-                      {"EST"}s{" "}
-                    </small>
-                  </p>
+                  <small>
+                    Posted On:{" "}
+                    {dateFormat(
+                      `${post.createdAt}`,
+                      "dddd, mmmm, dS, yyyy, h:MM TT"
+                    )}{" "}
+                    {"EST"}
+                  </small>
+
+                  {state.currentUser.id === post.User.id ? (
+                    <button
+                      className="feed--delete-btn"
+                      onClick={() => {
+                        deletePost(post.id);
+                      }}
+                    >
+                      X
+                    </button>
+                  ) : (
+                    ""
+                  )}
                 </ListGroup.Item>
               );
             })

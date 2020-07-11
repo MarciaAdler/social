@@ -15,4 +15,6 @@ router.route("/api/post").post(usersController.createPost);
 
 router.route("/api/post").get(usersController.getPosts);
 
+router.route("/api/deletepost/:id").delete(usersController.deletePost);
+
 module.exports = router;
