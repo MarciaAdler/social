@@ -61,6 +61,28 @@ body
         margin-right: auto
         text-align: left
         width: 80%
+.profileform
+    &--wrapper
+        width: 80%
+        display: block
+        text-align: center
+        margin-top: 50px
+        @include media-breakpoint-only(xs)
+            width: 100%
+    &--profileimage
+        height: 150px
+    &--city-state
+        display: flex
+        flex-direction: row
+        width: 77%
+        justify-content: center
+        @include media-breakpoint-only(xs)
+            width: 100%
+    &--success
+        margin-left: 20px
+        display: inline-block
+        font-weight: bold
+        color: $jet
 
 .home
     &--container
@@ -91,7 +113,7 @@ body
         background-color: white
         position: absolute
         top: 10px
-        right: 20px
+        right: 15px
         @include media-breakpoint-only(xs)
             bottom: 10px
 

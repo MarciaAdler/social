@@ -17,4 +17,8 @@ router.route("/api/post").get(usersController.getPosts);
 
 router.route("/api/deletepost/:id").delete(usersController.deletePost);
 
+router.route("/api/updateprofile").put(usersController.updateProfile);
+
+router.route("/api/user/:id").get(usersController.refreshCurrentUser);
+
 module.exports = router;

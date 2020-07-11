@@ -75,7 +75,6 @@ export default function Feed() {
                     )}{" "}
                     {"EST"}
                   </small>
-
                   {state.currentUser.id === post.User.id ? (
                     <button
                       className="feed--delete-btn"

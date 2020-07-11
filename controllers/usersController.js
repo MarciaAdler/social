@@ -1,6 +1,6 @@
 const db = require("../models");
 var fs = require("fs");
-const { runInNewContext } = require("vm");
+
 module.exports = {
   createUser: function (req, res) {
     db.User.create({
@@ -63,6 +63,37 @@ module.exports = {
   },
   deletePost: function (req, res) {
     db.FeedPost.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  updateProfile: function (req, res) {
+    console.log(req.body);
+    db.User.update(
+      {
+        username: req.body.username,
+        email: req.body.email,
+        city: req.body.city,
+        state: req.body.state,
+        firstName: req.body.firstName,
+        image: req.body.image,
+      },
+      {
+        where: { id: req.body.id },
+      }
+    )
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  refreshCurrentUser: function (req, res) {
+    db.User.findOne({
       where: {
         id: req.params.id,
       },

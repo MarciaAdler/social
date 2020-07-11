@@ -1,3 +1,5 @@
+import { AccordionCollapse } from "react-bootstrap";
+
 const axios = require("axios");
 export default {
   createUser: function (req) {
@@ -20,7 +22,12 @@ export default {
     return axios.post("/api/profileimage", image);
   },
   deletePost: function (post) {
-    console.log(post);
     return axios.delete("/api/deletepost/" + post);
+  },
+  updateProfile: function (user) {
+    return axios.put("/api/updateprofile", user);
+  },
+  refreshCurrentUser: function (user) {
+    return axios.get("/api/user/" + user);
   },
 };
