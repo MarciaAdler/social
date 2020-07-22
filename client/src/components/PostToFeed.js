@@ -21,8 +21,8 @@ export default function PostToFeed() {
   useEffect(() => {
     getPosts(state.posts);
   }, []);
-  function getPosts(posts) {
-    API.getPosts(posts)
+  function getPosts() {
+    API.getPosts()
       .then((res) => {
         console.log(res);
         dispatch({ type: SET_POSTS, posts: res.data });
@@ -35,10 +35,16 @@ export default function PostToFeed() {
       UserId: state.currentUser.id,
       image1: image1name,
     }).then((res) => {
-      uploadPostImage();
-      getPosts(res);
-      const form = document.getElementById("myForm");
-      form.reset();
+      if (image1name) {
+        uploadPostImage();
+        getPosts(res);
+        const form = document.getElementById("myForm");
+        form.reset();
+      } else {
+        getPosts(res);
+        const form = document.getElementById("myForm");
+        form.reset();
+      }
     });
   }
   const onChange = (e) => {
