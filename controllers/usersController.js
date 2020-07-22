@@ -82,6 +82,7 @@ module.exports = {
         state: req.body.state,
         firstName: req.body.firstName,
         image: req.body.image,
+        bio: req.body.bio,
       },
       {
         where: { id: req.body.id },

@@ -10,6 +10,7 @@ export default function ProfileForm() {
   const cityRef = useRef();
   const stateRef = useRef();
   const emailRef = useRef();
+  const bioRef = useRef();
   const [successMessage, setSuccessMessage] = useState("");
 
   function updateProfile(profile) {
@@ -21,6 +22,7 @@ export default function ProfileForm() {
       state: stateRef.current.value,
       email: emailRef.current.value,
       image: state.currentUser.image,
+      bio: bioRef.current.value,
     })
       .then((response) => {
         console.log(response);
@@ -42,6 +44,7 @@ export default function ProfileForm() {
             state: results.data.state,
             email: results.data.email,
             image: results.data.image,
+            bio: results.data.bio,
           },
         });
         let localStorageUser = {
@@ -52,6 +55,7 @@ export default function ProfileForm() {
           state: results.data.state,
           email: results.data.email,
           image: results.data.image,
+          bio: results.data.bio,
         };
         window.localStorage.setItem(
           "currentUser",
@@ -80,7 +84,7 @@ export default function ProfileForm() {
                   type="text"
                   name="username"
                   ref={usernameRef}
-                  placeholder={state.currentUser.username}
+                  defaultValue={state.currentUser.username}
                 ></Form.Control>
               </Col>
             </Form.Group>
@@ -136,6 +140,20 @@ export default function ProfileForm() {
                     defaultValue={state.currentUser.state}
                     ref={stateRef}
                   ></Form.Control>
+                </Form.Group>
+              </div>
+            </Form.Row>
+            <Form.Row className="justify-content-center">
+              <div className="profileform--city-state">
+                <Form.Group as={Col}>
+                  <Form.Label>About Me:</Form.Label>
+                  <Form.Control
+                    className="profileform--bio"
+                    as="textarea"
+                    rows="5"
+                    ref={bioRef}
+                    defaultValue={state.currentUser.bio}
+                  />
                 </Form.Group>
               </div>
             </Form.Row>

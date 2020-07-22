@@ -18,6 +18,7 @@ const reducer = (state, action) => {
           state: action.currentUser.state,
           image: action.currentUser.image,
           email: action.currentUser.email,
+          bio: action.currentUser.bio,
         },
       };
     case LOGGEDIN:
@@ -41,6 +42,7 @@ const reducer = (state, action) => {
           state: "",
           image: "",
           email: "",
+          bio: "",
         },
         loggedin: false,
         posts: [],
@@ -60,6 +62,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       state: "",
       image: "",
       email: "",
+      bio: "",
     },
     loggedin: false,
     posts: [],

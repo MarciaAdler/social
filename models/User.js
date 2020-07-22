@@ -47,6 +47,9 @@ module.exports = function (sequelize, DataTypes) {
       image: {
         type: DataTypes.STRING,
       },
+      bio: {
+        type: DataTypes.STRING,
+      },
     },
     {}
   );
