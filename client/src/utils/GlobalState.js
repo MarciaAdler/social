@@ -1,6 +1,12 @@
 import React, { createContext, useReducer, useContext } from "react";
 
-import { SET_CURRENT_USER, LOGGEDIN, CLEAR_ALL, SET_POSTS } from "./actions";
+import {
+  SET_CURRENT_USER,
+  LOGGEDIN,
+  CLEAR_ALL,
+  SET_POSTS,
+  SET_SELECTED_USER,
+} from "./actions";
 
 const StoreContext = createContext();
 const { Provider } = StoreContext;
@@ -31,6 +37,20 @@ const reducer = (state, action) => {
         ...state,
         posts: action.posts,
       };
+    case SET_SELECTED_USER:
+      return {
+        ...state,
+        selecteduser: {
+          id: action.selecteduser.id,
+          username: action.selecteduser.username,
+          firstName: action.selecteduser.firstName,
+          city: action.selecteduser.city,
+          state: action.selecteduser.state,
+          image: action.selecteduser.image,
+          email: action.selecteduser.email,
+          bio: action.selecteduser.bio,
+        },
+      };
     case CLEAR_ALL:
       return {
         ...state,
@@ -46,6 +66,16 @@ const reducer = (state, action) => {
         },
         loggedin: false,
         posts: [],
+        selecteduser: {
+          id: 0,
+          username: "",
+          firstName: "",
+          city: "",
+          state: "",
+          image: "",
+          email: "",
+          bio: "",
+        },
       };
     default:
       return state;
@@ -66,6 +96,16 @@ const StoreProvider = ({ value = [], ...props }) => {
     },
     loggedin: false,
     posts: [],
+    selecteduser: {
+      id: 0,
+      username: "",
+      firstName: "",
+      city: "",
+      state: "",
+      image: "",
+      email: "",
+      bio: "",
+    },
   });
   return <Provider value={[state, dispatch]} {...props} />;
 };

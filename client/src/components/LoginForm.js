@@ -32,6 +32,7 @@ export default function LoginForm() {
             city: results.data.city,
             state: results.data.state,
             image: results.data.image,
+            bio: results.data.bio,
           },
         });
 
@@ -43,6 +44,7 @@ export default function LoginForm() {
           city: results.data.city,
           state: results.data.state,
           image: results.data.image,
+          bio: results.data.bio,
         };
 
         window.localStorage.setItem(

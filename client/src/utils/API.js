@@ -30,4 +30,8 @@ export default {
   refreshCurrentUser: function (user) {
     return axios.get("/api/user/" + user);
   },
+  getRequestFromURL: function (req, res) {
+    console.log(req);
+    return axios.get("/api/viewprofile/" + req);
+  },
 };

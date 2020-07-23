@@ -104,4 +104,15 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  findUser: function (req, res) {
+    db.User.findOne({
+      where: {
+        username: req.params.username,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

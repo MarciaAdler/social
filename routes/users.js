@@ -21,4 +21,5 @@ router.route("/api/updateprofile").put(usersController.updateProfile);
 
 router.route("/api/user/:id").get(usersController.refreshCurrentUser);
 
+router.route("/api/viewprofile/:username").get(usersController.findUser);
 module.exports = router;
