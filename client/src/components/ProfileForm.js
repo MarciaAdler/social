@@ -113,7 +113,7 @@ export default function ProfileForm() {
                 ></Form.Control>
               </Col>
             </Form.Group>
-            {state.currentUser.image != "" ? (
+            {state.currentUser.image !== "" ? (
               <h3>
                 <img
                   className="profileform--profileimage"
@@ -127,10 +127,10 @@ export default function ProfileForm() {
               "Please upload a profile image"
             )}
 
-            <Row className="justify-content-center profileform--fragment">
+            <Form.Group as={Row} className="d-flex justify-content-center">
               <Fragment>
-                <Col className="">
-                  <div className="custom-file mb-4">
+                <Col className="col-md-10 col-sm-12 profileform--uploadimage">
+                  <div className="custom-file mb-3">
                     <input
                       type="file"
                       onChange={onChange}
@@ -149,7 +149,7 @@ export default function ProfileForm() {
                   </div>
                 </Col>
               </Fragment>
-            </Row>
+            </Form.Group>
             <Form.Group as={Row} className="justify-content-center">
               <Form.Label column sm={3}>
                 First Name

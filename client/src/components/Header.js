@@ -87,7 +87,7 @@ export default function Header() {
                 <Nav.Link href="/profile">Profile</Nav.Link>
               )} */}
             </Nav>
-            {state.currentUser.image != null ? (
+            {state.currentUser.image != "" ? (
               <Navbar.Brand href="/profile">
                 <img
                   src={
