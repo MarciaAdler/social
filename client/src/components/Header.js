@@ -73,7 +73,7 @@ export default function Header() {
               <Nav.Link className="" eventKey={2} href="/" onClick={logOut}>
                 Logout
               </Nav.Link>
-              {state.currentUser.image !== null ? (
+              {/* {state.currentUser.image !== null ? (
                 <Nav.Link href="/profile">
                   <img
                     className="header--profileimage"
@@ -85,8 +85,28 @@ export default function Header() {
                 </Nav.Link>
               ) : (
                 <Nav.Link href="/profile">Profile</Nav.Link>
-              )}
+              )} */}
             </Nav>
+            {state.currentUser.image != null ? (
+              <Navbar.Brand href="/profile">
+                <img
+                  src={
+                    process.env.PUBLIC_URL +
+                    `/profileimages/${state.currentUser.image}`
+                  }
+                  alt="profile image"
+                  className="header--icon"
+                ></img>
+              </Navbar.Brand>
+            ) : (
+              <Navbar.Brand href="/profile">
+                <img
+                  className="header--icon"
+                  src={require("../images/profile-placeholdericon.png")}
+                  alt="profile"
+                />
+              </Navbar.Brand>
+            )}
           </Navbar.Collapse>
         ) : (
           <Navbar.Collapse id="responsive-navbar-nav">
