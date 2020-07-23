@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, Fragment } from "react";
 import { Container, Form, Col, Row, Button } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
@@ -12,6 +12,8 @@ export default function ProfileForm() {
   const emailRef = useRef();
   const bioRef = useRef();
   const [successMessage, setSuccessMessage] = useState("");
+  const [image, setImage] = useState("");
+  const [imagename, setImageName] = useState(state.currentUser.image);
 
   function updateProfile(profile) {
     API.updateProfile({
@@ -21,7 +23,7 @@ export default function ProfileForm() {
       city: cityRef.current.value,
       state: stateRef.current.value,
       email: emailRef.current.value,
-      image: state.currentUser.image,
+      image: imagename,
       bio: bioRef.current.value,
     })
       .then((response) => {
@@ -61,6 +63,7 @@ export default function ProfileForm() {
           "currentUser",
           JSON.stringify(localStorageUser)
         );
+        uploadProfileImage();
       })
       .catch((err) => console.log(err));
   }
@@ -69,6 +72,28 @@ export default function ProfileForm() {
     setTimeout(() => {
       document.getElementById("success-message").style.display = "none";
     }, 1000);
+  }
+  const onChange = (e) => {
+    setImage(e.target.files[0]);
+    setImageName(state.currentUser.username + "-" + e.target.files[0].name);
+  };
+
+  function uploadProfileImage(e) {
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("username", usernameRef.current.value);
+    API.uploadProfileImage(formData, {
+      headers: {
+        "Content Type": "multipart/form-data",
+      },
+    })
+      .then((res) => {
+        console.log(image);
+        console.log(res.statusText);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   return (
     <div>
@@ -88,16 +113,43 @@ export default function ProfileForm() {
                 ></Form.Control>
               </Col>
             </Form.Group>
+            {state.currentUser.image != "" ? (
+              <h3>
+                <img
+                  className="profileform--profileimage"
+                  src={
+                    process.env.PUBLIC_URL +
+                    `/profileimages/${state.currentUser.image}`
+                  }
+                />
+              </h3>
+            ) : (
+              "Please upload a profile image"
+            )}
 
-            <h3>
-              <img
-                className="profileform--profileimage"
-                src={
-                  process.env.PUBLIC_URL +
-                  `/profileimages/${state.currentUser.image}`
-                }
-              />
-            </h3>
+            <Row className="justify-content-center profileform--fragment">
+              <Fragment>
+                <Col className="">
+                  <div className="custom-file mb-4">
+                    <input
+                      type="file"
+                      onChange={onChange}
+                      className="custom-file-input"
+                      id="customFile"
+                    />
+                    {imagename != "" ? (
+                      <label className="custom-file-label" htmlFor="customFile">
+                        {imagename}
+                      </label>
+                    ) : (
+                      <label className="custom-file-label" htmlFor="customFile">
+                        {state.currentUser.image}
+                      </label>
+                    )}
+                  </div>
+                </Col>
+              </Fragment>
+            </Row>
             <Form.Group as={Row} className="justify-content-center">
               <Form.Label column sm={3}>
                 First Name
