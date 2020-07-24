@@ -3,6 +3,7 @@ import { Container, ListGroup, Card, Row, Col } from "react-bootstrap";
 import { SET_SELECTED_USER, SET_POSTS } from "../utils/actions";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
+import dateFormat from "dateformat";
 import { Redirect } from "react-router-dom";
 
 export default function UserProfile() {
@@ -57,6 +58,7 @@ export default function UserProfile() {
       <h4>{state.selecteduser.username}</h4>
       {state.selecteduser.image !== "" ? (
         <img
+          className="profileform--profileimage"
           src={
             process.env.PUBLIC_URL +
             `/profileimages/${state.selecteduser.image}`
@@ -75,17 +77,17 @@ export default function UserProfile() {
         {state.selecteduser.bio}
       </p>
 
-      <Row>
+      <Row className="justify-content-center">
         {userPosts.length > 0
           ? userPosts.map((post) => {
               return (
-                <Col className="col-4 mt-2">
-                  <Card key={post.id} className="userprofile--card">
+                <Col className="col-12 col-md-4 col-sm-12 mt-2" key={post.id}>
+                  <Card className="userprofile--card">
                     <h6 className="userprofile--post">{post.post}</h6>
                     <Card.Body className="userprofile--cardbody">
                       {post.image1 !== null ? (
                         <img
-                          className="userprofile--postimage"
+                          className="userprofile--postimage mx-auto"
                           src={
                             process.env.PUBLIC_URL +
                             `/postimages/${post.image1}`
@@ -96,6 +98,17 @@ export default function UserProfile() {
                         ""
                       )}
                     </Card.Body>
+
+                    <Card.Footer>
+                      <small>
+                        Posted On:{" "}
+                        {dateFormat(
+                          `${post.createdAt}`,
+                          "dddd, mmmm, dS, yyyy, h:MM TT"
+                        )}{" "}
+                        {"EST"}
+                      </small>
+                    </Card.Footer>
                   </Card>
                 </Col>
               );

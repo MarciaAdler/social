@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, ListGroup, Row, Col } from "react-bootstrap";
+import { Container, ListGroup, Row, Col, Card } from "react-bootstrap";
 import API from "../utils/API";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_POSTS, SET_SELECTED_USER } from "../utils/actions";
@@ -95,7 +95,7 @@ export default function Feed() {
                     }}
                   >
                     <div>
-                      {post.User.image !== null ? (
+                      {post.User.image !== "" ? (
                         <img
                           className="feed--profileimage feed--poster"
                           src={
@@ -127,14 +127,16 @@ export default function Feed() {
                   )}
                   <br />
 
-                  <small>
-                    Posted On:{" "}
-                    {dateFormat(
-                      `${post.createdAt}`,
-                      "dddd, mmmm, dS, yyyy, h:MM TT"
-                    )}{" "}
-                    {"EST"}
-                  </small>
+                  <Card.Footer className="mt-2">
+                    <small>
+                      Posted On:{" "}
+                      {dateFormat(
+                        `${post.createdAt}`,
+                        "dddd, mmmm, dS, yyyy, h:MM TT"
+                      )}{" "}
+                      {"EST"}
+                    </small>
+                  </Card.Footer>
                   {state.currentUser.id === post.User.id ? (
                     <button
                       className="feed--delete-btn"
