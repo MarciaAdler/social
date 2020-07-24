@@ -94,10 +94,10 @@ export default function Feed() {
                       selectUser(post.User);
                     }}
                   >
-                    <div className="feed--poster">
+                    <div>
                       {post.User.image !== null ? (
                         <img
-                          className="feed--profileimage"
+                          className="feed--profileimage feed--poster"
                           src={
                             process.env.PUBLIC_URL +
                             `/profileimages/${post.User.image}`
@@ -106,7 +106,9 @@ export default function Feed() {
                       ) : (
                         ""
                       )}
-                      <strong>{post.User.username} says: </strong>
+                      <strong className="feed--poster">
+                        {post.User.username} says:{" "}
+                      </strong>
 
                       {post.post}
                     </div>

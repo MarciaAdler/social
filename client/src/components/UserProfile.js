@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, ListGroup } from "react-bootstrap";
+import { Container, ListGroup, Card, Row, Col } from "react-bootstrap";
 import { SET_SELECTED_USER, SET_POSTS } from "../utils/actions";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
@@ -55,11 +55,16 @@ export default function UserProfile() {
   return (
     <Container className="text-align-left">
       <h4>{state.selecteduser.username}</h4>
-      <img
-        src={
-          process.env.PUBLIC_URL + `/profileimages/${state.selecteduser.image}`
-        }
-      />
+      {state.selecteduser.image !== "" ? (
+        <img
+          src={
+            process.env.PUBLIC_URL +
+            `/profileimages/${state.selecteduser.image}`
+          }
+        />
+      ) : (
+        ""
+      )}
       <h6>{state.selecteduser.firstName}</h6>
       <h6>
         {state.selecteduser.city}, {state.selecteduser.state}
@@ -70,28 +75,33 @@ export default function UserProfile() {
         {state.selecteduser.bio}
       </p>
 
-      <ListGroup>
+      <Row>
         {userPosts.length > 0
           ? userPosts.map((post) => {
               return (
-                <ListGroup.Item key={post.id}>
-                  <h6>{post.post}</h6>
-                  {post.image1 !== null ? (
-                    <img
-                      className="feed--image"
-                      src={
-                        process.env.PUBLIC_URL + `/postimages/${post.image1}`
-                      }
-                      alt={post.image1}
-                    />
-                  ) : (
-                    ""
-                  )}
-                </ListGroup.Item>
+                <Col className="col-4 mt-2">
+                  <Card key={post.id} className="userprofile--card">
+                    <h6 className="userprofile--post">{post.post}</h6>
+                    <Card.Body className="userprofile--cardbody">
+                      {post.image1 !== null ? (
+                        <img
+                          className="userprofile--postimage"
+                          src={
+                            process.env.PUBLIC_URL +
+                            `/postimages/${post.image1}`
+                          }
+                          alt={post.image1}
+                        />
+                      ) : (
+                        ""
+                      )}
+                    </Card.Body>
+                  </Card>
+                </Col>
               );
             })
           : "no posts"}
-      </ListGroup>
+      </Row>
     </Container>
   );
 }
