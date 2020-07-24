@@ -75,7 +75,7 @@ export default function UserProfile() {
           ? userPosts.map((post) => {
               return (
                 <ListGroup.Item key={post.id}>
-                  {post.post}
+                  <h6>{post.post}</h6>
                   {post.image1 !== null ? (
                     <img
                       className="feed--image"
