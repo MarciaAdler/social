@@ -115,4 +115,16 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  getUserPosts: function (req, res) {
+    db.FeedPost.findAll({
+      where: {
+        UserId: req.params.id,
+      },
+      order: [["createdAt", "DESC"]],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

@@ -66,16 +66,6 @@ const reducer = (state, action) => {
         },
         loggedin: false,
         posts: [],
-        selecteduser: {
-          id: 0,
-          username: "",
-          firstName: "",
-          city: "",
-          state: "",
-          image: "",
-          email: "",
-          bio: "",
-        },
       };
     default:
       return state;

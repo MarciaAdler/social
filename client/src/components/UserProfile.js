@@ -1,15 +1,17 @@
-import React, { useEffect } from "react";
-import { Container } from "react-bootstrap";
-import { SET_SELECTED_USER } from "../utils/actions";
+import React, { useEffect, useState } from "react";
+import { Container, ListGroup } from "react-bootstrap";
+import { SET_SELECTED_USER, SET_POSTS } from "../utils/actions";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 
 export default function UserProfile() {
   const [state, dispatch] = useStoreContext();
+  const [userPosts, setUserPosts] = useState([]);
 
   useEffect(() => {
     loadRequest(window.location.search);
+    getSelectedUserPosts(state.selecteduser.id);
   }, []);
 
   function loadRequest(url) {
@@ -34,6 +36,7 @@ export default function UserProfile() {
             type: SET_SELECTED_USER,
             selecteduser: selectedUser,
           });
+          getSelectedUserPosts(res.data.id);
         })
         .catch((err) => console.log(err));
     } else {
@@ -43,7 +46,12 @@ export default function UserProfile() {
       });
     }
   }
-
+  function getSelectedUserPosts(user) {
+    API.getUserPosts(user).then((res) => {
+      console.log(res);
+      setUserPosts(res.data);
+    });
+  }
   return (
     <Container className="text-align-left">
       <h4>{state.selecteduser.username}</h4>
@@ -61,6 +69,29 @@ export default function UserProfile() {
         <strong>About Me: </strong>
         {state.selecteduser.bio}
       </p>
+
+      <ListGroup>
+        {userPosts.length > 0
+          ? userPosts.map((post) => {
+              return (
+                <ListGroup.Item key={post.id}>
+                  {post.post}
+                  {post.image1 !== null ? (
+                    <img
+                      className="feed--image"
+                      src={
+                        process.env.PUBLIC_URL + `/postimages/${post.image1}`
+                      }
+                      alt={post.image1}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </ListGroup.Item>
+              );
+            })
+          : "no posts"}
+      </ListGroup>
     </Container>
   );
 }

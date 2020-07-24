@@ -31,7 +31,10 @@ export default {
     return axios.get("/api/user/" + user);
   },
   getRequestFromURL: function (req, res) {
-    console.log(req);
     return axios.get("/api/viewprofile/" + req);
+  },
+  getUserPosts: function (user) {
+    console.log(user);
+    return axios.get("/api/userposts/" + user);
   },
 };
