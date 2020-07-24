@@ -21,6 +21,9 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
       },
     });
+    FeedPost.hasMany(models.FeedPostComment, {
+      foreignKey: "PostId",
+    });
   };
   return FeedPost;
 };
