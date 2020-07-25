@@ -34,7 +34,13 @@ export default {
     return axios.get("/api/viewprofile/" + req);
   },
   getUserPosts: function (user) {
-    console.log(user);
     return axios.get("/api/userposts/" + user);
+  },
+  addComment: function (comment) {
+    console.log(comment);
+    return axios.post("/api/addcomment", comment);
+  },
+  getComments: function (post) {
+    return axios.get("/api/getcomments/" + post.id);
   },
 };

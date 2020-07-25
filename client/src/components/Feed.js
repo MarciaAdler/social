@@ -1,10 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { Container, ListGroup, Row, Col, Card } from "react-bootstrap";
+import React, { useEffect, useState, useRef } from "react";
+import {
+  Container,
+  ListGroup,
+  Row,
+  Col,
+  Card,
+  InputGroup,
+  FormControl,
+} from "react-bootstrap";
 import API from "../utils/API";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_POSTS, SET_SELECTED_USER } from "../utils/actions";
 import dateFormat from "dateformat";
 import { Redirect } from "react-router-dom";
+import FeedComment from "./FeedComment";
+import CommentCount from "./CommentCount";
 
 export default function Feed() {
   const [state, dispatch] = useStoreContext();
@@ -126,6 +136,9 @@ export default function Feed() {
                     ""
                   )}
                   <br />
+                  <br />
+                  <CommentCount id={post}></CommentCount>
+                  <FeedComment post={post}></FeedComment>
 
                   <Card.Footer className="mt-2">
                     <small>

@@ -24,4 +24,9 @@ router.route("/api/user/:id").get(usersController.refreshCurrentUser);
 router.route("/api/viewprofile/:username").get(usersController.findUser);
 
 router.route("/api/userposts/:id").get(usersController.getUserPosts);
+
+router.route("/api/addcomment").post(usersController.addComment);
+
+router.route("/api/getcomments/:id").get(usersController.getComments);
+
 module.exports = router;

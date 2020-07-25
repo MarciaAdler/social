@@ -127,4 +127,26 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  addComment: function (req, res) {
+    db.FeedPostComment.create({
+      comment: req.body.comment,
+      PostId: req.body.PostId,
+      CommenterId: req.body.CommenterId,
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getComments: function (req, res) {
+    db.FeedPostComment.findAll({
+      where: {
+        PostId: req.params.id,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };
