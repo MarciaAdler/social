@@ -15,6 +15,7 @@ import dateFormat from "dateformat";
 import { Redirect } from "react-router-dom";
 import FeedComment from "./FeedComment";
 import CommentCount from "./CommentCount";
+import Comments from "./Comments";
 
 export default function Feed() {
   const [state, dispatch] = useStoreContext();
@@ -139,7 +140,7 @@ export default function Feed() {
                   <br />
                   <CommentCount id={post}></CommentCount>
                   <FeedComment post={post}></FeedComment>
-
+                  <Comments id={post}></Comments>
                   <Card.Footer className="mt-2">
                     <small>
                       Posted On:{" "}

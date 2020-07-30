@@ -1,10 +1,12 @@
-import React, { useRef } from "react";
-import { InputGroup, FormControl } from "react-bootstrap";
+import React, { useRef, useState, useEffect } from "react";
+import { InputGroup, FormControl, Collapse } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
 
 export default function FeedComment({ post }) {
   const [state, dispatch] = useStoreContext();
+  const [comments, setComments] = useState([]);
+  const [collapse, setCollapse] = useState(true);
   const commentRef = useRef();
 
   function addComment(post) {
@@ -19,8 +21,9 @@ export default function FeedComment({ post }) {
       })
       .catch((err) => console.log(err));
   }
+
   return (
-    <div className="text-left">
+    <div className="text-left" id="myForm">
       <InputGroup size="sm" className="mb-3 feed--commentinput">
         <InputGroup.Prepend>
           <InputGroup.Text

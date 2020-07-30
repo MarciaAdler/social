@@ -143,6 +143,13 @@ module.exports = {
       where: {
         PostId: req.params.id,
       },
+      order: [["createdAt", "DESC"]],
+      include: [
+        {
+          model: db.User,
+          as: "Commenter",
+        },
+      ],
     })
       .then((dbModel) => res.json(dbModel))
       .catch(function (err) {
