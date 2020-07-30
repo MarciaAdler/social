@@ -18,7 +18,7 @@ export default function Comments({ id }) {
       .catch((err) => console.log(err));
   }
   return (
-    <div>
+    <div className="text-left">
       {collapse === false ? (
         <Button
           className="comments--button"
