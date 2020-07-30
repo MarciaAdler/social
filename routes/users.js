@@ -29,4 +29,5 @@ router.route("/api/addcomment").post(usersController.addComment);
 
 router.route("/api/getcomments/:id").get(usersController.getComments);
 
+router.route("/api/deletecomment/:id").delete(usersController.deleteComment);
 module.exports = router;

@@ -43,4 +43,8 @@ export default {
   getComments: function (post) {
     return axios.get("/api/getcomments/" + post.id);
   },
+  deleteComment: function (comment) {
+    console.log(comment);
+    return axios.delete("/api/deletecomment/" + comment);
+  },
 };

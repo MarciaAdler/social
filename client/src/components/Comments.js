@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import API from "../utils/API";
 import { Button, Collapse } from "react-bootstrap";
 import dateFormat from "dateformat";
+import { useStoreContext } from "../utils/GlobalState";
+
 export default function Comments({ id }) {
+  const [state, dispatch] = useStoreContext();
   const [comments, setComments] = useState([]);
   const [collapse, setCollapse] = useState(false);
   useEffect(() => {
@@ -14,6 +17,14 @@ export default function Comments({ id }) {
       .then((res) => {
         console.log(res.data);
         setComments(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function deleteComment(comment) {
+    API.deleteComment(comment)
+      .then((res) => {
+        getComments(id);
       })
       .catch((err) => console.log(err));
   }
@@ -41,7 +52,7 @@ export default function Comments({ id }) {
       {comments.length > 0
         ? comments.map((comment) => {
             return (
-              <Collapse in={collapse}>
+              <Collapse in={collapse} key={comment.id}>
                 <div className="text-left" key={comment.id}>
                   <img
                     className="comments--profileimage"
@@ -60,6 +71,18 @@ export default function Comments({ id }) {
                     )}{" "}
                     {"EST"}
                   </small>
+                  {state.currentUser.id === comment.Commenter.id ? (
+                    <button
+                      className="comments--delete-btn"
+                      onClick={() => {
+                        deleteComment(comment.id);
+                      }}
+                    >
+                      X
+                    </button>
+                  ) : (
+                    ""
+                  )}
                   <hr />
                 </div>
               </Collapse>
