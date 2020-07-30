@@ -139,8 +139,13 @@ export default function Feed() {
                   <br />
                   <br />
                   <CommentCount id={post}></CommentCount>
-                  <FeedComment post={post}></FeedComment>
+                  {state.currentUser.id !== 0 ? (
+                    <FeedComment post={post}></FeedComment>
+                  ) : (
+                    ""
+                  )}
                   <Comments id={post}></Comments>
+
                   <Card.Footer className="mt-2">
                     <small>
                       Posted On:{" "}
