@@ -18,6 +18,8 @@ export default function FeedComment({ post }) {
     })
       .then((res) => {
         console.log(res);
+        const comment = res.data;
+        setComments((comments) => [...comments, comment]);
       })
       .catch((err) => console.log(err));
   }

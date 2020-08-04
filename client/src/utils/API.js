@@ -37,14 +37,13 @@ export default {
     return axios.get("/api/userposts/" + user);
   },
   addComment: function (comment) {
-    console.log(comment);
     return axios.post("/api/addcomment", comment);
   },
   getComments: function (post) {
+    console.log(post);
     return axios.get("/api/getcomments/" + post.id);
   },
   deleteComment: function (comment) {
-    console.log(comment);
     return axios.delete("/api/deletecomment/" + comment);
   },
 };
