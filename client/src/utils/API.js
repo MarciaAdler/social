@@ -46,4 +46,7 @@ export default {
   deleteComment: function (comment) {
     return axios.delete("/api/deletecomment/" + comment);
   },
+  search: function () {
+    return axios.get("/api/food");
+  },
 };
