@@ -2,7 +2,6 @@
 const router = require("express").Router();
 const yelp = require("yelp-fusion");
 const client = yelp.client(process.env.YELP_APIKEY);
-console.log(process.env.YELP_APIKEY);
 
 router.route("/api/food/").get((req, res) => {
   client

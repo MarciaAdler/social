@@ -34,9 +34,39 @@ export default function Results() {
                       <Card.Body>
                         <Card.Title>{result.name}</Card.Title>
                         <Card.Text>
-                          {result.display_phone}
-                          {result.rating}
+                          <strong>Rating:</strong> {result.rating}
+                          <br />
+                          <strong>Categories: </strong>
+                          {result.categories.length > 0
+                            ? result.categories.map((category, index) => {
+                                return (
+                                  <span key={index}>{category.title} </span>
+                                );
+                              })
+                            : ""}
+                          <br />
+                          <strong>Phone:</strong> {result.display_phone}
+                          <br />
+                          <strong>Address:</strong>{" "}
+                          {result.location.display_address.map(
+                            (address, index) => {
+                              return (
+                                <span key={index}>
+                                  {address} <br />
+                                </span>
+                              );
+                            }
+                          )}
+                          <br />
+                          {result.transactions.length > 0
+                            ? result.transactions.map((transaction, index) => {
+                                return <span key={index}>{transaction} </span>;
+                              })
+                            : ""}
                         </Card.Text>
+                        <a href={result.url} target="_blank">
+                          Click here to go to website
+                        </a>
                       </Card.Body>
                     </Card>
                   </Col>

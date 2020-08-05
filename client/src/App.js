@@ -24,7 +24,7 @@ function App() {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/profile" component={Profile} />
             <Route path="/viewprofile" component={ViewProfile} />
-            <Route path="/restaurants" component={Yelp} />
+            <Route path="/search" component={Yelp} />
           </Switch>
         </Router>
       </StoreProvider>
