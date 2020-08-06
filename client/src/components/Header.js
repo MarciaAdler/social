@@ -67,9 +67,13 @@ export default function Header() {
               <Nav.Link href="/search">Search for buinesses</Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link className="" href="#deets">
-                More deets
-              </Nav.Link>
+              <NavDropdown title="Groups" id="nav-dropdown">
+                {/* {state.groups.length > 0
+                  ? state.groups.map((group) => {
+                      return <NavDropdown.Item>{group.name}</NavDropdown.Item>;
+                    })
+                  : ""} */}
+              </NavDropdown>
               <Nav.Link className="" eventKey={2} href="/" onClick={logOut}>
                 Logout
               </Nav.Link>
