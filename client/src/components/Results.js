@@ -1,22 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useStoreContext } from "../utils/GlobalState";
+import React from "react";
+
 import { Container, Card, Row, Col, CardGroup } from "react-bootstrap";
-import API from "../utils/API";
 
 export default function Results({ results }) {
-  //   const [results, setResults] = useState([]);
-  //   useEffect(() => {
-  //     searchYelp();
-  //   }, []);
-
-  //   function searchYelp() {
-  //     API.search()
-  //       .then((res) => {
-  //         console.log(res);
-  //         setResults(res.data);
-  //       })
-  //       .catch((err) => console.log(err));
-  //   }
   return (
     <Container>
       <CardGroup>
