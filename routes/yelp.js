@@ -3,17 +3,16 @@ const router = require("express").Router();
 const yelp = require("yelp-fusion");
 const client = yelp.client(process.env.YELP_APIKEY);
 
-router.route("/api/food/").get((req, res) => {
+router.route("/api/search/:business").get((req, res) => {
   client
     .search({
-      term: "food",
+      term: req.params.business,
       location: "11201",
-      limit: 20,
+      limit: 50,
       radius: 5000,
     })
     .then((response) => {
       res.json(response.jsonBody.businesses);
-      console.log(response.jsonBody.businesses);
     })
     .catch((e) => {
       console.log(e);

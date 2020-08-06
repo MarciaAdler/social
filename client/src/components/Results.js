@@ -3,20 +3,20 @@ import { useStoreContext } from "../utils/GlobalState";
 import { Container, Card, Row, Col, CardGroup } from "react-bootstrap";
 import API from "../utils/API";
 
-export default function Results() {
-  const [results, setResults] = useState([]);
-  useEffect(() => {
-    searchYelp();
-  }, []);
+export default function Results({ results }) {
+  //   const [results, setResults] = useState([]);
+  //   useEffect(() => {
+  //     searchYelp();
+  //   }, []);
 
-  function searchYelp() {
-    API.search()
-      .then((res) => {
-        console.log(res);
-        setResults(res.data);
-      })
-      .catch((err) => console.log(err));
-  }
+  //   function searchYelp() {
+  //     API.search()
+  //       .then((res) => {
+  //         console.log(res);
+  //         setResults(res.data);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   }
   return (
     <Container>
       <CardGroup>
@@ -65,14 +65,14 @@ export default function Results() {
                             : ""}
                         </Card.Text>
                         <a href={result.url} target="_blank">
-                          Click here to go to website
+                          Click here for more info
                         </a>
                       </Card.Body>
                     </Card>
                   </Col>
                 );
               })
-            : "no results"}
+            : ""}
         </Row>
       </CardGroup>
     </Container>
