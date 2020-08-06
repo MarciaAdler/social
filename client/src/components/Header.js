@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
-import { SET_CURRENT_USER, LOGGEDIN, CLEAR_ALL } from "../utils/actions";
+import {
+  SET_CURRENT_USER,
+  LOGGEDIN,
+  CLEAR_ALL,
+  GROUPS,
+} from "../utils/actions";
 import { Link, Redirect } from "react-router-dom";
+import API from "../utils/API";
 export default function Header() {
   const [state, dispatch] = useStoreContext();
   const [redirect, setRedirect] = useState(false);
@@ -21,6 +27,7 @@ export default function Header() {
       });
     }
   });
+
   function logOut() {
     dispatch({
       type: CLEAR_ALL,
@@ -68,6 +75,7 @@ export default function Header() {
             </Nav>
             <Nav>
               <NavDropdown title="Groups" id="nav-dropdown">
+                <NavDropdown.Item href="/addgroup">Add Group</NavDropdown.Item>
                 {/* {state.groups.length > 0
                   ? state.groups.map((group) => {
                       return <NavDropdown.Item>{group.name}</NavDropdown.Item>;

@@ -4,6 +4,7 @@ module.exports = function (sequelize, DataTypes) {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     image: {
       type: DataTypes.STRING,
@@ -13,6 +14,12 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
     },
   });
-
+  NeighborGroup.associate = function (models) {
+    NeighborGroup.belongsTo(models.User, {
+      foreignKey: "AdminId",
+      as: "Admin",
+      allowNull: false,
+    });
+  };
   return NeighborGroup;
 };

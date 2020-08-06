@@ -30,4 +30,9 @@ router.route("/api/addcomment").post(usersController.addComment);
 router.route("/api/getcomments/:id").get(usersController.getComments);
 
 router.route("/api/deletecomment/:id").delete(usersController.deleteComment);
+
+router.route("/api/group").post(usersController.createGroup);
+
+router.route("/api/group").get(usersController.setGroups);
+
 module.exports = router;

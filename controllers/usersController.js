@@ -167,4 +167,28 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  createGroup: function (req, res) {
+    db.NeighborGroup.create({
+      name: req.body.name,
+      image: req.body.image,
+      description: req.body.description,
+      AdminId: req.body.AdminId,
+    })
+      .then(function () {
+        res.json(req.body);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  setGroups: function (req, res) {
+    db.NeighborGroup.findAll({
+      include: [
+        {
+          model: db.User,
+          as: "Admin",
+        },
+      ],
+    });
+  },
 };

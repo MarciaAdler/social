@@ -50,4 +50,14 @@ export default {
     console.log(business);
     return axios.get("/api/search/" + business);
   },
+  uploadGroupImage: function (image) {
+    return axios.post("/api/groupimage", image);
+  },
+  createGroup: function (group) {
+    console.log(group);
+    return axios.post("/api/group", group);
+  },
+  setGroups: function (req) {
+    return axios.get("/api/group", req);
+  },
 };

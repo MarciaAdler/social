@@ -6,6 +6,7 @@ import {
   CLEAR_ALL,
   SET_POSTS,
   SET_SELECTED_USER,
+  SET_GROUPS,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -50,6 +51,11 @@ const reducer = (state, action) => {
           email: action.selecteduser.email,
           bio: action.selecteduser.bio,
         },
+      };
+    case SET_GROUPS:
+      return {
+        ...state,
+        groups: action.groups,
       };
     case CLEAR_ALL:
       return {
@@ -96,6 +102,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       email: "",
       bio: "",
     },
+    groups: [],
   });
   return <Provider value={[state, dispatch]} {...props} />;
 };
