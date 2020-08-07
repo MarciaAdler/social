@@ -5,7 +5,8 @@ import {
   SET_CURRENT_USER,
   LOGGEDIN,
   CLEAR_ALL,
-  GROUPS,
+  SET_GROUPS,
+  SET_SELECTED_GROUP,
 } from "../utils/actions";
 import { Link, Redirect } from "react-router-dom";
 import API from "../utils/API";
@@ -26,21 +27,73 @@ export default function Header() {
         type: LOGGEDIN,
       });
     }
-  });
+    setGroups();
+  }, []);
 
+  function setGroups() {
+    API.setGroups()
+      .then((res) => {
+        console.log(res.data);
+        dispatch({
+          type: SET_GROUPS,
+          groups: res.data,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
   function logOut() {
     dispatch({
       type: CLEAR_ALL,
     });
     localStorage.clear();
     setRedirect(true);
-    renderRedirect();
+    // renderRedirect();
   }
   const renderRedirect = () => {
     if (redirect === true) {
       return <Redirect to="/" />;
     }
   };
+  const renderGroupPage = () => {
+    if (state.selectedGroup && redirect) {
+      return (
+        <Redirect
+          push
+          to={{
+            pathname: "/group/",
+            search: `?${state.selectedGroup.name}`,
+          }}
+        />
+      );
+    }
+  };
+
+  function selectGroup(group) {
+    console.log(group);
+    const selectedGroup = {
+      id: group.id,
+      name: group.name,
+      description: group.description,
+      image: group.image,
+      adminId: group.AdminId,
+    };
+    dispatch({
+      type: SET_SELECTED_GROUP,
+      selectedGroup: selectedGroup,
+    });
+    let localStorageSelectedGroup = {
+      id: group.id,
+      name: group.name,
+      description: group.description,
+      image: group.image,
+      adminId: group.adminId,
+    };
+    window.localStorage.setItem(
+      "selectedgroup",
+      JSON.stringify(localStorageSelectedGroup)
+    );
+    setRedirect(true);
+  }
   return (
     <div>
       <Navbar
@@ -75,29 +128,27 @@ export default function Header() {
             </Nav>
             <Nav>
               <NavDropdown title="Groups" id="nav-dropdown">
-                <NavDropdown.Item href="/addgroup">Add Group</NavDropdown.Item>
-                {/* {state.groups.length > 0
+                {state.groups.length > 0
                   ? state.groups.map((group) => {
-                      return <NavDropdown.Item>{group.name}</NavDropdown.Item>;
+                      return (
+                        <NavDropdown.Item
+                          key={group.id}
+                          onClick={() => {
+                            selectGroup(group);
+                          }}
+                        >
+                          {group.name}
+                        </NavDropdown.Item>
+                      );
                     })
-                  : ""} */}
+                  : ""}
+                <NavDropdown.Item href="/addgroup">
+                  Add New Group
+                </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link className="" eventKey={2} href="/" onClick={logOut}>
                 Logout
               </Nav.Link>
-              {/* {state.currentUser.image !== null ? (
-                <Nav.Link href="/profile">
-                  <img
-                    className="header--profileimage"
-                    src={
-                      process.env.PUBLIC_URL +
-                      `/profileimages/${state.currentUser.image}`
-                    }
-                  />
-                </Nav.Link>
-              ) : (
-                <Nav.Link href="/profile">Profile</Nav.Link>
-              )} */}
             </Nav>
             {state.currentUser.image != "" ? (
               <Navbar.Brand href="/profile">
@@ -132,6 +183,7 @@ export default function Header() {
           </Navbar.Collapse>
         )}
       </Navbar>
+      {renderGroupPage()}
       {renderRedirect()}
     </div>
   );

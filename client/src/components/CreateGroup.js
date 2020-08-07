@@ -22,17 +22,21 @@ export default function CreateGroup() {
         console.log(res);
         uploadGroupImage();
         setGroups();
+        const form = document.getElementById("myForm");
+        form.reset();
       })
       .catch((err) => console.log(err));
   }
   function setGroups() {
-    API.setGroups().then((res) => {
-      console.log(res.data);
-      dispatch({
-        type: SET_GROUPS,
-        groups: res.data,
-      }).catch((err) => console.log(err));
-    });
+    API.setGroups()
+      .then((res) => {
+        console.log(res.data);
+        dispatch({
+          type: SET_GROUPS,
+          groups: res.data,
+        });
+      })
+      .catch((err) => console.log(err));
   }
   const onChange = (e) => {
     setImage(e.target.files[0]);

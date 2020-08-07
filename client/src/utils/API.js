@@ -54,10 +54,9 @@ export default {
     return axios.post("/api/groupimage", image);
   },
   createGroup: function (group) {
-    console.log(group);
     return axios.post("/api/group", group);
   },
-  setGroups: function (req) {
-    return axios.get("/api/group", req);
+  setGroups: function () {
+    return axios.get("/api/group");
   },
 };

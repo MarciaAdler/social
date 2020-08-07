@@ -7,6 +7,7 @@ import {
   SET_POSTS,
   SET_SELECTED_USER,
   SET_GROUPS,
+  SET_SELECTED_GROUP,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -57,6 +58,17 @@ const reducer = (state, action) => {
         ...state,
         groups: action.groups,
       };
+    case SET_SELECTED_GROUP:
+      return {
+        ...state,
+        selectedGroup: {
+          id: action.selectedGroup.id,
+          name: action.selectedGroup.name,
+          description: action.selectedGroup.description,
+          image: action.selectedGroup.image,
+          adminId: action.selectedGroup.adminId,
+        },
+      };
     case CLEAR_ALL:
       return {
         ...state,
@@ -69,6 +81,13 @@ const reducer = (state, action) => {
           image: "",
           email: "",
           bio: "",
+        },
+        selectedGroup: {
+          id: 0,
+          name: "",
+          description: "",
+          image: "",
+          adminId: 0,
         },
         loggedin: false,
         posts: [],
@@ -103,6 +122,13 @@ const StoreProvider = ({ value = [], ...props }) => {
       bio: "",
     },
     groups: [],
+    selectedGroup: {
+      id: 0,
+      name: "",
+      description: "",
+      image: "",
+      adminId: 0,
+    },
   });
   return <Provider value={[state, dispatch]} {...props} />;
 };

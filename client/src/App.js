@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Profile from "./Pages/Profile";
 import Yelp from "./Pages/Yelp";
 import AddGroup from "./Pages/AddGroup";
+import Group from "./Pages/Group";
 import "./App.sass";
 import { StoreProvider } from "../src/utils/GlobalState";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -16,8 +17,8 @@ function App() {
   return (
     <div className="App">
       <StoreProvider>
-        <Header />
         <Router>
+          <Header />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/signin" component={Login} />
@@ -26,6 +27,7 @@ function App() {
             <Route path="/viewprofile" component={ViewProfile} />
             <Route path="/search" component={Yelp} />
             <Route path="/addgroup" component={AddGroup} />
+            <Route path="/group" component={Group} />
           </Switch>
         </Router>
       </StoreProvider>
