@@ -59,4 +59,7 @@ export default {
   setGroups: function () {
     return axios.get("/api/group");
   },
+  getPageFromURL: function (group) {
+    return axios.get("/api/grouppage/" + group);
+  },
 };

@@ -40,14 +40,16 @@ export default function CreateGroup() {
   }
   const onChange = (e) => {
     setImage(e.target.files[0]);
-    setImageName(nameRef.current.value + "-" + e.target.files[0].name);
+    const name = nameRef.current.value.replace(" ", "");
+    setImageName(name + "-" + e.target.files[0].name);
   };
 
   function uploadGroupImage(e) {
     if (imagename !== "no image") {
       const formData = new FormData();
       formData.append("image", image);
-      formData.append("groupname", nameRef.current.value);
+      const name = nameRef.current.value.replace(" ", "");
+      formData.append("groupname", name);
       API.uploadGroupImage(formData, {
         headers: {
           "Content Type": "multipart/form-data",

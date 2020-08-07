@@ -86,7 +86,7 @@ export default function Header() {
       name: group.name,
       description: group.description,
       image: group.image,
-      adminId: group.adminId,
+      adminId: group.AdminId,
     };
     window.localStorage.setItem(
       "selectedgroup",

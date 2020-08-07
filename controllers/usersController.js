@@ -195,4 +195,16 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  getPage: function (req, res) {
+    const name = req.params.name.replace(/%20/g, " ");
+    db.NeighborGroup.findOne({
+      where: {
+        name: name,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

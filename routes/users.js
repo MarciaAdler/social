@@ -35,4 +35,5 @@ router.route("/api/group").post(usersController.createGroup);
 
 router.route("/api/group").get(usersController.setGroups);
 
+router.route("/api/grouppage/:name").get(usersController.getPage);
 module.exports = router;
