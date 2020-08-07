@@ -20,6 +20,7 @@ import Comments from "./Comments";
 export default function Feed() {
   const [state, dispatch] = useStoreContext();
   const [redirect, setRedirect] = useState(false);
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     getPosts();
@@ -28,8 +29,21 @@ export default function Feed() {
   function getPosts() {
     API.getPosts()
       .then((res) => {
-        console.log(res);
+        console.log("getposts", res.data);
         dispatch({ type: SET_POSTS, posts: res.data });
+        for (let i = 0; i < state.getPosts.length; i++) {
+          const post = state.posts[i];
+          getComments(post.id);
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function getComments(id) {
+    API.getComments(id)
+      .then((res) => {
+        console.log(res.data);
+        setComments(res.data);
       })
       .catch((err) => console.log(err));
   }
@@ -140,7 +154,10 @@ export default function Feed() {
                   <br />
                   <CommentCount id={post}></CommentCount>
                   {state.currentUser.id !== 0 ? (
-                    <FeedComment post={post}></FeedComment>
+                    <FeedComment
+                      post={post}
+                      getComments={getComments}
+                    ></FeedComment>
                   ) : (
                     ""
                   )}

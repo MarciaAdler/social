@@ -8,9 +8,9 @@ export default function Comments({ id }) {
   const [state, dispatch] = useStoreContext();
   const [comments, setComments] = useState([]);
   const [collapse, setCollapse] = useState(false);
-  useEffect(() => {
-    getComments(id);
-  }, []);
+  // useEffect(() => {
+  //   getComments(id);
+  // }, []);
 
   function getComments(id) {
     API.getComments(id)

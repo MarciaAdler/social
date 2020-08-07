@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
-import { InputGroup, FormControl, Collapse } from "react-bootstrap";
+import { InputGroup, FormControl, Collapse, Form } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
 
-export default function FeedComment({ post }) {
+export default function FeedComment({ post, getComments }) {
   const [state, dispatch] = useStoreContext();
-  const [comments, setComments] = useState([]);
+
   const [collapse, setCollapse] = useState(true);
   const commentRef = useRef();
 
@@ -18,14 +18,13 @@ export default function FeedComment({ post }) {
     })
       .then((res) => {
         console.log(res);
-        const comment = res.data;
-        setComments((comments) => [...comments, comment]);
+        getComments(post);
       })
       .catch((err) => console.log(err));
   }
 
   return (
-    <div className="text-left" id="myForm">
+    <Form className="text-left" id="myForm">
       <InputGroup size="sm" className="mb-3 feed--commentinput">
         <InputGroup.Prepend>
           <InputGroup.Text
@@ -39,11 +38,14 @@ export default function FeedComment({ post }) {
           </InputGroup.Text>
         </InputGroup.Prepend>
         <FormControl
+          as="textarea"
+          rows="1"
           ref={commentRef}
           aria-label="Small"
           aria-describedby="inputGroup-sizing-sm"
+          id="myInput"
         />
       </InputGroup>
-    </div>
+    </Form>
   );
 }
