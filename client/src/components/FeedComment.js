@@ -5,8 +5,6 @@ import API from "../utils/API";
 
 export default function FeedComment({ post, getComments }) {
   const [state, dispatch] = useStoreContext();
-
-  const [collapse, setCollapse] = useState(true);
   const commentRef = useRef();
 
   function addComment(post) {
@@ -17,8 +15,8 @@ export default function FeedComment({ post, getComments }) {
       CommenterId: state.currentUser.id,
     })
       .then((res) => {
-        console.log(res);
         getComments(post);
+        document.getElementById("myInput").value = "";
       })
       .catch((err) => console.log(err));
   }
