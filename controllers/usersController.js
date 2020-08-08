@@ -156,6 +156,24 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  getComments2: function (req, res) {
+    db.FeedPostComment.findAll({
+      where: {
+        PostId: req.params.id,
+      },
+      order: [["createdAt", "DESC"]],
+      include: [
+        {
+          model: db.User,
+          as: "Commenter",
+        },
+      ],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
   deleteComment: function (req, res) {
     db.FeedPostComment.destroy({
       where: {

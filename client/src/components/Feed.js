@@ -7,6 +7,8 @@ import {
   Card,
   InputGroup,
   FormControl,
+  Collapse,
+  Button,
 } from "react-bootstrap";
 import API from "../utils/API";
 import { useStoreContext } from "../utils/GlobalState";
@@ -21,6 +23,9 @@ export default function Feed() {
   const [state, dispatch] = useStoreContext();
   const [redirect, setRedirect] = useState(false);
   const [comments, setComments] = useState([]);
+  const [number, setNumber] = useState(0);
+
+  // let commentcount = 0;
 
   useEffect(() => {
     getPosts();
@@ -29,21 +34,37 @@ export default function Feed() {
   function getPosts() {
     API.getPosts()
       .then((res) => {
-        console.log("getposts", res.data);
         dispatch({ type: SET_POSTS, posts: res.data });
-        for (let i = 0; i < state.getPosts.length; i++) {
-          const post = state.posts[i];
+        state.posts.map((post) => {
           getComments(post.id);
-        }
+        });
       })
       .catch((err) => console.log(err));
   }
 
   function getComments(id) {
     API.getComments(id)
+      .then((response) => {
+        console.log(response.data);
+        setComments(response.data);
+      })
+      .catch((err) => console.log(err));
+  }
+  function getComments2(id) {
+    API.getComments2(id)
+      .then((response) => {
+        console.log(response.data);
+        setComments(response.data);
+        commentCount(id);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function commentCount(id) {
+    API.getComments2(id)
       .then((res) => {
-        console.log(res.data);
-        setComments(res.data);
+        console.log(res.data.length);
+        setNumber(res.data.length);
       })
       .catch((err) => console.log(err));
   }
@@ -152,16 +173,28 @@ export default function Feed() {
                   )}
                   <br />
                   <br />
-                  <CommentCount id={post}></CommentCount>
+                  {/* <CommentCount
+                    id={post}
+                    commentCount={commentCount}
+                  ></CommentCount> */}
+
                   {state.currentUser.id !== 0 ? (
                     <FeedComment
                       post={post}
                       getComments={getComments}
+                      getComments2={getComments2}
+                      commentCount={commentCount}
                     ></FeedComment>
                   ) : (
                     ""
                   )}
-                  <Comments id={post}></Comments>
+
+                  <Comments
+                    id={post}
+                    comments={comments}
+                    getComments={getComments}
+                    commentCount={commentCount}
+                  ></Comments>
 
                   <Card.Footer className="mt-2">
                     <small>

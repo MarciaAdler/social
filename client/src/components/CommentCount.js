@@ -5,12 +5,11 @@ export default function CommentCount({ id }) {
   const [number, setNumber] = useState(0);
   useEffect(() => {
     commentCount(id);
-  });
+  }, []);
 
   function commentCount(id) {
     API.getComments(id)
       .then((res) => {
-        console.log(res.data);
         setNumber(res.data.length);
       })
       .catch((err) => console.log(err));
