@@ -219,6 +219,12 @@ module.exports = {
       where: {
         name: name,
       },
+      include: [
+        {
+          model: db.User,
+          as: "Admin",
+        },
+      ],
     })
       .then((dbModel) => res.json(dbModel))
       .catch(function (err) {

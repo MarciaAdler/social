@@ -67,6 +67,7 @@ const reducer = (state, action) => {
           description: action.selectedGroup.description,
           image: action.selectedGroup.image,
           adminId: action.selectedGroup.adminId,
+          adminUsername: action.selectedGroup.adminUsername,
         },
       };
     case CLEAR_ALL:
@@ -88,6 +89,7 @@ const reducer = (state, action) => {
           description: "",
           image: "",
           adminId: 0,
+          adminUsername: "",
         },
         loggedin: false,
         posts: [],
@@ -128,6 +130,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       description: "",
       image: "",
       adminId: 0,
+      adminUsername: "",
     },
   });
   return <Provider value={[state, dispatch]} {...props} />;

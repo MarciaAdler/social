@@ -18,13 +18,14 @@ export default function GroupPage() {
     if (state.selectedGroup.id === 0) {
       API.getPageFromURL(url.replace("?", ""))
         .then((res) => {
-          console.log(res);
+          console.log("res", res);
           const selectedGroup = {
             id: res.data.id,
             name: res.data.name,
             description: res.data.description,
             image: res.data.image,
             adminId: res.data.AdminId,
+            adminUsername: res.data.Admin.username,
           };
           dispatch({
             type: SET_SELECTED_GROUP,
@@ -56,6 +57,8 @@ export default function GroupPage() {
       ) : (
         " "
       )}
+      <h4>{state.selectedGroup.description}</h4>
+      Group created by {state.selectedGroup.adminUsername}
     </Container>
   );
 }

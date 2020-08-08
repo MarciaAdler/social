@@ -47,7 +47,7 @@ export default function Header() {
     });
     localStorage.clear();
     setRedirect(true);
-    // renderRedirect();
+    renderRedirect();
   }
   const renderRedirect = () => {
     if (redirect === true) {
@@ -69,13 +69,14 @@ export default function Header() {
   };
 
   function selectGroup(group) {
-    console.log(group);
+    console.log("group", group);
     const selectedGroup = {
       id: group.id,
       name: group.name,
       description: group.description,
       image: group.image,
       adminId: group.AdminId,
+      adminUsername: group.Admin.username,
     };
     dispatch({
       type: SET_SELECTED_GROUP,
@@ -87,6 +88,7 @@ export default function Header() {
       description: group.description,
       image: group.image,
       adminId: group.AdminId,
+      adminUsername: group.Admin.username,
     };
     window.localStorage.setItem(
       "selectedgroup",
@@ -175,8 +177,25 @@ export default function Header() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="/">Feed</Nav.Link>
+              <Nav.Link href="/search">Search for buinesses</Nav.Link>
             </Nav>
             <Nav>
+              <NavDropdown title="Groups" id="nav-dropdown">
+                {state.groups.length > 0
+                  ? state.groups.map((group) => {
+                      return (
+                        <NavDropdown.Item
+                          key={group.id}
+                          onClick={() => {
+                            selectGroup(group);
+                          }}
+                        >
+                          {group.name}
+                        </NavDropdown.Item>
+                      );
+                    })
+                  : ""}
+              </NavDropdown>
               <Nav.Link href="/signup">Signup</Nav.Link>
               <Nav.Link href="/signin">Login</Nav.Link>
             </Nav>
@@ -184,7 +203,6 @@ export default function Header() {
         )}
       </Navbar>
       {renderGroupPage()}
-      {renderRedirect()}
     </div>
   );
 }
