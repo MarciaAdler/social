@@ -67,4 +67,11 @@ export default {
   getPageFromURL: function (group) {
     return axios.get("/api/grouppage/" + group);
   },
+  createGroupPost: function (post) {
+    console.log(post);
+    return axios.post("/api/grouppost", post);
+  },
+  uploadGroupPostImage: function (image) {
+    return axios.post("/api/grouppostimage", image);
+  },
 };

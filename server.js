@@ -103,6 +103,25 @@ app.post("/api/groupimage", (req, res) => {
     }
   );
 });
+app.post("/api/grouppostimage", (req, res) => {
+  if (!req.files) {
+    return res.status(500).send({ msg: "file is not found" });
+  }
+  // accessing the file
+  const myFile = req.files.image1;
+  //  mv() method places the file inside public directory
+  myFile.mv(
+    `${__dirname}/client/public/grouppostimages/${req.body.groupname}-${req.body.id}-${myFile.name}`,
+    function (err) {
+      if (err) {
+        console.log(err);
+        return res.status(500).send({ msg: "Error occured" });
+      }
+      // returning the response with file path and name
+      return res.send(req.files.file);
+    }
+  );
+});
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get("*", (req, res) => {

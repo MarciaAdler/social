@@ -8,6 +8,7 @@ import {
   SET_SELECTED_USER,
   SET_GROUPS,
   SET_SELECTED_GROUP,
+  SET_GROUP_POSTS,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -69,6 +70,11 @@ const reducer = (state, action) => {
           adminId: action.selectedGroup.adminId,
           adminUsername: action.selectedGroup.adminUsername,
         },
+      };
+    case SET_GROUP_POSTS:
+      return {
+        ...state,
+        groupposts: action.groupposts,
       };
     case CLEAR_ALL:
       return {

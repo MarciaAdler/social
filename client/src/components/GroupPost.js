@@ -1,4 +1,4 @@
-import React, { useRef, useState, Fragment } from "react";
+import React, { useRef, useState, Fragment, useEffect } from "react";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
 import { SET_GROUP_POSTS } from "../utils/actions";
@@ -17,12 +17,64 @@ export default function GroupPost() {
   const postRef = useRef();
   const [image1, setImage1] = useState("");
   const [image1name, setImage1Name] = useState(null);
-
-  function createGroupPost() {}
+  //   useEffect(() => {
+  //     getGroupPosts(state.selectedGroup.id);
+  //   }, []);
+  //   function getGroupPosts(group) {
+  //     API.getGroupPosts(group)
+  //       .then((res) => {
+  //         console.log(res);
+  //         dispatch({ type: SET_GROUP_POSTS, groupposts: res.data });
+  //       })
+  //       .catch((err) => console.log(err));
+  //   }
+  function createGroupPost() {
+    API.createGroupPost({
+      post: postRef.current.value,
+      UserId: state.currentUser.id,
+      image1: image1name,
+      GroupId: state.selectedGroup.id,
+    }).then((res) => {
+      console.log(res);
+      if (image1name) {
+        uploadPostImage();
+        // getGroupPosts(res);
+        const form = document.getElementById("myForm");
+        form.reset();
+        setImage1Name(null);
+      } else {
+        // getGroupPosts(res);
+        const form = document.getElementById("myForm");
+        form.reset();
+      }
+    });
+  }
   const onChange = (e) => {
     setImage1(e.target.files[0]);
-    setImage1Name(state.currentUser.id + "-" + e.target.files[0].name);
+    const groupname = state.selectedGroup.name.replace(" ", "");
+    setImage1Name(
+      groupname + "-" + state.currentUser.id + "-" + e.target.files[0].name
+    );
   };
+
+  function uploadPostImage(e) {
+    const formData = new FormData();
+    formData.append("image1", image1);
+    formData.append("id", state.currentUser.id);
+    formData.append("groupname", state.selectedGroup.name);
+    API.uploadGroupPostImage(formData, {
+      headers: {
+        "Content Type": "multipart/form-data",
+      },
+    })
+      .then((res) => {
+        console.log(image1);
+        console.log(res.statusText);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <div>
       <Container>
@@ -63,15 +115,6 @@ export default function GroupPost() {
                         {image1name}
                       </label>
                     </div>
-                  </Col>
-                  <Col className="col-2">
-                    {/* <Button
-                  type="button"
-                  className="profileform--upload-button ml-3"
-                  onClick={uploadPostImage}
-                >
-                  Upload
-                </Button> */}
                   </Col>
                 </Fragment>
               </Row>

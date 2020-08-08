@@ -231,4 +231,17 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  createGroupPost: function (req, res) {
+    console.log(req.params);
+    db.GroupPost.create({
+      post: req.body.post,
+      UserId: req.body.UserId,
+      image1: req.body.image1,
+      GroupId: req.body.GroupId,
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };
