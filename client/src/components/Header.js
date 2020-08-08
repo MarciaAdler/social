@@ -123,13 +123,22 @@ export default function Header() {
         )}
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         {state.loggedin ? (
-          <Navbar.Collapse id="responsive-navbar-nav">
+          <Navbar.Collapse
+            id="responsive-navbar-nav"
+            className="header--dropdown"
+          >
             <Nav className="mr-auto">
-              <Nav.Link href="/">Feed</Nav.Link>
-              <Nav.Link href="/search">Search for buinesses</Nav.Link>
-            </Nav>
-            <Nav>
-              <NavDropdown title="Groups" id="nav-dropdown">
+              <Nav.Link href="/" className="header--dropdownitem">
+                Feed
+              </Nav.Link>
+              <Nav.Link href="/search" className="header--dropdownitem">
+                Search for buinesses
+              </Nav.Link>
+              <NavDropdown
+                title="Groups"
+                className="header--dropdownitem"
+                id="nav-dropdown"
+              >
                 {state.groups.length > 0
                   ? state.groups.map((group) => {
                       return (
@@ -140,6 +149,7 @@ export default function Header() {
                           }}
                         >
                           {group.name}
+                          <hr />
                         </NavDropdown.Item>
                       );
                     })
@@ -148,7 +158,15 @@ export default function Header() {
                   Add New Group
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link className="" eventKey={2} href="/" onClick={logOut}>
+            </Nav>
+            <Nav>
+              <Nav.Link
+                className=""
+                eventKey={2}
+                href="/"
+                className="header--dropdownitem"
+                onClick={logOut}
+              >
                 Logout
               </Nav.Link>
             </Nav>
@@ -176,11 +194,17 @@ export default function Header() {
         ) : (
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="/">Feed</Nav.Link>
-              <Nav.Link href="/search">Search for buinesses</Nav.Link>
-            </Nav>
-            <Nav>
-              <NavDropdown title="Groups" id="nav-dropdown">
+              <Nav.Link href="/" className="header--dropdownitem">
+                Feed
+              </Nav.Link>
+              <Nav.Link href="/search" className="header--dropdownitem">
+                Search for buinesses
+              </Nav.Link>
+              <NavDropdown
+                title="Groups"
+                id="nav-dropdown"
+                className="header--dropdownitem"
+              >
                 {state.groups.length > 0
                   ? state.groups.map((group) => {
                       return (
@@ -196,6 +220,8 @@ export default function Header() {
                     })
                   : ""}
               </NavDropdown>
+            </Nav>
+            <Nav>
               <Nav.Link href="/signup">Signup</Nav.Link>
               <Nav.Link href="/signin">Login</Nav.Link>
             </Nav>

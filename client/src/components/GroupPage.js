@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_SELECTED_GROUP } from "../utils/actions";
 import API from "../utils/API";
+import GroupFeed from "./GroupFeed";
 
 export default function GroupPage() {
   const [state, dispatch] = useStoreContext();
@@ -43,6 +44,13 @@ export default function GroupPage() {
 
   return (
     <Container>
+      {state.currentUser.username === state.selectedGroup.adminUsername ? (
+        <div className="text-left">
+          <Button>Edit Page</Button>
+        </div>
+      ) : (
+        ""
+      )}
       <h2>
         Welcome to <strong>{state.selectedGroup.name}</strong>!
       </h2>
@@ -59,6 +67,7 @@ export default function GroupPage() {
       )}
       <h4>{state.selectedGroup.description}</h4>
       Group created by {state.selectedGroup.adminUsername}
+      <GroupFeed />
     </Container>
   );
 }
