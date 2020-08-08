@@ -17,17 +17,22 @@ export default function GroupPost() {
   const postRef = useRef();
   const [image1, setImage1] = useState("");
   const [image1name, setImage1Name] = useState(null);
-  //   useEffect(() => {
-  //     getGroupPosts(state.selectedGroup.id);
-  //   }, []);
-  //   function getGroupPosts(group) {
-  //     API.getGroupPosts(group)
-  //       .then((res) => {
-  //         console.log(res);
-  //         dispatch({ type: SET_GROUP_POSTS, groupposts: res.data });
-  //       })
-  //       .catch((err) => console.log(err));
-  //   }
+  useEffect(() => {
+    if (state.selectedGroup.id !== 0) {
+      getGroupPosts(state.selectedGroup.id);
+    } else if (JSON.parse(localStorage.getItem("selectedgroup"))) {
+      getGroupPosts(JSON.parse(localStorage.getItem("selectedgroup")));
+    }
+  }, []);
+  function getGroupPosts(selectedGroup) {
+    console.log(selectedGroup.id);
+    API.getGroupPosts(selectedGroup.id)
+      .then((res) => {
+        console.log(res);
+        dispatch({ type: SET_GROUP_POSTS, groupposts: res.data });
+      })
+      .catch((err) => console.log(err));
+  }
   function createGroupPost() {
     API.createGroupPost({
       post: postRef.current.value,
@@ -38,12 +43,12 @@ export default function GroupPost() {
       console.log(res);
       if (image1name) {
         uploadPostImage();
-        // getGroupPosts(res);
+        getGroupPosts(state.selectedGroup);
         const form = document.getElementById("myForm");
         form.reset();
         setImage1Name(null);
       } else {
-        // getGroupPosts(res);
+        getGroupPosts(state.selectedGroup);
         const form = document.getElementById("myForm");
         form.reset();
       }
@@ -61,7 +66,8 @@ export default function GroupPost() {
     const formData = new FormData();
     formData.append("image1", image1);
     formData.append("id", state.currentUser.id);
-    formData.append("groupname", state.selectedGroup.name);
+    const groupname = state.selectedGroup.name.replace(" ", "");
+    formData.append("groupname", groupname);
     API.uploadGroupPostImage(formData, {
       headers: {
         "Content Type": "multipart/form-data",

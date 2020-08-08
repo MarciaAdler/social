@@ -104,6 +104,8 @@ app.post("/api/groupimage", (req, res) => {
   );
 });
 app.post("/api/grouppostimage", (req, res) => {
+  console.log(req.files);
+  console.log(req.body);
   if (!req.files) {
     return res.status(500).send({ msg: "file is not found" });
   }

@@ -232,12 +232,34 @@ module.exports = {
       });
   },
   createGroupPost: function (req, res) {
-    console.log(req.params);
     db.GroupPost.create({
       post: req.body.post,
       UserId: req.body.UserId,
       image1: req.body.image1,
       GroupId: req.body.GroupId,
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getGroupPosts: function (req, res) {
+    console.log(req.params);
+    db.GroupPost.findAll({
+      where: { GroupId: req.params.group },
+      order: [["createdAt", "DESC"]],
+      include: [
+        {
+          model: db.NeighborGroup,
+          as: "Group",
+        },
+      ],
+      include: [
+        {
+          model: db.User,
+          as: "User",
+        },
+      ],
     })
       .then((dbModel) => res.json(dbModel))
       .catch(function (err) {

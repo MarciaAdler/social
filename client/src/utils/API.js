@@ -74,4 +74,8 @@ export default {
   uploadGroupPostImage: function (image) {
     return axios.post("/api/grouppostimage", image);
   },
+  getGroupPosts: function (group) {
+    console.log(group);
+    return axios.get("/api/grouppost/" + group);
+  },
 };
