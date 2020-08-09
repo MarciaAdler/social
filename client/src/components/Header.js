@@ -51,7 +51,7 @@ export default function Header() {
     localStorage.clear();
 
     setHome(true);
-    renderRedirect();
+    // renderRedirect();
   }
   const renderRedirect = () => {
     if (home === true) {
@@ -60,7 +60,7 @@ export default function Header() {
   };
 
   const renderGroupPage = () => {
-    if (state.selectedGroup && redirect) {
+    if (state.selectedGroup.id !== 0 && redirect) {
       return (
         <Redirect
           push
@@ -231,8 +231,12 @@ export default function Header() {
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link href="/signup">Signup</Nav.Link>
-              <Nav.Link href="/signin">Login</Nav.Link>
+              <Nav.Link href="/signup" className="header--dropdownitem">
+                Signup
+              </Nav.Link>
+              <Nav.Link href="/signin" className="header--dropdownitem">
+                Login
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         )}
