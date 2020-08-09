@@ -25,8 +25,8 @@ export default function GroupPost() {
     }
   }, []);
   function getGroupPosts(selectedGroup) {
-    console.log(selectedGroup.id);
-    API.getGroupPosts(selectedGroup.id)
+    console.log(selectedGroup);
+    API.getGroupPosts(selectedGroup)
       .then((res) => {
         console.log(res);
         dispatch({ type: SET_GROUP_POSTS, groupposts: res.data });
@@ -43,12 +43,12 @@ export default function GroupPost() {
       console.log(res);
       if (image1name) {
         uploadPostImage();
-        getGroupPosts(state.selectedGroup);
+        getGroupPosts(state.selectedGroup.id);
         const form = document.getElementById("myForm");
         form.reset();
         setImage1Name(null);
       } else {
-        getGroupPosts(state.selectedGroup);
+        getGroupPosts(state.selectedGroup.id);
         const form = document.getElementById("myForm");
         form.reset();
       }

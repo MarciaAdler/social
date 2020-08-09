@@ -68,14 +68,15 @@ export default {
     return axios.get("/api/grouppage/" + group);
   },
   createGroupPost: function (post) {
-    console.log(post);
     return axios.post("/api/grouppost", post);
   },
   uploadGroupPostImage: function (image) {
     return axios.post("/api/grouppostimage", image);
   },
   getGroupPosts: function (group) {
-    console.log(group);
     return axios.get("/api/grouppost/" + group);
+  },
+  deleteGroupPost: function (post) {
+    return axios.delete("/api/deletegrouppost/" + post);
   },
 };

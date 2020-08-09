@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Container, Button } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
-import { SET_SELECTED_GROUP } from "../utils/actions";
+import { SET_SELECTED_GROUP, SET_GROUP_POSTS } from "../utils/actions";
 import API from "../utils/API";
 import GroupFeed from "./GroupFeed";
 
@@ -32,6 +32,7 @@ export default function GroupPage() {
             type: SET_SELECTED_GROUP,
             selectedGroup: selectedGroup,
           });
+          getGroupPosts(selectedGroup);
         })
         .catch((err) => console.log(err));
     } else {
@@ -39,9 +40,18 @@ export default function GroupPage() {
         type: SET_SELECTED_GROUP,
         selectedGroup: state.selectedGroup,
       });
+      getGroupPosts(state.selectedGroup);
     }
   }
-
+  function getGroupPosts(selectedGroup) {
+    console.log(selectedGroup.id);
+    API.getGroupPosts(selectedGroup.id)
+      .then((res) => {
+        console.log(res);
+        dispatch({ type: SET_GROUP_POSTS, groupposts: res.data });
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <Container>
       {state.currentUser.username === state.selectedGroup.adminUsername ? (

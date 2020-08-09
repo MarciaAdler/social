@@ -20,8 +20,8 @@ export default function GroupFeed() {
   }, []);
 
   function getGroupPosts(selectedGroup) {
-    console.log(selectedGroup.id);
-    API.getGroupPosts(selectedGroup.id)
+    console.log(selectedGroup);
+    API.getGroupPosts(selectedGroup)
       .then((res) => {
         console.log(res);
         dispatch({ type: SET_GROUP_POSTS, groupposts: res.data });
@@ -29,8 +29,8 @@ export default function GroupFeed() {
       .catch((err) => console.log(err));
   }
 
-  function deletePost(post) {
-    API.deletePost(post)
+  function deleteGroupPost(post) {
+    API.deleteGroupPost(post)
       .then((res) => {
         getGroupPosts(state.selectedGroup.id);
       })
@@ -166,7 +166,7 @@ export default function GroupFeed() {
                     <button
                       className="feed--delete-btn"
                       onClick={() => {
-                        deletePost(post.id);
+                        deleteGroupPost(post.id);
                       }}
                     >
                       X

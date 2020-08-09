@@ -248,18 +248,24 @@ module.exports = {
     db.GroupPost.findAll({
       where: { GroupId: req.params.group },
       order: [["createdAt", "DESC"]],
-      include: [
-        {
-          model: db.NeighborGroup,
-          as: "Group",
-        },
-      ],
+
       include: [
         {
           model: db.User,
           as: "User",
         },
       ],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  deleteGroupPost: function (req, res) {
+    db.GroupPost.destroy({
+      where: {
+        id: req.params.id,
+      },
     })
       .then((dbModel) => res.json(dbModel))
       .catch(function (err) {

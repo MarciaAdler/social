@@ -7,6 +7,7 @@ import {
   CLEAR_ALL,
   SET_GROUPS,
   SET_SELECTED_GROUP,
+  SET_GROUP_POSTS,
 } from "../utils/actions";
 import { Link, Redirect } from "react-router-dom";
 import API from "../utils/API";
@@ -95,6 +96,16 @@ export default function Header() {
       JSON.stringify(localStorageSelectedGroup)
     );
     setRedirect(true);
+    getGroupPosts(selectedGroup);
+  }
+  function getGroupPosts(selectedGroup) {
+    console.log(selectedGroup.id);
+    API.getGroupPosts(selectedGroup.id)
+      .then((res) => {
+        console.log(res);
+        dispatch({ type: SET_GROUP_POSTS, groupposts: res.data });
+      })
+      .catch((err) => console.log(err));
   }
   return (
     <div>

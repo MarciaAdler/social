@@ -42,4 +42,9 @@ router.route("/api/grouppage/:name").get(usersController.getPage);
 router.route("/api/grouppost").post(usersController.createGroupPost);
 
 router.route("/api/grouppost/:group").get(usersController.getGroupPosts);
+
+router
+  .route("/api/deletegrouppost/:id")
+  .delete(usersController.deleteGroupPost);
+
 module.exports = router;
