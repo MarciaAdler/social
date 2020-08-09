@@ -7,10 +7,10 @@ import { useStoreContext } from "../utils/GlobalState";
 export default function Comments(props) {
   const [state, dispatch] = useStoreContext();
   const [collapse, setCollapse] = useState(false);
-  // useEffect(() => {
-  //   props.getComments(props.id);
-  //   // commentCount(post);
-  // }, []);
+  const [number, setNumber] = useState(0);
+  useEffect(() => {
+    props.commentCount(props.id);
+  }, []);
 
   // function getComments(id) {
   //   console.log(id);
@@ -25,7 +25,7 @@ export default function Comments(props) {
   function deleteComment(comment) {
     API.deleteComment(comment)
       .then((res) => {
-        props.getComments(props.id);
+        props.getComments2(props.id);
         props.commentCount(props.id);
       })
       .catch((err) => console.log(err));

@@ -34,15 +34,20 @@ export default function Feed() {
   function getPosts() {
     API.getPosts()
       .then((res) => {
+        console.log(res.data);
         dispatch({ type: SET_POSTS, posts: res.data });
-        state.posts.map((post) => {
-          getComments(post.id);
+        res.data.map((post) => {
+          getComments2(post.id);
+          API.getComments2(post.id).then((response) => {
+            post["number"] = response.data.length;
+          });
         });
       })
       .catch((err) => console.log(err));
   }
 
   function getComments(id) {
+    console.log(id);
     API.getComments(id)
       .then((response) => {
         console.log(response.data);
@@ -51,11 +56,12 @@ export default function Feed() {
       .catch((err) => console.log(err));
   }
   function getComments2(id) {
+    console.log(id);
     API.getComments2(id)
       .then((response) => {
         console.log(response.data);
         setComments(response.data);
-        commentCount(id);
+        // commentCount(id);
       })
       .catch((err) => console.log(err));
   }
@@ -177,7 +183,13 @@ export default function Feed() {
                     id={post}
                     commentCount={commentCount}
                   ></CommentCount> */}
-
+                  {state.loggedin === false ? (
+                    <div className="text-left ml-2">
+                      <small>{post.number} comments</small>{" "}
+                    </div>
+                  ) : (
+                    ""
+                  )}
                   {state.currentUser.id !== 0 ? (
                     <FeedComment
                       post={post}
@@ -193,6 +205,7 @@ export default function Feed() {
                     id={post}
                     comments={comments}
                     getComments={getComments}
+                    getComments2={getComments2}
                     commentCount={commentCount}
                   ></Comments>
 

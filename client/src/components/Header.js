@@ -11,9 +11,11 @@ import {
 } from "../utils/actions";
 import { Link, Redirect } from "react-router-dom";
 import API from "../utils/API";
+
 export default function Header() {
   const [state, dispatch] = useStoreContext();
   const [redirect, setRedirect] = useState(false);
+  const [home, setHome] = useState(false);
 
   useEffect(() => {
     if (state.currentUser.id === 0 && localStorage.getItem("currentUser")) {
@@ -47,14 +49,16 @@ export default function Header() {
       type: CLEAR_ALL,
     });
     localStorage.clear();
-    setRedirect(true);
+
+    setHome(true);
     renderRedirect();
   }
   const renderRedirect = () => {
-    if (redirect === true) {
-      return <Redirect to="/" />;
+    if (home === true) {
+      return <Redirect to="/signin" />;
     }
   };
+
   const renderGroupPage = () => {
     if (state.selectedGroup && redirect) {
       return (
@@ -171,13 +175,7 @@ export default function Header() {
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link
-                className=""
-                eventKey={2}
-                href="/"
-                className="header--dropdownitem"
-                onClick={logOut}
-              >
+              <Nav.Link className="header--dropdownitem" onClick={logOut}>
                 Logout
               </Nav.Link>
             </Nav>
@@ -240,6 +238,7 @@ export default function Header() {
         )}
       </Navbar>
       {renderGroupPage()}
+      {renderRedirect()}
     </div>
   );
 }
