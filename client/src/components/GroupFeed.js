@@ -11,13 +11,13 @@ export default function GroupFeed() {
   const [state, dispatch] = useStoreContext();
   const [redirect, setRedirect] = useState(false);
 
-  useEffect(() => {
-    if (state.selectedGroup.id !== 0) {
-      getGroupPosts(state.selectedGroup.id);
-    } else if (JSON.parse(localStorage.getItem("selectedgroup"))) {
-      getGroupPosts(JSON.parse(localStorage.getItem("selectedgroup")));
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (state.selectedGroup.id !== 0) {
+  //     getGroupPosts(state.selectedGroup.id);
+  //   } else if (JSON.parse(localStorage.getItem("selectedgroup"))) {
+  //     getGroupPosts(JSON.parse(localStorage.getItem("selectedgroup")));
+  //   }
+  // }, []);
 
   function getGroupPosts(selectedGroup) {
     console.log(selectedGroup);

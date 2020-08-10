@@ -17,13 +17,13 @@ export default function GroupPost() {
   const postRef = useRef();
   const [image1, setImage1] = useState("");
   const [image1name, setImage1Name] = useState(null);
-  useEffect(() => {
-    if (state.selectedGroup.id !== 0) {
-      getGroupPosts(state.selectedGroup.id);
-    } else if (JSON.parse(localStorage.getItem("selectedgroup"))) {
-      getGroupPosts(JSON.parse(localStorage.getItem("selectedgroup")));
-    }
-  }, []);
+  //   useEffect(() => {
+  //     if (state.selectedGroup.id !== 0) {
+  //       getGroupPosts(state.selectedGroup.id);
+  //     } else if (JSON.parse(localStorage.getItem("selectedgroup"))) {
+  //       getGroupPosts(JSON.parse(localStorage.getItem("selectedgroup")));
+  //     }
+  //   }, []);
   function getGroupPosts(selectedGroup) {
     console.log(selectedGroup);
     API.getGroupPosts(selectedGroup)
