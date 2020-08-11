@@ -50,14 +50,14 @@ export default function Header() {
     });
     localStorage.clear();
 
-    setHome(true);
+    // setHome(true);
     // renderRedirect();
   }
-  const renderRedirect = () => {
-    if (home === true) {
-      return <Redirect to="/signin" />;
-    }
-  };
+  // const renderRedirect = () => {
+  //   if (home === true) {
+  //     return <Redirect to="/signin" />;
+  //   }
+  // };
 
   const renderGroupPage = () => {
     if (state.selectedGroup.id !== 0 && redirect) {
@@ -242,7 +242,6 @@ export default function Header() {
         )}
       </Navbar>
       {renderGroupPage()}
-      {renderRedirect()}
     </div>
   );
 }

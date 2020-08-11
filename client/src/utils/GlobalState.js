@@ -89,16 +89,16 @@ const reducer = (state, action) => {
           email: "",
           bio: "",
         },
-        selectedGroup: {
-          id: 0,
-          name: "",
-          description: "",
-          image: "",
-          adminId: 0,
-          adminUsername: "",
-        },
+        // selectedGroup: {
+        //   id: 0,
+        //   name: "",
+        //   description: "",
+        //   image: "",
+        //   adminId: 0,
+        //   adminUsername: "",
+        // },
         loggedin: false,
-        posts: [],
+        // posts: [],
       };
     default:
       return state;

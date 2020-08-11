@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Button } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_SELECTED_GROUP, SET_GROUP_POSTS } from "../utils/actions";
 import API from "../utils/API";
 import GroupFeed from "./GroupFeed";
+import { Link, Redirect } from "react-router-dom";
 
 export default function GroupPage() {
   const [state, dispatch] = useStoreContext();
+  const [page, setPage] = useState(false);
 
   useEffect(() => {
     loadRequest(window.location.search);
@@ -52,11 +54,12 @@ export default function GroupPage() {
       })
       .catch((err) => console.log(err));
   }
+
   return (
     <Container>
       {state.currentUser.username === state.selectedGroup.adminUsername ? (
         <div className="text-left">
-          <Button>Edit Page</Button>
+          <Button>Edit Group</Button>
         </div>
       ) : (
         ""
