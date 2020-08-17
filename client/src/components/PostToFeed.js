@@ -40,6 +40,7 @@ export default function PostToFeed() {
         getPosts(res);
         const form = document.getElementById("myForm");
         form.reset();
+        setImage1Name(null);
       } else {
         getPosts(res);
         const form = document.getElementById("myForm");
@@ -50,7 +51,7 @@ export default function PostToFeed() {
   const onChange = (e) => {
     setImage1(e.target.files[0]);
     const name = e.target.files[0].name.replace(" ", "_");
-    console.log(name);
+
     setImage1Name(state.currentUser.id + "-" + name);
   };
   function uploadPostImage(e) {
