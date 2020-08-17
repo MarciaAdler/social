@@ -49,9 +49,10 @@ app.post("/api/profileimage", (req, res) => {
   }
   // accessing the file
   const myFile = req.files.image;
+  name = myFile.name.replace(" ", "_");
   //  mv() method places the file inside public directory
   myFile.mv(
-    `${__dirname}/client/public/profileimages/${req.body.username}-${myFile.name}`,
+    `${__dirname}/client/public/profileimages/${req.body.username}-${name}`,
     function (err) {
       if (err) {
         console.log(err);
@@ -91,9 +92,10 @@ app.post("/api/groupimage", (req, res) => {
   }
   // accessing the file
   const myFile = req.files.image;
+  name = myFile.name.replace(" ", "_");
   //  mv() method places the file inside public directory
   myFile.mv(
-    `${__dirname}/client/public/groupimages/${req.body.groupname}-${myFile.name}`,
+    `${__dirname}/client/public/groupimages/${req.body.groupname}-${name}`,
     function (err) {
       if (err) {
         console.log(err);
@@ -112,9 +114,10 @@ app.post("/api/grouppostimage", (req, res) => {
   }
   // accessing the file
   const myFile = req.files.image1;
+  name = myFile.name.replace(" ", "_");
   //  mv() method places the file inside public directory
   myFile.mv(
-    `${__dirname}/client/public/grouppostimages/${req.body.groupname}-${req.body.id}-${myFile.name}`,
+    `${__dirname}/client/public/grouppostimages/${req.body.groupname}-${req.body.id}-${name}`,
     function (err) {
       if (err) {
         console.log(err);
