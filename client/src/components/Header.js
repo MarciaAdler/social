@@ -116,7 +116,7 @@ export default function Header() {
       <Navbar
         collapseOnSelect
         expand="lg"
-        bg="info"
+        // bg="info"
         className="header fixed-top"
       >
         {state.loggedin === true ? (

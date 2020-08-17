@@ -128,11 +128,7 @@ export default function GroupPost() {
           </Row>
           <Row>
             <Col className="col-12 col-md-1">
-              <Button
-                variant="secondary"
-                className="mt-2 post"
-                onClick={createGroupPost}
-              >
+              <Button className="mt-2 post" onClick={createGroupPost}>
                 Post
               </Button>
             </Col>

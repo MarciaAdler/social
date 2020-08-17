@@ -69,9 +69,10 @@ app.post("/api/postimages", (req, res) => {
   }
   // accessing the file
   const myFile = req.files.image1;
+  name = myFile.name.replace(" ", "_");
   //  mv() method places the file inside public directory
   myFile.mv(
-    `${__dirname}/client/public/postimages/${req.body.id}-${myFile.name}`,
+    `${__dirname}/client/public/postimages/${req.body.id}-${name}`,
     function (err) {
       if (err) {
         console.log(err);

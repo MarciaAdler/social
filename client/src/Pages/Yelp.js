@@ -37,7 +37,9 @@ export default function Yelp() {
             name="search"
             placeholder="business type"
           />
-          <button onClick={handleFormSubmit}>Search</button>
+          <button className="post" onClick={handleFormSubmit}>
+            Search
+          </button>
         </form>
         <Results results={results} />
       </Container>

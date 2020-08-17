@@ -49,7 +49,9 @@ export default function PostToFeed() {
   }
   const onChange = (e) => {
     setImage1(e.target.files[0]);
-    setImage1Name(state.currentUser.id + "-" + e.target.files[0].name);
+    const name = e.target.files[0].name.replace(" ", "_");
+    console.log(name);
+    setImage1Name(state.currentUser.id + "-" + name);
   };
   function uploadPostImage(e) {
     const formData = new FormData();
@@ -125,11 +127,7 @@ export default function PostToFeed() {
           </Row>
           <Row>
             <Col className="col-12 col-md-1">
-              <Button
-                variant="secondary"
-                className="mt-2 post"
-                onClick={createPost}
-              >
+              <Button className="mt-2 post" onClick={createPost}>
                 Post
               </Button>
             </Col>

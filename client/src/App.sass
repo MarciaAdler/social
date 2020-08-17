@@ -1,18 +1,28 @@
 @import "~bootstrap/scss/bootstrap"
 
 $jet: #343A40
-
+$blackcoffee: #37323E
+$gray: #BFBDC1
+$dimgray: #6D6A75
+$middleblue: #7EBDC3
+$shadows: #D5C5C8
+$keppel: #44BBA4
 body
     padding-top: 50px
     min-height: 100vh
     position: relative
     padding-bottom: 110px
+    background-color: $dimgray
 .icon
     height: 150px
     width: auto
-    margin-top: 25px
+    margin-top: 40px
+    border-radius: 2em
+
 .header
+    background-color: $middleblue
     height: 70px
+    color: $blackcoffee
     &--icon
         height: 50px
         border-radius: .5em
@@ -26,25 +36,25 @@ body
 
     &--dropdownitem
         @include media-breakpoint-only(md)
-            color: $jet !important
+            color: $blackcoffee !important
             padding-left: 10px
         @include media-breakpoint-only(xs)
-            color: $jet !important
+            color: $blackcoffee !important
             padding-left: 10px
 #responsive-navbar-nav
     @include media-breakpoint-only(md)
-        background-color: lightgrey
+        background-color: $shadows
         text-align: center
     @include media-breakpoint-only(xs)
-        background-color: lightgrey
+        background-color: $shadows
         text-align: center
 
 #nav-dropdown
     @include media-breakpoint-only(md)
-        color: $jet !important
+        color: $blackcoffee !important
 
     @include media-breakpoint-only(xs)
-        color: $jet !important
+        color: $blackcoffee !important
 
 // .navbar-nav
 //     @include media-breakpoint-only(md)
@@ -160,7 +170,21 @@ body
         font-size: .8em
         font-weight: bold
         font-style: italic
+    &--btn
+        background-color: $keppel
+        border-color: $keppel
+        &:hover
+            background-color: $shadows
+            border-color: $shadows
+            color: $blackcoffee
+
 .post
+    background-color: $keppel
+    border-color: $keppel
+    &:hover
+        background-color: $shadows
+        border-color: $shadows
+        color: $blackcoffee
 .feed
     &--image
         height: 150px
@@ -211,6 +235,7 @@ body
 .yelp
     &--container
         margin-top: 40px
+
 .search
     &--image
 
@@ -243,7 +268,7 @@ body
         border-radius: 2rem
 .footer
     &--container
-        background-color: #17a2b8
+        background-color: $middleblue
         color: rgba(0,0,0,0.5)
         position: absolute
         bottom: 0
