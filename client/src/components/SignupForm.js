@@ -45,7 +45,8 @@ export default function SignupForm() {
   }
   const onChange = (e) => {
     setImage(e.target.files[0]);
-    setImageName(nameRef.current.value + "-" + e.target.files[0].name);
+    const name = e.target.files[0].name.replace(" ", "_");
+    setImageName(nameRef.current.value + "-" + name);
   };
   function uploadProfileImage(e) {
     const formData = new FormData();

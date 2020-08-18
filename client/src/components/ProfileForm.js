@@ -75,7 +75,8 @@ export default function ProfileForm() {
   }
   const onChange = (e) => {
     setImage(e.target.files[0]);
-    setImageName(state.currentUser.username + "-" + e.target.files[0].name);
+    const name = e.target.files[0].name.replace(" ", "_");
+    setImageName(state.currentUser.username + "-" + name);
   };
 
   function uploadProfileImage(e) {
