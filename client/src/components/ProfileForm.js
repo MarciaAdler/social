@@ -28,6 +28,7 @@ export default function ProfileForm() {
     })
       .then((response) => {
         console.log(response);
+        uploadProfileImage();
         refreshUser();
         confirmUpdate();
       })
@@ -63,7 +64,7 @@ export default function ProfileForm() {
           "currentUser",
           JSON.stringify(localStorageUser)
         );
-        uploadProfileImage();
+        // uploadProfileImage();
       })
       .catch((err) => console.log(err));
   }
@@ -76,7 +77,7 @@ export default function ProfileForm() {
   const onChange = (e) => {
     setImage(e.target.files[0]);
     const name = e.target.files[0].name.replace(" ", "_");
-    setImageName(state.currentUser.username + "-" + name);
+    setImageName(usernameRef.current.value + "-" + name);
   };
 
   function uploadProfileImage(e) {

@@ -110,7 +110,7 @@ export default function SignupForm() {
               <Form.Label>City</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter username"
+                placeholder="Enter city"
                 required
                 ref={cityRef}
               />
@@ -120,7 +120,7 @@ export default function SignupForm() {
             <Form.Label>State</Form.Label>
             <Form.Control
               type="text"
-              placeholder="First name"
+              placeholder="Enter state"
               required
               ref={stateRef}
             />

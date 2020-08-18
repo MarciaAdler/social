@@ -48,7 +48,7 @@ export default function Comments(props) {
         </Button>
       ) : (
         <Button
-          className="comments--button"
+          className="comments--button mb-3"
           onClick={() => setCollapse(false)}
           aria-controls="example-collapse-text"
           aria-expanded={collapse}
@@ -63,7 +63,7 @@ export default function Comments(props) {
               <Collapse in={collapse} key={comment.id}>
                 <div className="text-left" key={comment.id}>
                   <img
-                    className="comments--profileimage"
+                    className="comments--profileimage mr-2"
                     src={
                       process.env.PUBLIC_URL +
                       `/profileimages/${comment.Commenter.image}`

@@ -102,7 +102,7 @@ export default function GroupFeed() {
                     <div>
                       {post.User.image !== "" ? (
                         <img
-                          className="feed--profileimage feed--poster"
+                          className="feed--profileimage mr-2 feed--poster"
                           src={
                             process.env.PUBLIC_URL +
                             `/profileimages/${post.User.image}`

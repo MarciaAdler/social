@@ -158,7 +158,7 @@ export default function Feed() {
                       ) : (
                         ""
                       )}
-                      <strong className="feed--poster">
+                      <strong className="feed--poster ml-2">
                         {post.User.username} says:{" "}
                       </strong>
 
