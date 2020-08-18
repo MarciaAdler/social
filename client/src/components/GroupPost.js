@@ -57,9 +57,8 @@ export default function GroupPost() {
   const onChange = (e) => {
     setImage1(e.target.files[0]);
     const groupname = state.selectedGroup.name.replace(" ", "");
-    setImage1Name(
-      groupname + "-" + state.currentUser.id + "-" + e.target.files[0].name
-    );
+    const name = e.target.files[0].name.replace(" ", "_");
+    setImage1Name(groupname + "-" + state.currentUser.id + "-" + name);
   };
 
   function uploadPostImage(e) {
