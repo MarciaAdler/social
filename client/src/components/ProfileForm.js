@@ -27,10 +27,15 @@ export default function ProfileForm() {
       bio: bioRef.current.value,
     })
       .then((response) => {
-        console.log(response);
-        uploadProfileImage();
-        refreshUser();
-        confirmUpdate();
+        console.log(response.data);
+        if (image !== "") {
+          uploadProfileImage();
+          refreshUser();
+          confirmUpdate();
+        } else {
+          refreshUser();
+          confirmUpdate();
+        }
       })
       .catch((err) => console.log(err));
   }
@@ -64,6 +69,7 @@ export default function ProfileForm() {
           "currentUser",
           JSON.stringify(localStorageUser)
         );
+
         // uploadProfileImage();
       })
       .catch((err) => console.log(err));
@@ -97,6 +103,7 @@ export default function ProfileForm() {
         console.log(err);
       });
   }
+
   return (
     <div>
       <Container className="profileform--wrapper">

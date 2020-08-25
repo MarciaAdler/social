@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, ListGroup, Card } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import GroupPost from "./GroupPost";
+import GroupComment from "./GroupComment";
 import { SET_GROUP_POSTS, SET_SELECTED_USER } from "../utils/actions";
 import API from "../utils/API";
 import dateFormat from "dateformat";
@@ -134,16 +135,16 @@ export default function GroupFeed() {
                   <br />
                   <br />
 
-                  {/* {state.currentUser.id !== 0 ? (
-                    <FeedComment
+                  {state.currentUser.id !== 0 ? (
+                    <GroupComment
                       post={post}
-                      getComments={getComments}
-                      getComments2={getComments2}
-                      commentCount={commentCount}
-                    ></FeedComment>
+                      // getComments={getComments}
+                      // getComments2={getComments2}
+                      // commentCount={commentCount}
+                    ></GroupComment>
                   ) : (
                     ""
-                  )} */}
+                  )}
 
                   {/* <Comments
                     id={post}

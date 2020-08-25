@@ -22,6 +22,9 @@ module.exports = function (sequelize, DataTypes) {
       as: "Group",
       allowNull: false,
     });
+    GroupPost.hasMany(models.GroupPostComment, {
+      foreignKey: "PostId",
+    });
   };
   return GroupPost;
 };

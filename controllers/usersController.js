@@ -272,4 +272,15 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  addGroupComment: function (req, res) {
+    db.GroupPostComment.create({
+      comment: req.body.comment,
+      PostId: req.body.PostId,
+      CommenterId: req.body.CommenterId,
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

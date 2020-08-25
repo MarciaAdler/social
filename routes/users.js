@@ -47,4 +47,6 @@ router
   .route("/api/deletegrouppost/:id")
   .delete(usersController.deleteGroupPost);
 
+router.route("/api/addgroupcomment").post(usersController.addGroupComment);
+
 module.exports = router;

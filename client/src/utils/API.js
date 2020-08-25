@@ -79,4 +79,7 @@ export default {
   deleteGroupPost: function (post) {
     return axios.delete("/api/deletegrouppost/" + post);
   },
+  addGroupComment: function (comment) {
+    return axios.post("/api/addgroupcomment", comment);
+  },
 };
