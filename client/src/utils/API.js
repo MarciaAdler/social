@@ -82,4 +82,7 @@ export default {
   addGroupComment: function (comment) {
     return axios.post("/api/addgroupcomment", comment);
   },
+  getGroupComments: function (post) {
+    return axios.get("/api/getgroupcomments/" + post);
+  },
 };

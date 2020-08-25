@@ -5,10 +5,12 @@ import { SET_SELECTED_GROUP, SET_GROUP_POSTS } from "../utils/actions";
 import API from "../utils/API";
 import GroupFeed from "./GroupFeed";
 import { Link, Redirect } from "react-router-dom";
+import Comments from "./Comments";
 
 export default function GroupPage() {
   const [state, dispatch] = useStoreContext();
   const [page, setPage] = useState(false);
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     loadRequest(window.location.search);
@@ -51,10 +53,22 @@ export default function GroupPage() {
       .then((res) => {
         console.log(res);
         dispatch({ type: SET_GROUP_POSTS, groupposts: res.data });
+        res.data.map((post) => {
+          getGroupComments(post.id);
+        });
       })
       .catch((err) => console.log(err));
   }
 
+  function getGroupComments(post) {
+    console.log(post);
+    API.getGroupComments(post)
+      .then((res) => {
+        console.log(res);
+        setComments(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <Container>
       {state.currentUser.username === state.selectedGroup.adminUsername ? (

@@ -3,6 +3,7 @@ import { Container, ListGroup, Card } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import GroupPost from "./GroupPost";
 import GroupComment from "./GroupComment";
+import GroupPostComments from "./GroupPostComments";
 import { SET_GROUP_POSTS, SET_SELECTED_USER } from "../utils/actions";
 import API from "../utils/API";
 import dateFormat from "dateformat";
@@ -11,6 +12,7 @@ import { Redirect } from "react-router-dom";
 export default function GroupFeed() {
   const [state, dispatch] = useStoreContext();
   const [redirect, setRedirect] = useState(false);
+  const [comments, setComments] = useState([]);
 
   // useEffect(() => {
   //   if (state.selectedGroup.id !== 0) {
@@ -26,6 +28,9 @@ export default function GroupFeed() {
       .then((res) => {
         console.log(res);
         dispatch({ type: SET_GROUP_POSTS, groupposts: res.data });
+        res.data.map((post) => {
+          getGroupComments(post.id);
+        });
       })
       .catch((err) => console.log(err));
   }
@@ -38,6 +43,15 @@ export default function GroupFeed() {
       .catch((err) => console.log(err));
   }
 
+  function getGroupComments(post) {
+    console.log(post);
+    API.getGroupComments(post)
+      .then((res) => {
+        console.log(res);
+        setComments(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
   const renderRedirect = () => {
     if (state.selecteduser && redirect) {
       return (
@@ -138,7 +152,7 @@ export default function GroupFeed() {
                   {state.currentUser.id !== 0 ? (
                     <GroupComment
                       post={post}
-                      // getComments={getComments}
+                      getGroupComments={getGroupComments}
                       // getComments2={getComments2}
                       // commentCount={commentCount}
                     ></GroupComment>
@@ -146,12 +160,12 @@ export default function GroupFeed() {
                     ""
                   )}
 
-                  {/* <Comments
+                  <GroupPostComments
                     id={post}
                     comments={comments}
-                    getComments={getComments}
-                    commentCount={commentCount}
-                  ></Comments> */}
+                    getGroupComments={getGroupComments}
+                    // commentCount={commentCount}
+                  ></GroupPostComments>
 
                   <Card.Footer className="mt-2">
                     <small>

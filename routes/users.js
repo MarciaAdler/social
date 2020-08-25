@@ -49,4 +49,6 @@ router
 
 router.route("/api/addgroupcomment").post(usersController.addGroupComment);
 
+router.route("/api/getgroupcomments/:id").get(usersController.getGroupComments);
+
 module.exports = router;
