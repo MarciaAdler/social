@@ -10,7 +10,7 @@ export default function GroupPostComments(props) {
   const [comments, setComments] = useState([]);
 
   return (
-    <Container>
+    <Container className="text-left">
       {collapse === false ? (
         <Button
           className="comments--button"

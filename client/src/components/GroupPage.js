@@ -11,7 +11,7 @@ export default function GroupPage() {
   const [state, dispatch] = useStoreContext();
   const [page, setPage] = useState(false);
   const [comments, setComments] = useState([]);
-
+  const [number, setNumber] = useState(0);
   useEffect(() => {
     loadRequest(window.location.search);
   }, []);
@@ -66,6 +66,7 @@ export default function GroupPage() {
       .then((res) => {
         console.log(res);
         setComments(res.data);
+        setNumber(res.data.length);
       })
       .catch((err) => console.log(err));
   }

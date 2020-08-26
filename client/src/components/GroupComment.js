@@ -1,12 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Container, Form, InputGroup, FormControl } from "react-bootstrap";
 import API from "../utils/API";
 import { useStoreContext } from "../utils/GlobalState";
 
-export default function GroupComment({ post }) {
+export default function GroupComment({ post, getGroupComments }) {
   const [state, dispatch] = useStoreContext();
-  const [number, setNumber] = useState([]);
+  const [number, setNumber] = useState(0);
   const commentRef = useRef();
+
+  useEffect(() => {
+    groupCommentCount(post.id);
+  }, []);
 
   function addGroupComment(post) {
     API.addGroupComment({
@@ -15,7 +19,18 @@ export default function GroupComment({ post }) {
       CommenterId: state.currentUser.id,
     })
       .then((res) => {
+        getGroupComments(post);
+        groupCommentCount(post);
         commentRef.current.value = "";
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function groupCommentCount(post) {
+    API.getGroupComments(post)
+      .then((res) => {
+        console.log(res.data);
+        setNumber(res.data.length);
       })
       .catch((err) => console.log(err));
   }

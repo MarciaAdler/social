@@ -13,6 +13,7 @@ export default function GroupFeed() {
   const [state, dispatch] = useStoreContext();
   const [redirect, setRedirect] = useState(false);
   const [comments, setComments] = useState([]);
+  const [number, setNumber] = useState(0);
 
   // useEffect(() => {
   //   if (state.selectedGroup.id !== 0) {
@@ -49,9 +50,11 @@ export default function GroupFeed() {
       .then((res) => {
         console.log(res);
         setComments(res.data);
+        setNumber(res.data.length);
       })
       .catch((err) => console.log(err));
   }
+
   const renderRedirect = () => {
     if (state.selecteduser && redirect) {
       return (
@@ -129,8 +132,7 @@ export default function GroupFeed() {
                       <strong className="feed--poster">
                         {post.User.username} says:{" "}
                       </strong>
-
-                      {post.post}
+                      <div className="feed--post">{post.post}</div>
                     </div>
                   </h6>
 
@@ -153,6 +155,7 @@ export default function GroupFeed() {
                     <GroupComment
                       post={post}
                       getGroupComments={getGroupComments}
+                      number={number}
                       // getComments2={getComments2}
                       // commentCount={commentCount}
                     ></GroupComment>
@@ -163,6 +166,7 @@ export default function GroupFeed() {
                   <GroupPostComments
                     id={post}
                     comments={comments}
+                    number={number}
                     getGroupComments={getGroupComments}
                     // commentCount={commentCount}
                   ></GroupPostComments>
