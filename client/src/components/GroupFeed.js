@@ -156,20 +156,13 @@ export default function GroupFeed() {
                       post={post}
                       getGroupComments={getGroupComments}
                       number={number}
+                      comments={comments}
                       // getComments2={getComments2}
                       // commentCount={commentCount}
                     ></GroupComment>
                   ) : (
                     ""
                   )}
-
-                  <GroupPostComments
-                    id={post}
-                    comments={comments}
-                    number={number}
-                    getGroupComments={getGroupComments}
-                    // commentCount={commentCount}
-                  ></GroupPostComments>
 
                   <Card.Footer className="mt-2">
                     <small>

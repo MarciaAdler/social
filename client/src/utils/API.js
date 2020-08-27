@@ -85,4 +85,7 @@ export default {
   getGroupComments: function (post) {
     return axios.get("/api/getgroupcomments/" + post);
   },
+  deleteGroupComment: function (comment) {
+    return axios.delete("/api/deletegroupcomment/" + comment);
+  },
 };

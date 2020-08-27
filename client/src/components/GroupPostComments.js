@@ -7,8 +7,14 @@ import { useStoreContext } from "../utils/GlobalState";
 export default function GroupPostComments(props) {
   const [state, dispatch] = useStoreContext();
   const [collapse, setCollapse] = useState(false);
-  const [comments, setComments] = useState([]);
 
+  function deleteGroupComment(comment) {
+    API.deleteGroupComment(comment)
+      .then((res) => {
+        props.getGroupComments(props.id.id);
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <Container className="text-left">
       {collapse === false ? (
@@ -62,7 +68,7 @@ export default function GroupPostComments(props) {
                     <button
                       className="comments--delete-btn"
                       onClick={() => {
-                        // deleteComment(comment.id);
+                        deleteGroupComment(comment.id);
                       }}
                     >
                       X

@@ -299,4 +299,13 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  deleteGroupComment: function (req, res) {
+    db.GroupPostComment.destroy({
+      where: { id: req.params.id },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

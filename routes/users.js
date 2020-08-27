@@ -51,4 +51,8 @@ router.route("/api/addgroupcomment").post(usersController.addGroupComment);
 
 router.route("/api/getgroupcomments/:id").get(usersController.getGroupComments);
 
+router
+  .route("/api/deletegroupcomment/:id")
+  .delete(usersController.deleteGroupComment);
+
 module.exports = router;

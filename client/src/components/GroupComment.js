@@ -2,8 +2,9 @@ import React, { useRef, useState, useEffect } from "react";
 import { Container, Form, InputGroup, FormControl } from "react-bootstrap";
 import API from "../utils/API";
 import { useStoreContext } from "../utils/GlobalState";
+import GroupPostComments from "./GroupPostComments";
 
-export default function GroupComment({ post, getGroupComments }) {
+export default function GroupComment({ post, getGroupComments, comments }) {
   const [state, dispatch] = useStoreContext();
   const [number, setNumber] = useState(0);
   const commentRef = useRef();
@@ -64,6 +65,11 @@ export default function GroupComment({ post, getGroupComments }) {
           </InputGroup>
         </Form>
       </div>
+      <GroupPostComments
+        id={post}
+        comments={comments}
+        getGroupComments={getGroupComments}
+      ></GroupPostComments>
     </Container>
   );
 }
