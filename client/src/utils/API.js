@@ -88,4 +88,15 @@ export default {
   deleteGroupComment: function (comment) {
     return axios.delete("/api/deletegroupcomment/" + comment);
   },
+  updateGroup: function (group) {
+    console.log(group);
+    return axios.put("/api/updategroup", group);
+  },
+  refreshGroup: function (group) {
+    return axios.get("/api/group/" + group);
+  },
+  updateImageName: function (group) {
+    console.log(group);
+    return axios.put("/api/groupimage", group);
+  },
 };

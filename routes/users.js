@@ -55,4 +55,10 @@ router
   .route("/api/deletegroupcomment/:id")
   .delete(usersController.deleteGroupComment);
 
+router.route("/api/updategroup").put(usersController.updateGroup);
+
+router.route("/api/group/:id").get(usersController.refreshGroup);
+
+router.route("/api/groupimage").put(usersController.updateImageName);
+
 module.exports = router;

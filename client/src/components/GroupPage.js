@@ -12,6 +12,7 @@ export default function GroupPage() {
   const [page, setPage] = useState(false);
   const [comments, setComments] = useState([]);
   const [number, setNumber] = useState(0);
+  const [redirect, setRedirect] = useState(false);
   useEffect(() => {
     loadRequest(window.location.search);
   }, []);
@@ -70,11 +71,30 @@ export default function GroupPage() {
       })
       .catch((err) => console.log(err));
   }
+  const renderRedirect = () => {
+    if (state.selecteduser && redirect) {
+      return (
+        <Redirect
+          push
+          to={{
+            pathname: "/editgroup/",
+            search: `?${state.selectedGroup.name}`,
+          }}
+        />
+      );
+    }
+  };
   return (
     <Container>
       {state.currentUser.username === state.selectedGroup.adminUsername ? (
         <div className="text-left">
-          <Button>Edit Group</Button>
+          <Button
+            onClick={() => {
+              setRedirect(true);
+            }}
+          >
+            Edit Group
+          </Button>
         </div>
       ) : (
         ""
@@ -96,6 +116,7 @@ export default function GroupPage() {
       <h4>{state.selectedGroup.description}</h4>
       Group created by {state.selectedGroup.adminUsername}
       <GroupFeed />
+      {renderRedirect()}
     </Container>
   );
 }

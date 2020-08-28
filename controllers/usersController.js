@@ -308,4 +308,54 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  updateGroup: function (req, res) {
+    console.log(req.params);
+    console.log(req.body);
+    db.NeighborGroup.update(
+      {
+        name: req.body.name,
+        image: req.body.image,
+        description: req.body.description,
+      },
+      {
+        where: { id: req.body.id },
+      }
+    )
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  refreshGroup: function (req, res) {
+    db.NeighborGroup.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [
+        {
+          model: db.User,
+          as: "Admin",
+        },
+      ],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  updateImageName: function (req, res) {
+    console.log("updateimage", req.body);
+    db.NeighborGroup.update(
+      {
+        image: req.body.image,
+      },
+      {
+        where: { id: req.body.id },
+      }
+    )
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };
