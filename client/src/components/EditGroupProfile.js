@@ -173,7 +173,12 @@ export default function EditGroupProfile() {
                   </div>
                 </Col>
                 <Col>
-                  <Button onClick={uploadGroupImage}>Upload image</Button>
+                  <Button
+                    className="editgroup--upload"
+                    onClick={uploadGroupImage}
+                  >
+                    Upload image
+                  </Button>
                 </Col>
               </Fragment>
             </Form.Row>

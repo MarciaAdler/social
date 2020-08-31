@@ -7,6 +7,8 @@ $dimgray: #6D6A75
 $middleblue: #7EBDC3
 $shadows: #D5C5C8
 $keppel: #44BBA4
+$oldlavender: #6E657B
+$middleblue: #85BDBF
 body
     padding-top: 50px
     min-height: 100vh
@@ -18,7 +20,13 @@ body
     width: auto
     margin-top: 40px
     border-radius: 2em
-
+.button
+    background-color: $keppel
+    border-color: $keppel
+    &:hover
+        background-color: $gray
+        border-color: $gray
+        color: $blackcoffee
 .header
     background-color: $middleblue
     height: 70px
@@ -280,6 +288,13 @@ body
         padding-left: 10px
         padding-top: 10px
         color: $dimgray
+    &--upload
+        background-color: $keppel
+        border: 0
+        &:hover
+            background-color: $gray
+            border-color: $gray
+            color: $blackcoffee
 .footer
     &--container
         background-color: $middleblue
