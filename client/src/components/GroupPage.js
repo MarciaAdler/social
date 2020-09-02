@@ -106,7 +106,7 @@ export default function GroupPage() {
       <br />
       {state.selectedGroup.image !== "no image" ? (
         <img
-          className="grouppage--image"
+          className="grouppage--image mb-3"
           src={
             process.env.PUBLIC_URL + `/groupimages/${state.selectedGroup.image}`
           }

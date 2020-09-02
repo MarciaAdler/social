@@ -157,7 +157,7 @@ export default function EditGroupProfile() {
             <Form.Label>Image</Form.Label>
             <Form.Row className="text-left">
               <Fragment>
-                <Col className="col-8">
+                <Col className="col-12 col-lg-8">
                   <div className="custom-file mb-4">
                     <input
                       type="file"
@@ -176,13 +176,16 @@ export default function EditGroupProfile() {
                     )}
                   </div>
                 </Col>
-                <Col>
+                <Col className="col-12 col-lg-4">
                   <Button
                     className="editgroup--upload"
                     onClick={uploadGroupImage}
                   >
-                    Upload image
+                    Upload Image
                   </Button>
+                  <small className="ml-2">
+                    (Be sure to click upload image button to upload your image)
+                  </small>
                 </Col>
               </Fragment>
             </Form.Row>
