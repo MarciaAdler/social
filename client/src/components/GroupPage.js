@@ -89,6 +89,7 @@ export default function GroupPage() {
       {state.currentUser.username === state.selectedGroup.adminUsername ? (
         <div className="text-left">
           <Button
+            className="button"
             onClick={() => {
               setRedirect(true);
             }}
