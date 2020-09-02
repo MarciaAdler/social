@@ -57,7 +57,7 @@ router
 
 router.route("/api/updategroup").put(usersController.updateGroup);
 
-router.route("/api/group/:id").get(usersController.refreshGroup);
+router.route("/api/group/:group").get(usersController.refreshGroup);
 
 router.route("/api/groupimage").put(usersController.updateImageName);
 

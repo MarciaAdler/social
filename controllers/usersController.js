@@ -327,9 +327,10 @@ module.exports = {
       });
   },
   refreshGroup: function (req, res) {
+    console.log("refresh", req.params);
     db.NeighborGroup.findOne({
       where: {
-        id: req.params.id,
+        id: req.params.group,
       },
       include: [
         {

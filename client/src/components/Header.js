@@ -72,39 +72,71 @@ export default function Header() {
       );
     }
   };
-
+  function refreshGroup(group) {
+    API.refreshGroup(group.id)
+      .then((res) => {
+        console.log(res.data);
+        dispatch({
+          type: SET_SELECTED_GROUP,
+          selectedGroup: {
+            id: res.data.id,
+            name: res.data.name,
+            description: res.data.description,
+            image: res.data.image,
+            adminId: res.data.AdminId,
+            adminUsername: state.currentUser.username,
+          },
+        });
+        let localStorageGroup = {
+          id: res.data.id,
+          name: res.data.name,
+          description: res.data.description,
+          image: res.data.image,
+          adminId: res.data.AdminId,
+          adminUsername: state.currentUser.username,
+        };
+        window.localStorage.setItem(
+          "selectedgroup",
+          JSON.stringify(localStorageGroup)
+        );
+        setRedirect(true);
+      })
+      .catch((err) => console.log(err));
+  }
   function selectGroup(group) {
     console.log("group", group);
-    const selectedGroup = {
-      id: group.id,
-      name: group.name,
-      description: group.description,
-      image: group.image,
-      adminId: group.AdminId,
-      adminUsername: group.Admin.username,
-    };
-    dispatch({
-      type: SET_SELECTED_GROUP,
-      selectedGroup: selectedGroup,
-    });
-    let localStorageSelectedGroup = {
-      id: group.id,
-      name: group.name,
-      description: group.description,
-      image: group.image,
-      adminId: group.AdminId,
-      adminUsername: group.Admin.username,
-    };
-    window.localStorage.setItem(
-      "selectedgroup",
-      JSON.stringify(localStorageSelectedGroup)
-    );
+    refreshGroup(group);
+
+    // const selectedGroup = {
+    //   id: group.id,
+    //   name: group.name,
+    //   description: group.description,
+    //   image: group.image,
+    //   adminId: group.AdminId,
+    //   adminUsername: group.Admin.username,
+    // };
+    // dispatch({
+    //   type: SET_SELECTED_GROUP,
+    //   selectedGroup: selectedGroup,
+    // });
+    // let localStorageSelectedGroup = {
+    //   id: group.id,
+    //   name: group.name,
+    //   description: group.description,
+    //   image: group.image,
+    //   adminId: group.AdminId,
+    //   adminUsername: group.Admin.username,
+    // };
+    // window.localStorage.setItem(
+    //   "selectedgroup",
+    //   JSON.stringify(localStorageSelectedGroup)
+    // );
     setRedirect(true);
-    getGroupPosts(selectedGroup);
+    getGroupPosts(group);
   }
   function getGroupPosts(selectedGroup) {
-    console.log(selectedGroup.id);
-    API.getGroupPosts(selectedGroup.id)
+    console.log(selectedGroup);
+    API.getGroupPosts(selectedGroup)
       .then((res) => {
         console.log(res);
         dispatch({ type: SET_GROUP_POSTS, groupposts: res.data });

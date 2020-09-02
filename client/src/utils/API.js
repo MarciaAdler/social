@@ -93,6 +93,7 @@ export default {
     return axios.put("/api/updategroup", group);
   },
   refreshGroup: function (group) {
+    console.log("group", group);
     return axios.get("/api/group/" + group);
   },
   updateImageName: function (group) {

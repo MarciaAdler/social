@@ -2,7 +2,7 @@ import React, { useState, useRef, Fragment, useEffect } from "react";
 import { Col, Form, Button, Container } from "react-bootstrap";
 import API from "../utils/API";
 import { SET_SELECTED_GROUP, SET_GROUPS } from "../utils/actions";
-
+import { Link, Redirect } from "react-router-dom";
 import { useStoreContext } from "../utils/GlobalState";
 export default function EditGroupProfile() {
   const [state, dispatch] = useStoreContext();
@@ -10,6 +10,7 @@ export default function EditGroupProfile() {
   const [imagename, setImageName] = useState(state.selectedGroup.image);
   const nameRef = useRef();
   const descriptionRef = useRef();
+  const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
     loadRequest(window.location.search);
@@ -98,7 +99,8 @@ export default function EditGroupProfile() {
     })
       .then((res) => {
         console.log(res);
-        refreshGroup(state.selectedGroup.id);
+
+        refreshGroup();
       })
       .catch((err) => console.log(err));
   }
@@ -128,9 +130,11 @@ export default function EditGroupProfile() {
           "selectedgroup",
           JSON.stringify(localStorageGroup)
         );
+        setRedirect(true);
       })
       .catch((err) => console.log(err));
   }
+
   return (
     <div>
       <Container className="signupform--wrapper">
@@ -193,6 +197,15 @@ export default function EditGroupProfile() {
               >
                 Update
               </Button>
+              <Link
+                className="ml-3 editgroup--link"
+                to={{
+                  pathname: "/group/",
+                  search: `?${state.selectedGroup.name}`,
+                }}
+              >
+                Return to group page
+              </Link>
             </Col>
           </Form.Row>
         </Form>
