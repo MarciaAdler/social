@@ -135,7 +135,7 @@ export default function ProfileForm() {
                 ></Form.Control>
               </Col>
             </Form.Group>
-            {state.currentUser.image !== "" ? (
+            {state.currentUser.image !== null ? (
               <h3>
                 <img
                   className="profileform--profileimage"
@@ -151,6 +151,7 @@ export default function ProfileForm() {
 
             <Form.Group as={Row} className="d-flex justify-content-center">
               <Fragment>
+                Select image file
                 <Col className="col-12 col-lg-10 profileform--uploadimage">
                   <div className="custom-file mb-3">
                     <input

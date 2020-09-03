@@ -155,6 +155,7 @@ export default function SignupForm() {
         <Form.Row className="justify-content-center">
           <Fragment>
             <Col className="col-8">
+              Select Image File
               <div className="custom-file mb-4">
                 <input
                   type="file"
@@ -162,7 +163,6 @@ export default function SignupForm() {
                   className="custom-file-input"
                   id="customFile"
                 />
-
                 <label className="custom-file-label" htmlFor="customFile">
                   {imagename}
                 </label>
@@ -193,7 +193,7 @@ export default function SignupForm() {
 
             <span>
               &nbsp; If you already have an account{" "}
-              <a href="/signin">
+              <a className="editgroup--link" href="/signin">
                 <strong>click here</strong>
               </a>{" "}
               to login
