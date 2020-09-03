@@ -100,4 +100,9 @@ export default {
     console.log(group);
     return axios.put("/api/groupimage", group);
   },
+
+  updateProfileImageName: function (user) {
+    console.log("user", user);
+    return axios.put("/api/userimage", user);
+  },
 };

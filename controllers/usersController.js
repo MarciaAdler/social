@@ -359,4 +359,19 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  updateProfileImageName: function (req, res) {
+    console.log("updateprofileimage", req.body);
+    db.User.update(
+      {
+        image: req.body.image,
+      },
+      {
+        where: { id: req.body.id },
+      }
+    )
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

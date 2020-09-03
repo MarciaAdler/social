@@ -23,12 +23,12 @@ export default function ProfileForm() {
       city: cityRef.current.value,
       state: stateRef.current.value,
       email: emailRef.current.value,
-      image: imagename,
+
       bio: bioRef.current.value,
     })
       .then((response) => {
         console.log(response.data);
-        if (image !== "") {
+        if (imagename !== "") {
           uploadProfileImage();
           refreshUser();
           confirmUpdate();
@@ -85,7 +85,19 @@ export default function ProfileForm() {
     const name = e.target.files[0].name.replace(" ", "_");
     setImageName(usernameRef.current.value + "-" + name);
   };
-
+  function updateProfileImageName(e) {
+    API.updateProfileImageName({
+      id: state.currentUser.id,
+      image: imagename,
+    })
+      .then((res) => {
+        console.log(res.data);
+        refreshUser(state.currentUser.id);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   function uploadProfileImage(e) {
     const formData = new FormData();
     formData.append("image", image);
@@ -97,6 +109,7 @@ export default function ProfileForm() {
     })
       .then((res) => {
         console.log(image);
+        updateProfileImageName(state.currentUser.id);
         console.log(res.statusText);
       })
       .catch((err) => {
@@ -138,7 +151,7 @@ export default function ProfileForm() {
 
             <Form.Group as={Row} className="d-flex justify-content-center">
               <Fragment>
-                <Col className="col-md-10 col-sm-12 profileform--uploadimage">
+                <Col className="col-12 col-lg-10 profileform--uploadimage">
                   <div className="custom-file mb-3">
                     <input
                       type="file"
@@ -156,6 +169,14 @@ export default function ProfileForm() {
                       </label>
                     )}
                   </div>
+                </Col>
+                <Col className="col-12 col-lg-8">
+                  <Button className="button" onClick={uploadProfileImage}>
+                    Upload Image
+                  </Button>
+                  <small className="ml-2">
+                    (Be sure to click upload image button to upload your image)
+                  </small>
                 </Col>
               </Fragment>
             </Form.Group>

@@ -61,4 +61,6 @@ router.route("/api/group/:group").get(usersController.refreshGroup);
 
 router.route("/api/groupimage").put(usersController.updateImageName);
 
+router.route("/api/userimage").put(usersController.updateProfileImageName);
+
 module.exports = router;

@@ -67,7 +67,7 @@ export default function UserProfile() {
       ) : (
         ""
       )}
-      <h6>{state.selecteduser.firstName}</h6>
+      <h6 className="mt-2">{state.selecteduser.firstName}</h6>
       <h6>
         {state.selecteduser.city}, {state.selecteduser.state}
       </h6>

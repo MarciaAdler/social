@@ -84,7 +84,7 @@ export default function Header() {
             description: res.data.description,
             image: res.data.image,
             adminId: res.data.AdminId,
-            adminUsername: state.currentUser.username,
+            adminUsername: res.data.Admin.username,
           },
         });
         let localStorageGroup = {
@@ -93,7 +93,7 @@ export default function Header() {
           description: res.data.description,
           image: res.data.image,
           adminId: res.data.AdminId,
-          adminUsername: state.currentUser.username,
+          adminUsername: res.data.Admin.username,
         };
         window.localStorage.setItem(
           "selectedgroup",
@@ -136,7 +136,7 @@ export default function Header() {
   }
   function getGroupPosts(selectedGroup) {
     console.log(selectedGroup);
-    API.getGroupPosts(selectedGroup)
+    API.getGroupPosts(selectedGroup.id)
       .then((res) => {
         console.log(res);
         dispatch({ type: SET_GROUP_POSTS, groupposts: res.data });
@@ -211,7 +211,7 @@ export default function Header() {
                 Logout
               </Nav.Link>
             </Nav>
-            {state.currentUser.image != "" ? (
+            {state.currentUser.image !== null ? (
               <Navbar.Brand href="/profile">
                 <img
                   src={
