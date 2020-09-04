@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Container, ListGroup, Card, Row, Col } from "react-bootstrap";
+import {
+  Container,
+  ListGroup,
+  Card,
+  Row,
+  Col,
+  Button,
+  ButtonToolbar,
+} from "react-bootstrap";
 import { SET_SELECTED_USER, SET_POSTS } from "../utils/actions";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
 import dateFormat from "dateformat";
 import { Redirect } from "react-router-dom";
+import FeedComment from "./FeedComment";
+import Comments from "./Comments";
 
 export default function UserProfile() {
   const [state, dispatch] = useStoreContext();
   const [userPosts, setUserPosts] = useState([]);
-
+  const [comments, setComments] = useState([]);
+  const [number, setNumber] = useState(0);
   useEffect(() => {
     loadRequest(window.location.search);
     getSelectedUserPosts(state.selecteduser.id);
@@ -53,6 +64,40 @@ export default function UserProfile() {
       setUserPosts(res.data);
     });
   }
+  function deletePost(post) {
+    API.deletePost(post)
+      .then((res) => {
+        getSelectedUserPosts(state.selecteduser.id);
+      })
+      .catch((err) => console.log(err));
+  }
+  function getComments2(id) {
+    console.log(id);
+    API.getComments2(id)
+      .then((response) => {
+        console.log(response.data);
+        setComments(response.data);
+        // commentCount(id);
+      })
+      .catch((err) => console.log(err));
+  }
+  function commentCount(id) {
+    API.getComments2(id)
+      .then((res) => {
+        console.log(res.data.length);
+        setNumber(res.data.length);
+      })
+      .catch((err) => console.log(err));
+  }
+  function getComments(id) {
+    console.log(id);
+    API.getComments(id)
+      .then((response) => {
+        console.log(response.data);
+        setComments(response.data);
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <Container className="text-align-left">
       <h4>{state.selecteduser.username}</h4>
@@ -71,13 +116,16 @@ export default function UserProfile() {
       <h6>
         {state.selecteduser.city}, {state.selecteduser.state}
       </h6>
-
-      <p>
+      <p className="text-left">
         <strong>About Me: </strong>
         {state.selecteduser.bio}
       </p>
-
-      <Row className="justify-content-center">
+      <p className="text-left">
+        <strong>
+          What is {state.selecteduser.username} saying on the feed:
+        </strong>
+      </p>
+      <Row className="justify-content-left">
         {userPosts.length > 0
           ? userPosts.map((post) => {
               return (
@@ -98,8 +146,21 @@ export default function UserProfile() {
                         ""
                       )}
                     </Card.Body>
+                    <Card.Body className="userprofile--cardbody2">
+                      <small>
+                        <FeedComment post={post} getComments2={getComments2} />
 
-                    <Card.Footer>
+                        <span>Scroll to view comments</span>
+                        <Comments
+                          id={post}
+                          getComments2={getComments2}
+                          getComments={getComments}
+                          commentCount={commentCount}
+                          comments={comments}
+                        />
+                      </small>
+                    </Card.Body>
+                    <Card.Footer className="userprofile--cardfooter">
                       <small>
                         Posted On:{" "}
                         {dateFormat(
@@ -108,6 +169,18 @@ export default function UserProfile() {
                         )}{" "}
                         {"EST"}
                       </small>
+                      {state.selecteduser.id === state.currentUser.id ? (
+                        <span
+                          className="userprofile--delete-post"
+                          onClick={() => {
+                            deletePost(post.id);
+                          }}
+                        >
+                          x
+                        </span>
+                      ) : (
+                        ""
+                      )}
                     </Card.Footer>
                   </Card>
                 </Col>
