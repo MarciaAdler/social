@@ -9,6 +9,7 @@ import {
   SET_GROUPS,
   SET_SELECTED_GROUP,
   SET_GROUP_POSTS,
+  SET_USER_LIST,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -76,6 +77,11 @@ const reducer = (state, action) => {
         ...state,
         groupposts: action.groupposts,
       };
+    case SET_USER_LIST:
+      return {
+        ...state,
+        userlist: action.userlist,
+      };
     case CLEAR_ALL:
       return {
         ...state,
@@ -138,6 +144,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       adminId: 0,
       adminUsername: "",
     },
+    userlist: [],
   });
   return <Provider value={[state, dispatch]} {...props} />;
 };

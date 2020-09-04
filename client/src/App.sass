@@ -9,6 +9,12 @@ $shadows: #D5C5C8
 $keppel: #44BBA4
 $oldlavender: #6E657B
 $middleblue: #85BDBF
+$yellow: #EAE151
+
+html
+    max-width: 100vw
+    overflow-x: hidden
+
 body
     padding-top: 50px
     min-height: 100vh
@@ -18,7 +24,7 @@ body
 .icon
     height: 150px
     width: auto
-    margin-top: 40px
+    margin-top: 20px
     border-radius: 2em
 .button
     background-color: $keppel
@@ -165,11 +171,30 @@ body
         display: inline-block
         font-weight: bold
         color: $jet
+.chat
+    &--div
+        float: right
+        @include media-breakpoint-only(xs)
+            float: none
+            text-align: center
+            margin-top: 30px
+            margin-bottom: -30px
+    &--button
+        margin-right: 80px
+        color: $blackcoffee
+        background-color: $yellow
+        border: 0
+        &:hover
+            background-color: $jet
+            color: $yellow
+        @include media-breakpoint-only(xs)
+
+            margin-right: 0
 
 .home
     &--container
         width: 80%
-
+        text-align: center
         @include media-breakpoint-only(xs)
             width: 100%
             text-align: center
@@ -297,6 +322,10 @@ body
     &--image
         height: 120px
         border-radius: 2rem
+        @include media-breakpoint-only(xs)
+            max-width: 90vw
+    &--editgroupbtn
+        float: left
 
 .editgroup
     &--name

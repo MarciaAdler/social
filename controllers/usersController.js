@@ -374,4 +374,13 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  getUsers: function (req, res) {
+    db.User.findAll({
+      order: [["createdAt", "DESC"]],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

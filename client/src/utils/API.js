@@ -105,4 +105,7 @@ export default {
     console.log("user", user);
     return axios.put("/api/userimage", user);
   },
+  getUsers: function (req) {
+    return axios.get("/api/getusers", req);
+  },
 };

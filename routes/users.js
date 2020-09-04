@@ -63,4 +63,6 @@ router.route("/api/groupimage").put(usersController.updateImageName);
 
 router.route("/api/userimage").put(usersController.updateProfileImageName);
 
+router.route("/api/getusers").get(usersController.getUsers);
+
 module.exports = router;
