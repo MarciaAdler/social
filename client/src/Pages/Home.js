@@ -8,7 +8,7 @@ import Chat from "../components/Chat";
 export default function Home() {
   const [state, dispatch] = useStoreContext();
   return (
-    <Container className="mt-5">
+    <Container className="home--chat">
       <Chat />
       <Container className="home--container">
         <img
