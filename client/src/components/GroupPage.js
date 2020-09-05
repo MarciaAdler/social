@@ -87,7 +87,7 @@ export default function GroupPage() {
   return (
     <Container>
       {state.currentUser.username === state.selectedGroup.adminUsername ? (
-        <div className="text-left">
+        <div>
           <Button
             className="button grouppage--editgroupbtn"
             onClick={() => {

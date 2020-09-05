@@ -179,7 +179,7 @@ export default function Header() {
                 Feed
               </Nav.Link>
               <Nav.Link href="/search" className="header--dropdownitem">
-                Search for buinesses
+                Search for businesses
               </Nav.Link>
               <NavDropdown
                 title="Groups"
