@@ -49,10 +49,11 @@ app.post("/api/profileimage", (req, res) => {
   }
   // accessing the file
   const myFile = req.files.image;
-  name = myFile.name.replace(" ", "_");
+  const name = myFile.name.replace(/\s+/g, "_");
+  const username = req.body.username.replace(/\s+/g, "_");
   //  mv() method places the file inside public directory
   myFile.mv(
-    `${__dirname}/client/public/profileimages/${req.body.username}-${name}`,
+    `${__dirname}/client/public/profileimages/${username}-${name}`,
     function (err) {
       if (err) {
         console.log(err);
@@ -70,7 +71,7 @@ app.post("/api/postimages", (req, res) => {
   }
   // accessing the file
   const myFile = req.files.image1;
-  name = myFile.name.replace(" ", "_");
+  const name = myFile.name.replace(/\s+/g, "_");
   //  mv() method places the file inside public directory
   myFile.mv(
     `${__dirname}/client/public/postimages/${req.body.id}-${name}`,
@@ -92,10 +93,11 @@ app.post("/api/groupimage", (req, res) => {
   }
   // accessing the file
   const myFile = req.files.image;
-  name = myFile.name.replace(" ", "_");
+  const name = myFile.name.replace(/\s+/g, "_");
+  const groupname = req.body.groupname.replace(/\s+/g, "_");
   //  mv() method places the file inside public directory
   myFile.mv(
-    `${__dirname}/client/public/groupimages/${req.body.groupname}-${name}`,
+    `${__dirname}/client/public/groupimages/${groupname}-${name}`,
     function (err) {
       if (err) {
         console.log(err);
@@ -114,10 +116,11 @@ app.post("/api/grouppostimage", (req, res) => {
   }
   // accessing the file
   const myFile = req.files.image1;
-  name = myFile.name.replace(" ", "_");
+  const name = myFile.name.replace(/\s+/g, "_");
+  const groupname = req.body.groupname.replace(/\s+/g, "_");
   //  mv() method places the file inside public directory
   myFile.mv(
-    `${__dirname}/client/public/grouppostimages/${req.body.groupname}-${req.body.id}-${name}`,
+    `${__dirname}/client/public/grouppostimages/${groupname}-${req.body.id}-${name}`,
     function (err) {
       if (err) {
         console.log(err);

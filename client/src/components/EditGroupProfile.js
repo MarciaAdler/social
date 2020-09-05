@@ -48,8 +48,8 @@ export default function EditGroupProfile() {
 
   const onChange = (e) => {
     setImage(e.target.files[0]);
-    const name = state.selectedGroup.name.replace(" ", "");
-    const fileName = e.target.files[0].name.replace(" ", "_");
+    const name = state.selectedGroup.name.replace(/\s+/g, "_");
+    const fileName = e.target.files[0].name.replace(/\s+/g, "_");
     setImageName(name + "-" + fileName);
   };
 
@@ -70,7 +70,7 @@ export default function EditGroupProfile() {
     if (imagename !== "no image" || imagename !== "") {
       const formData = new FormData();
       formData.append("image", image);
-      const name = state.selectedGroup.name.replace(" ", "");
+      const name = state.selectedGroup.name.replace(/\s+/g, "_");
       formData.append("groupname", name);
       API.uploadGroupImage(formData, {
         headers: {

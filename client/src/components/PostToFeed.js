@@ -50,7 +50,7 @@ export default function PostToFeed() {
   }
   const onChange = (e) => {
     setImage1(e.target.files[0]);
-    const name = e.target.files[0].name.replace(" ", "_");
+    const name = e.target.files[0].name.replace(/\s+/g, "_");
 
     setImage1Name(state.currentUser.id + "-" + name);
   };

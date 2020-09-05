@@ -82,8 +82,9 @@ export default function ProfileForm() {
   }
   const onChange = (e) => {
     setImage(e.target.files[0]);
-    const name = e.target.files[0].name.replace(" ", "_");
-    setImageName(usernameRef.current.value + "-" + name);
+    const name = e.target.files[0].name.replace(/\s+/g, "_");
+    const username = usernameRef.current.value.replace(/\s+/g, "_");
+    setImageName(username + "-" + name);
   };
   function updateProfileImageName(e) {
     API.updateProfileImageName({

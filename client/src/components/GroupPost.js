@@ -56,8 +56,8 @@ export default function GroupPost() {
   }
   const onChange = (e) => {
     setImage1(e.target.files[0]);
-    const groupname = state.selectedGroup.name.replace(" ", "");
-    const name = e.target.files[0].name.replace(" ", "_");
+    const groupname = state.selectedGroup.name.replace(/\s+/g, "_");
+    const name = e.target.files[0].name.replace(/\s+/g, "_");
     setImage1Name(groupname + "-" + state.currentUser.id + "-" + name);
   };
 
@@ -65,7 +65,7 @@ export default function GroupPost() {
     const formData = new FormData();
     formData.append("image1", image1);
     formData.append("id", state.currentUser.id);
-    const groupname = state.selectedGroup.name.replace(" ", "");
+    const groupname = state.selectedGroup.name.replace((/\s+/g, "_"));
     formData.append("groupname", groupname);
     API.uploadGroupPostImage(formData, {
       headers: {
