@@ -140,15 +140,13 @@ export default function Feed() {
           ? state.posts.map((post) => {
               return (
                 <ListGroup.Item key={post.id}>
-                  <h6
-                    className="text-left"
-                    onClick={() => {
-                      selectUser(post.User);
-                    }}
-                  >
-                    <div>
+                  <Row>
+                    <Col className="col-3 col-lg-2">
                       {post.User.image !== "" ? (
                         <img
+                          onClick={() => {
+                            selectUser(post.User);
+                          }}
                           className="feed--profileimage feed--poster"
                           src={
                             process.env.PUBLIC_URL +
@@ -158,14 +156,22 @@ export default function Feed() {
                       ) : (
                         ""
                       )}
-                      <strong className="feed--poster ml-2">
-                        {post.User.username} says:{" "}
-                      </strong>
+                    </Col>
+                    <Col className="col-8 col-lg-10">
+                      <h6
+                        className="text-left"
+                        onClick={() => {
+                          selectUser(post.User);
+                        }}
+                      >
+                        <strong className="feed--poster">
+                          {post.User.username} says:{" "}
+                        </strong>
 
-                      {post.post}
-                    </div>
-                  </h6>
-
+                        {post.post}
+                      </h6>
+                    </Col>
+                  </Row>
                   {post.image1 !== null ? (
                     <img
                       className="feed--image"

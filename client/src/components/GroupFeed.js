@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, ListGroup, Card } from "react-bootstrap";
+import { Container, ListGroup, Card, Col, Row } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import GroupPost from "./GroupPost";
 import GroupComment from "./GroupComment";
@@ -115,15 +115,13 @@ export default function GroupFeed() {
           ? state.groupposts.map((post) => {
               return (
                 <ListGroup.Item key={post.id}>
-                  <h6
-                    className="text-left"
-                    onClick={() => {
-                      selectUser(post.User);
-                    }}
-                  >
-                    <div>
+                  <Row>
+                    <Col className="col-3 col-lg-2">
                       {post.User.image !== "" ? (
                         <img
+                          onClick={() => {
+                            selectUser(post.User);
+                          }}
                           className="feed--profileimage mr-2 feed--poster"
                           src={
                             process.env.PUBLIC_URL +
@@ -133,12 +131,22 @@ export default function GroupFeed() {
                       ) : (
                         ""
                       )}
-                      <strong className="feed--poster">
-                        {post.User.username} says:{" "}
-                      </strong>
-                      <div className="feed--post">{post.post}</div>
-                    </div>
-                  </h6>
+                    </Col>
+                    <Col className="col-8 col-lg-10">
+                      <h6
+                        className="text-left mt-2"
+                        onClick={() => {
+                          selectUser(post.User);
+                        }}
+                      >
+                        <strong className="feed--poster">
+                          {post.User.username} says:{" "}
+                        </strong>
+
+                        <div className="feed--post">{post.post}</div>
+                      </h6>
+                    </Col>
+                  </Row>
 
                   {post.image1 !== null ? (
                     <img

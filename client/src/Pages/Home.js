@@ -9,7 +9,7 @@ export default function Home() {
   const [state, dispatch] = useStoreContext();
   return (
     <Container className="home--chat">
-      {state.currentUser.id !== 0 ? <Chat /> : ""}
+      {state.loggedin === true ? <Chat /> : ""}
 
       <Container className="home--container">
         <img
