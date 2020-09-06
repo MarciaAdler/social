@@ -103,9 +103,13 @@ export default function GroupFeed() {
   }
   return (
     <div>
-      <Container>
-        <GroupPost />
-      </Container>
+      {state.currentUser.id !== 0 ? (
+        <Container>
+          <GroupPost />
+        </Container>
+      ) : (
+        ""
+      )}
       <ListGroup>
         {state.groupposts
           ? state.groupposts.map((post) => {

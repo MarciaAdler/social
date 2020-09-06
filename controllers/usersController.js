@@ -376,7 +376,7 @@ module.exports = {
   },
   getUsers: function (req, res) {
     db.User.findAll({
-      order: [["createdAt", "DESC"]],
+      order: [["username", "ASC"]],
     })
       .then((dbModel) => res.json(dbModel))
       .catch(function (err) {

@@ -201,9 +201,13 @@ export default function Header() {
                       );
                     })
                   : ""}
-                <NavDropdown.Item href="/addgroup">
-                  Add New Group
-                </NavDropdown.Item>
+                {state.currentUser.id !== 0 ? (
+                  <NavDropdown.Item href="/addgroup">
+                    Add New Group
+                  </NavDropdown.Item>
+                ) : (
+                  ""
+                )}
               </NavDropdown>
             </Nav>
             <Nav>

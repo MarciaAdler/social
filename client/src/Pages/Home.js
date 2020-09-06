@@ -9,10 +9,11 @@ export default function Home() {
   const [state, dispatch] = useStoreContext();
   return (
     <Container className="home--chat">
-      <Chat />
+      {state.currentUser.id !== 0 ? <Chat /> : ""}
+
       <Container className="home--container">
         <img
-          className="icon"
+          className="icon mb-3"
           src={require("../images/Neighbor-icon.png")}
           alt="icon"
         />
