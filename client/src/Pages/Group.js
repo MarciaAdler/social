@@ -7,12 +7,12 @@ import { useStoreContext } from "../utils/GlobalState";
 export default function Group() {
   const [state, dispatch] = useStoreContext();
   return (
-    <div>
+    <Container className="home--chat">
       {state.currentUser.id !== 0 ? <Chat /> : ""}
 
       <Container className="text-center mt-5 home--container">
         <GroupPage />
       </Container>
-    </div>
+    </Container>
   );
 }
