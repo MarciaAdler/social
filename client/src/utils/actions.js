@@ -7,3 +7,4 @@ export const SET_GROUPS = "SET_GROUPS";
 export const SET_SELECTED_GROUP = "SET_SELECTED_GROUP";
 export const SET_GROUP_POSTS = "SET_GROUP_POSTS";
 export const SET_USER_LIST = "SET_USER_LIST";
+export const SET_SELECTED_CHAT = "SET_SELECTED_CHAT";
