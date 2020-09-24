@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_SELECTED_GROUP, SET_GROUP_POSTS } from "../utils/actions";
 import API from "../utils/API";
