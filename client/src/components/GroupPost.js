@@ -105,26 +105,27 @@ export default function GroupPost() {
           <Row>
             <Col className="col-12 col-md-8 text-left">
               <label className="mt-2">Upload Image</label>
-              <Row>
-                <Fragment>
-                  <Col className="col-8">
-                    <div className="custom-file mb-4">
-                      <input
-                        type="file"
-                        onChange={onChange}
-                        className="custom-file-input"
-                        id="customFile"
-                      />
-
-                      <label className="custom-file-label" htmlFor="customFile">
-                        {image1name}
-                      </label>
-                    </div>
-                  </Col>
-                </Fragment>
-              </Row>
             </Col>
           </Row>
+          <Row>
+            <Fragment>
+              <Col className="col-12">
+                <div className="custom-file mb-4">
+                  <input
+                    type="file"
+                    onChange={onChange}
+                    className="custom-file-input"
+                    id="customFile"
+                  />
+
+                  <label className="custom-file-label" htmlFor="customFile">
+                    {image1name}
+                  </label>
+                </div>
+              </Col>
+            </Fragment>
+          </Row>
+
           <Row>
             <Col className="col-12 col-md-1">
               <Button className="mt-2 post" onClick={createGroupPost}>

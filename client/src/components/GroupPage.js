@@ -85,7 +85,7 @@ export default function GroupPage() {
     }
   };
   return (
-    <Container>
+    <div>
       {state.currentUser.username === state.selectedGroup.adminUsername ? (
         <div>
           <Button
@@ -118,6 +118,6 @@ export default function GroupPage() {
       Group created by {state.selectedGroup.adminUsername}
       <GroupFeed />
       {renderRedirect()}
-    </Container>
+    </div>
   );
 }

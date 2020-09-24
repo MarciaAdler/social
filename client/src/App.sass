@@ -156,12 +156,13 @@ body
         margin-left: 90px
         @include media-breakpoint-only(xs)
             margin-left: 0
+
 .custom-file-label
-    width: 88%
+    width: 100%
     @include media-breakpoint-only(xs)
         width: 100%
 .custom-file-input
-    width: 70%
+    width: 100%
     // &--fragment
     //     width: 100%
     // &--imageinput
@@ -193,7 +194,11 @@ body
         @include media-breakpoint-only(xs)
 
             margin-right: 0
-
+    &--username
+        &:hover
+            background-color: $shadows
+        &:active
+            color: $middleblue
 .home
     &--container
         width: 80%

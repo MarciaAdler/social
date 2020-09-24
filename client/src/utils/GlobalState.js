@@ -10,6 +10,7 @@ import {
   SET_SELECTED_GROUP,
   SET_GROUP_POSTS,
   SET_USER_LIST,
+  SET_SELECTED_CHAT,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -53,6 +54,20 @@ const reducer = (state, action) => {
           image: action.selecteduser.image,
           email: action.selecteduser.email,
           bio: action.selecteduser.bio,
+        },
+      };
+    case SET_SELECTED_CHAT:
+      return {
+        ...state,
+        selectedchat: {
+          id: action.selectedchat.id,
+          username: action.selectedchat.username,
+          firstName: action.selectedchat.firstName,
+          city: action.selectedchat.city,
+          state: action.selectedchat.state,
+          image: action.selectedchat.image,
+          email: action.selectedchat.email,
+          bio: action.selectedchat.bio,
         },
       };
     case SET_GROUPS:
@@ -126,6 +141,16 @@ const StoreProvider = ({ value = [], ...props }) => {
     loggedin: false,
     posts: [],
     selecteduser: {
+      id: 0,
+      username: "",
+      firstName: "",
+      city: "",
+      state: "",
+      image: "",
+      email: "",
+      bio: "",
+    },
+    selectedchat: {
       id: 0,
       username: "",
       firstName: "",

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Button, Modal, ListGroup } from "react-bootstrap";
-import { SET_USER_LIST } from "../utils/actions";
+import React, { useState, useRef } from "react";
+import { Button, Modal, ListGroup, Overlay, Tooltip } from "react-bootstrap";
+import { SET_USER_LIST, SET_SELECTED_CHAT } from "../utils/actions";
 import API from "../utils/API";
 import { useStoreContext } from "../utils/GlobalState";
 export default function Chat() {
@@ -23,6 +23,38 @@ export default function Chat() {
       })
       .catch((err) => console.log(err));
   }
+
+  function selectChat(user) {
+    console.log(user);
+    const selected = {
+      id: user.id,
+      username: user.username,
+      firstName: user.firstName,
+      city: user.city,
+      state: user.state,
+      image: user.image,
+      email: user.email,
+      bio: user.bio,
+    };
+    dispatch({
+      type: SET_SELECTED_CHAT,
+      selectedchat: selected,
+    });
+    let localStorageSelectedChat = {
+      id: user.id,
+      username: user.username,
+      firstName: user.firstName,
+      city: user.city,
+      state: user.state,
+      image: user.image,
+      email: user.email,
+      bio: user.bio,
+    };
+    window.localStorage.setItem(
+      "selectedchat",
+      JSON.stringify(localStorageSelectedChat)
+    );
+  }
   return (
     <div className="text-right chat--div">
       <Button className="chat--button" onClick={handleShow}>
@@ -41,7 +73,17 @@ export default function Chat() {
           <ListGroup>
             {state.userlist
               ? state.userlist.map((user) => {
-                  return <ListGroup.Item>{user.username}</ListGroup.Item>;
+                  return (
+                    <ListGroup.Item
+                      className="chat--username"
+                      key={user.id}
+                      onClick={() => {
+                        selectChat(user);
+                      }}
+                    >
+                      {user.username}
+                    </ListGroup.Item>
+                  );
                 })
               : "no users"}
           </ListGroup>
