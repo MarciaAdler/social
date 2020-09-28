@@ -129,7 +129,7 @@ export default function UserProfile() {
         {userPosts.length > 0
           ? userPosts.map((post) => {
               return (
-                <Col className="col-12 col-md-4 col-sm-12 mt-2" key={post.id}>
+                <Col className="col-12 col-md-6 col-sm-12 mt-2" key={post.id}>
                   <Card className="userprofile--card">
                     <h6 className="userprofile--post">{post.post}</h6>
                     <Card.Body className="userprofile--cardbody">
