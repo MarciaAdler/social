@@ -8,6 +8,9 @@ export default function Chat() {
 
   const [show, setShow] = useState(false);
 
+  const [showoverlay, setShowOverlay] = useState(false);
+  const target = useRef(null);
+
   const handleClose = () => setShow(false);
   const handleShow = () => {
     setShow(true);
@@ -57,10 +60,13 @@ export default function Chat() {
   }
   return (
     <div className="text-right chat--div">
-      <Button className="chat--button" onClick={handleShow}>
+      <Button className="chat--button" href="/chatpage">
         Chat
       </Button>
-      <Modal
+      {/* <Button className="chat--button" onClick={handleShow}>
+        Chat
+      </Button> */}
+      {/* <Modal
         show={show}
         onHide={handleClose}
         backdrop="static"
@@ -74,15 +80,17 @@ export default function Chat() {
             {state.userlist
               ? state.userlist.map((user) => {
                   return (
-                    <ListGroup.Item
-                      className="chat--username"
-                      key={user.id}
-                      onClick={() => {
-                        selectChat(user);
-                      }}
-                    >
-                      {user.username}
-                    </ListGroup.Item>
+                    <div key={user.id}>
+                      <ListGroup.Item
+                        className="chat--username"
+                        key={user.id}
+                        onClick={() => {
+                          selectChat(user);
+                        }}
+                      >
+                        {user.username}
+                      </ListGroup.Item>
+                    </div>
                   );
                 })
               : "no users"}
@@ -93,7 +101,7 @@ export default function Chat() {
             Close
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }
