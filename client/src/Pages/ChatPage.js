@@ -7,16 +7,18 @@ export default function ChatPage() {
   return (
     <Container className="mt-5">
       <Row>
-        <Col className="col-12 col-md-4 d-flex justify-content-center">
+        <Col className="col-12 col-sm-4 d-flex justify-content-center">
           <ChatUserList />
         </Col>
-        <Col>
-          <Row>
-            <ViewChat />
-          </Row>
-          <Row>
-            <WriteChat />
-          </Row>
+        <Col className="col-12 col-sm-8">
+          <Container className="chat--chat">
+            <Row className="d-flex justify-content-center">
+              <ViewChat />
+            </Row>
+            <Row>
+              <WriteChat />
+            </Row>
+          </Container>
         </Col>
       </Row>
     </Container>
