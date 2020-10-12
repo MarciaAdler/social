@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ChatUserList from "../components/ChatUserList";
 import WriteChat from "../components/WriteChat";
+import ViewChat from "../components/ViewChat";
 export default function ChatPage() {
   return (
     <Container className="mt-5">
@@ -11,7 +12,7 @@ export default function ChatPage() {
         </Col>
         <Col>
           <Row>
-            <p>messages go here</p>
+            <ViewChat />
           </Row>
           <Row>
             <WriteChat />

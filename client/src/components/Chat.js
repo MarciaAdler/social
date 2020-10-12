@@ -60,7 +60,7 @@ export default function Chat() {
   }
   return (
     <div className="text-right chat--div">
-      <Button className="chat--button" href="/chatpage">
+      <Button className="chat--button" href="/chat">
         Chat
       </Button>
       {/* <Button className="chat--button" onClick={handleShow}>

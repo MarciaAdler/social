@@ -31,7 +31,7 @@ function App() {
             <Route path="/addgroup" component={AddGroup} />
             <Route path="/group" component={Group} />
             <Route path="/editgroup" component={EditGroup} />
-            <Route path="/chatpage" component={ChatPage} />
+            <Route path="/chat" component={ChatPage} />
           </Switch>
         </Router>
       </StoreProvider>
