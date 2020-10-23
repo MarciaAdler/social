@@ -31,7 +31,7 @@ export default function Yelp() {
       <Container className="yelp--container">
         <h2>Check out some businesses in the neighborhood!</h2>
         <form className="mt-3 mb-3">
-          <label>What would you like to search? &nbsp;</label>
+          <label>What would you like to search for? &nbsp;</label>
           <input
             onChange={handleInputChange}
             name="search"

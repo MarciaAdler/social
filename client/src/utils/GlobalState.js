@@ -11,6 +11,7 @@ import {
   SET_GROUP_POSTS,
   SET_USER_LIST,
   SET_SELECTED_CHAT,
+  SET_MESSAGES,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -97,6 +98,11 @@ const reducer = (state, action) => {
         ...state,
         userlist: action.userlist,
       };
+    case SET_MESSAGES:
+      return {
+        ...state,
+        messages: action.messages,
+      };
     case CLEAR_ALL:
       return {
         ...state,
@@ -120,6 +126,7 @@ const reducer = (state, action) => {
         // },
         loggedin: false,
         // posts: [],
+        messages: [],
       };
     default:
       return state;
@@ -170,6 +177,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       adminUsername: "",
     },
     userlist: [],
+    messages: [],
   });
   return <Provider value={[state, dispatch]} {...props} />;
 };

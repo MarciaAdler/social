@@ -1,11 +1,14 @@
 import React, { useRef } from "react";
 import { Container, InputGroup, FormControl, Button } from "react-bootstrap";
+import { SET_MESSAGES } from "../utils/actions";
+import { useStoreContext } from "../utils/GlobalState";
 
 export default function WriteChat() {
+  const [state, dispatch] = useStoreContext();
   const messageRef = useRef();
 
   function writeMessage() {
-    console.log(messageRef.current.value);
+    state.messages.push(messageRef.current.value);
   }
   return (
     <Container className="chat--writechat">

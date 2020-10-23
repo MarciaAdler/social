@@ -2,7 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
+// const port = 8080;
 const app = express();
+// var http = require("http").createServer(app);
 const Sequelize = require("sequelize");
 var db = require("./models");
 const cors = require("cors");
@@ -13,6 +15,22 @@ const users = require("./routes/users");
 const yelp = require("./routes/yelp");
 var session = require("express-session");
 var compression = require("compression");
+var socket = require("socket.io");
+
+server = app.listen(8080, function () {
+  console.log("server is running on port 8080");
+});
+
+// socket.io connection
+io = socket(server);
+
+io.on("connection", (socket) => {
+  // here you can start emitting events to the client
+  console.log("socket.id", socket.id);
+});
+
+// io.listen(port);
+// console.log("listening on port ", port);
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));

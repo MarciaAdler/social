@@ -23,7 +23,8 @@ body
     background-color: $dimgray
     // font-family: 'Handlee', cursive
     font-family: 'Sniglet', cursive
-
+a
+    color: $middleblue
 .icon
     height: 150px
     width: auto
@@ -187,10 +188,13 @@ body
         margin-left: 15px
         margin-right: 15px
         border-radius: .2rem
-
+    &--with
+        background-color: $dimgray
+        width: 100%
     &--chat
         width: 90%
-
+    &--login
+        color: $middleblue
     &--div
         float: right
         @include media-breakpoint-only(xs)
@@ -242,6 +246,7 @@ body
 .post
     background-color: $keppel
     border-color: $keppel
+    color: $blackcoffee
     &:hover
         background-color: $gray
         border-color: $gray
