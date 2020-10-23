@@ -27,6 +27,10 @@ io = socket(server);
 io.on("connection", (socket) => {
   // here you can start emitting events to the client
   console.log("socket.id", socket.id);
+
+  socket.on("SEND_MESSAGE", function (data) {
+    io.emit("RECIEVE_MESSAGE", data);
+  });
 });
 
 // io.listen(port);

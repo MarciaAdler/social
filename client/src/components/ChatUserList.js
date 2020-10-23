@@ -3,13 +3,26 @@ import React, { useEffect } from "react";
 import { ListGroup } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
-import { SET_USER_LIST, SET_SELECTED_CHAT } from "../utils/actions";
+import {
+  SET_USER_LIST,
+  SET_SELECTED_CHAT,
+  SET_MESSAGES,
+} from "../utils/actions";
 
 export default function ChatUserList() {
   const [state, dispatch] = useStoreContext();
   useEffect(() => {
     getUsers();
   }, []);
+  // function getMessages(currentuser, receiver) {
+  //   console.log(currentuser, receiver);
+  //   API.getMessages(state.currentUser.id, state.selectedchat.id)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       dispatch({ type: SET_MESSAGES, messages: res.data });
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
   function getUsers() {
     API.getUsers()
       .then((res) => {
@@ -51,6 +64,7 @@ export default function ChatUserList() {
       "selectedchat",
       JSON.stringify(localStorageSelectedChat)
     );
+    // getMessages(state.currentUser.id, state.selectedchat.id);
   }
 
   return (

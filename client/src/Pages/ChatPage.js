@@ -9,6 +9,7 @@ import Login from "./Login";
 export default function ChatPage() {
   const [state, dispatch] = useStoreContext();
   const socket = io("localhost:8080");
+
   return (
     <Container className="mt-5">
       {state.loggedin === false ? (
@@ -27,10 +28,10 @@ export default function ChatPage() {
                 Messages with: {state.selectedchat.username}
               </h3>
               <Row className="d-flex justify-content-center">
-                <ViewChat />
+                <ViewChat socket={socket} />
               </Row>
               <Row>
-                <WriteChat />
+                <WriteChat socket={socket} />
               </Row>
             </Container>
           </Col>

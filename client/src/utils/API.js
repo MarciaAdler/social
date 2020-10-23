@@ -108,4 +108,11 @@ export default {
   getUsers: function (req) {
     return axios.get("/api/getusers", req);
   },
+  writeMessage: function (message) {
+    return axios.post("/api/writemessage", message);
+  },
+  getMessages: function (currentuser, receiver) {
+    console.log(currentuser, receiver);
+    return axios.get("/api/getmessages", currentuser + receiver);
+  },
 };

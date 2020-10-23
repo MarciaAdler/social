@@ -1,6 +1,6 @@
 const db = require("../models");
 var fs = require("fs");
-
+const { Op } = require("sequelize");
 module.exports = {
   createUser: function (req, res) {
     db.User.create({
@@ -377,6 +377,51 @@ module.exports = {
   getUsers: function (req, res) {
     db.User.findAll({
       order: [["username", "ASC"]],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  writeMessage: function (req, res) {
+    db.ChatMessage.create({
+      message: req.body.message,
+      SenderId: req.body.sender,
+      ReceiverId: req.body.receiver,
+    })
+      .then(function () {
+        res.json(req.body);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getMessages: function (req, res) {
+    console.log("messages", req.body);
+    db.ChatMessage.findAll({
+      where: {
+        [Op.or]: [
+          {
+            SenderId: req.body.SenderId,
+            ReceiverId: req.body.ReceiverId,
+          },
+          {
+            SenderId: req.body.ReceiverId,
+            ReceiverId: req.body.SenderId,
+          },
+        ],
+      },
+      order: [["createdAt", "DESC"]],
+      include: [
+        {
+          model: db.User,
+          as: "Sender",
+        },
+        {
+          model: db.User,
+          as: "Receiver",
+        },
+      ],
     })
       .then((dbModel) => res.json(dbModel))
       .catch(function (err) {
