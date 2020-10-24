@@ -7,14 +7,14 @@ export default function Footer() {
       <Row>
         <Col>
           <img
-            src={require("../images/Neighbor-icon.png")}
-            alt="Neighbor"
+            src={require("../images/social-icon.jpg")}
+            alt="Social Neighbor icon"
             className="footer--icon"
           />
-          Social
+          Social Neighbor
         </Col>
         <Col className="footer--about">
-          <a href="#About" className="footer--aboutlink">
+          <a href="/About" className="footer--aboutlink">
             About
           </a>
         </Col>

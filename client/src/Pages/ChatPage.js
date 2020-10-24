@@ -10,7 +10,7 @@ export default function ChatPage() {
   const [state, dispatch] = useStoreContext();
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5 chatpage--main">
       {state.loggedin === false ? (
         <div className="text-center">
           <h3>Please login to view this page</h3>

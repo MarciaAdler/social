@@ -14,7 +14,7 @@ export default function Home() {
       <Container className="home--container">
         <img
           className="icon mb-3"
-          src={require("../images/Neighbor-icon.png")}
+          src={require("../images/social-icon.jpg")}
           alt="icon"
         />
 
