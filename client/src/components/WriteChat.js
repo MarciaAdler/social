@@ -10,7 +10,7 @@ export default function WriteChat() {
   const socket = io("localhost:8080");
   let messageRef = useRef();
 
-  socket.on("RECIEVE_MESSAGE", function (data) {
+  socket.on("RECEIVE_MESSAGE", function (data) {
     addMessage(data);
   });
 
