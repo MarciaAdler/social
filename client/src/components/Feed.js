@@ -135,7 +135,7 @@ export default function Feed() {
       <Container>
         <h3>Here is what's happening in the neighborhood...</h3>
       </Container>
-      <ListGroup>
+      <ListGroup className="feed--feed">
         {state.posts.length > 0
           ? state.posts.map((post) => {
               return (

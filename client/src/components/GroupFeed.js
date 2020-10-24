@@ -110,7 +110,7 @@ export default function GroupFeed() {
       ) : (
         ""
       )}
-      <ListGroup>
+      <ListGroup className="feed--feed">
         {state.groupposts
           ? state.groupposts.map((post) => {
               return (

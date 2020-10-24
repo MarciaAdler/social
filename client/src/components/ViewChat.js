@@ -14,7 +14,7 @@ export default function ViewChat(props) {
   // }
   const [state, dispatch] = useStoreContext();
   return (
-    <Container className="chat--viewchat mt-2">
+    <Container className="chat--viewchat mt-2 feed--feed">
       <div>
         {state.messages.length > 0
           ? state.messages.map((message, index) => {

@@ -73,7 +73,7 @@ export default function ChatUserList() {
           ? state.userlist.map((user) => {
               return (
                 <ListGroup.Item
-                  className="chat--username"
+                  className="chat--username feed--feed"
                   key={user.id}
                   onClick={() => {
                     selectChat(user);
@@ -82,7 +82,7 @@ export default function ChatUserList() {
                   <div key={user.id}>
                     {user.image !== null ? (
                       <img
-                        className="chat--profileimage"
+                        className="chat--profileimage mr-2"
                         src={
                           process.env.PUBLIC_URL +
                           `/profileimages/${user.image}`

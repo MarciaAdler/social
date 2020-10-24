@@ -10,7 +10,9 @@ $keppel: #44BBA4
 $oldlavender: #6E657B
 $middleblue: #85BDBF
 $yellow: #EAE151
-
+$lightgray: #8D99AE
+$blackcoral: #5E6472
+$babypowder: #FCFFF7
 html
     max-width: 100vw
     overflow-x: hidden
@@ -20,7 +22,8 @@ body
     min-height: 100vh
     position: relative
     padding-bottom: 110px
-    background-color: $dimgray
+    background-color: $blackcoral
+    color: $babypowder
     // font-family: 'Handlee', cursive
     font-family: 'Sniglet', cursive
 a
@@ -255,6 +258,8 @@ a
         border-color: $gray
         color: $blackcoffee
 .feed
+    &--feed
+        color: $blackcoffee
     &--image
         max-height: 150px
         max-width: 90%

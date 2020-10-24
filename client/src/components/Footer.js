@@ -11,7 +11,7 @@ export default function Footer() {
             alt="Neighbor"
             className="footer--icon"
           />
-          Neighbor
+          Social
         </Col>
         <Col className="footer--about">
           <a href="#About" className="footer--aboutlink">
