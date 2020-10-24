@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import { ListGroup } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
@@ -14,15 +13,15 @@ export default function ChatUserList() {
   useEffect(() => {
     getUsers();
   }, []);
-  // function getMessages(currentuser, receiver) {
-  //   console.log(currentuser, receiver);
-  //   API.getMessages(state.currentUser.id, state.selectedchat.id)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       dispatch({ type: SET_MESSAGES, messages: res.data });
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
+  async function getMessages(currentuser, receiver) {
+   const { data }  = await API.getMessages(
+      currentuser,
+      receiver,
+    );
+    
+    dispatch({ type: SET_MESSAGES, messages: data });
+    console.log(data) 
+  }
   function getUsers() {
     API.getUsers()
       .then((res) => {
@@ -64,7 +63,7 @@ export default function ChatUserList() {
       "selectedchat",
       JSON.stringify(localStorageSelectedChat)
     );
-    // getMessages(state.currentUser.id, state.selectedchat.id);
+    getMessages(state.currentUser.id, selected.id);
   }
 
   return (
@@ -73,17 +72,29 @@ export default function ChatUserList() {
         {state.userlist
           ? state.userlist.map((user) => {
               return (
-                <div key={user.id}>
-                  <ListGroup.Item
-                    className="chat--username"
-                    key={user.id}
-                    onClick={() => {
-                      selectChat(user);
-                    }}
-                  >
+                <ListGroup.Item
+                  className="chat--username"
+                  key={user.id}
+                  onClick={() => {
+                    selectChat(user);
+                  }}
+                >
+                  <div key={user.id}>
+                    {user.image !== null ? (
+                      <img
+                        className="chat--profileimage"
+                        src={
+                          process.env.PUBLIC_URL +
+                          `/profileimages/${user.image}`
+                        }
+                        alt="author image"
+                      />
+                    ) : (
+                      ""
+                    )}
                     {user.username}
-                  </ListGroup.Item>
-                </div>
+                  </div>
+                </ListGroup.Item>
               );
             })
           : "no users"}

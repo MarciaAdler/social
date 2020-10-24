@@ -3,12 +3,11 @@ import { Container, Row, Col } from "react-bootstrap";
 import ChatUserList from "../components/ChatUserList";
 import WriteChat from "../components/WriteChat";
 import ViewChat from "../components/ViewChat";
-import io from "socket.io-client";
+
 import { useStoreContext } from "../utils/GlobalState";
 import Login from "./Login";
 export default function ChatPage() {
   const [state, dispatch] = useStoreContext();
-  const socket = io("localhost:8080");
 
   return (
     <Container className="mt-5">
@@ -24,15 +23,22 @@ export default function ChatPage() {
           </Col>
           <Col className="col-12 col-sm-8">
             <Container className="chat--chat">
-              <h3 className="chat--with">
-                Messages with: {state.selectedchat.username}
-              </h3>
-              <Row className="d-flex justify-content-center">
-                <ViewChat socket={socket} />
-              </Row>
-              <Row>
-                <WriteChat socket={socket} />
-              </Row>
+              {state.selectedchat.id !== 0 ? (
+                <div>
+                  <h3 className="chat--with">
+                    Messages with: {state.selectedchat.username}
+                  </h3>
+
+                  <Row className="d-flex justify-content-center">
+                    <ViewChat />
+                  </Row>
+                  <Row>
+                    <WriteChat />
+                  </Row>
+                </div>
+              ) : (
+                <h3>Selected a User to chat with</h3>
+              )}
             </Container>
           </Col>
         </Row>

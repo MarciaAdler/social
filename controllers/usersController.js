@@ -397,21 +397,22 @@ module.exports = {
       });
   },
   getMessages: function (req, res) {
-    console.log("messages", req.body);
+    console.log("body", req.body);
+    console.log("params", req.params)
     db.ChatMessage.findAll({
       where: {
         [Op.or]: [
           {
-            SenderId: req.body.SenderId,
-            ReceiverId: req.body.ReceiverId,
+            SenderId: req.params.SenderId,
+            ReceiverId: req.params.ReceiverId,
           },
           {
-            SenderId: req.body.ReceiverId,
-            ReceiverId: req.body.SenderId,
+            SenderId: req.params.ReceiverId,
+            ReceiverId: req.params.SenderId,
           },
         ],
       },
-      order: [["createdAt", "DESC"]],
+      order: [["createdAt", "ASC"]],
       include: [
         {
           model: db.User,

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_MESSAGES } from "../utils/actions";
 import API from "../utils/API";
@@ -17,10 +17,53 @@ export default function ViewChat(props) {
     <Container className="chat--viewchat mt-2">
       <div>
         {state.messages.length > 0
-          ? state.messages.map((message) => {
-              return <div>{message}</div>;
+          ? state.messages.map((message, index) => {
+              return (
+                <div key={index}>
+                  {message.SenderId ? (<div>
+                    {message.Sender.image !== null ? (
+                    
+                    <img
+                      className="chat--profileimage mr-2 mt-2 mb-2"
+                      src={
+                        process.env.PUBLIC_URL +
+                        `/profileimages/${message.Sender.image}`
+                      }
+                      alt="author image"
+                    />
+                  
+                ) : (
+                  ""
+                )}
+                
+                  <strong className="ml-2">{message.Sender.username} says: </strong>
+                  {message.message}
+                  </div>): (<div>
+                    {message.image !== null ? (
+                    
+                    <img
+                      className="chat--profileimage mr-2 mt-2 mb-2"
+                      src={
+                        process.env.PUBLIC_URL +
+                        `/profileimages/${message.image}`
+                      }
+                      alt="author image"
+                    />
+                  
+                ) : (
+                  ""
+                )}
+                
+                  <strong className="ml-2">{message.username} says: </strong>
+                  {message.message}
+                  </div>)}
+                  
+                  
+                </div>
+              );
             })
           : " no messages"}
+          
       </div>
     </Container>
   );

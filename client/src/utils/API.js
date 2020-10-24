@@ -1,5 +1,3 @@
-import { AccordionCollapse } from "react-bootstrap";
-
 const axios = require("axios");
 export default {
   createUser: function (req) {
@@ -111,8 +109,10 @@ export default {
   writeMessage: function (message) {
     return axios.post("/api/writemessage", message);
   },
-  getMessages: function (currentuser, receiver) {
-    console.log(currentuser, receiver);
-    return axios.get("/api/getmessages", currentuser + receiver);
+  getMessages: function (sender,receiver) {
+    console.log(sender,receiver);
+    return axios.get(
+      "/api/getchatmessages/" + sender + "/" + receiver
+    );
   },
 };
