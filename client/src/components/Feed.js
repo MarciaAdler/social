@@ -139,7 +139,7 @@ export default function Feed() {
         {state.posts.length > 0
           ? state.posts.map((post) => {
               return (
-                <ListGroup.Item key={post.id}>
+                <ListGroup.Item key={post.id} className="mt-1 feed--postitem">
                   <Row>
                     <Col className="col-3 col-lg-2">
                       {post.User.image !== "" ? (

@@ -3,6 +3,7 @@ import { Container, Col, Row } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_MESSAGES } from "../utils/actions";
 import API from "../utils/API";
+import dateFormat from "dateformat";
 export default function ViewChat(props) {
   // function getMessages(currentuser, receiver) {
   //   API.getMessages(state.currentUser.id, state.selectedchat.id)
@@ -38,6 +39,15 @@ export default function ViewChat(props) {
                 
                   <strong className="ml-2">{message.Sender.username} says: </strong>
                   {message.message}
+                  <br></br>
+                  <small>
+                    
+                    {dateFormat(
+                      `${message.createdAt}`,
+                      "dddd, mmmm, dS, yyyy, h:MM TT"
+                    )}{" "}
+                    {"EST"}
+                  </small>
                   </div>): (<div>
                     {message.image !== null ? (
                     
