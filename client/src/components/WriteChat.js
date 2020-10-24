@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Container, InputGroup, FormControl, Button } from "react-bootstrap";
+import { Container, InputGroup, FormControl, Button, Form } from "react-bootstrap";
 import { SET_MESSAGES } from "../utils/actions";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
@@ -31,6 +31,8 @@ export default function WriteChat() {
     });
     writeMessage();
     getMessages(state.currentUser.id, state.selectedchat.id)
+    const form = document.getElementById("myForm");
+    form.reset();
   };
   async function getMessages(currentuser, receiver) {
     const { data } = await API.getMessages(currentuser, receiver)
@@ -47,6 +49,7 @@ export default function WriteChat() {
       .then((res) => {
         console.log(res.data);
         
+       
       })
       .catch((err) => {
         console.log(err);
@@ -54,6 +57,7 @@ export default function WriteChat() {
   }
   return (
     <Container className="chat--writechat">
+      <Form id="myForm">
       <InputGroup>
         <FormControl
           as="textarea"
@@ -65,6 +69,7 @@ export default function WriteChat() {
       <Button className="button mt-2" onClick={sendMessage}>
         Send Message
       </Button>
+      </Form>
     </Container>
   );
 }
