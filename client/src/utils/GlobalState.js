@@ -31,6 +31,7 @@ const reducer = (state, action) => {
           image: action.currentUser.image,
           email: action.currentUser.email,
           bio: action.currentUser.bio,
+          link: action.currentUser.link,
         },
       };
     case LOGGEDIN:
@@ -55,6 +56,7 @@ const reducer = (state, action) => {
           image: action.selecteduser.image,
           email: action.selecteduser.email,
           bio: action.selecteduser.bio,
+          link: action.selecteduser.link,
         },
       };
     case SET_SELECTED_CHAT:
@@ -69,6 +71,7 @@ const reducer = (state, action) => {
           image: action.selectedchat.image,
           email: action.selectedchat.email,
           bio: action.selectedchat.bio,
+          link: action.selectchat.link,
         },
       };
     case SET_GROUPS:
@@ -115,6 +118,7 @@ const reducer = (state, action) => {
           image: "",
           email: "",
           bio: "",
+          link:""
         },
         // selectedGroup: {
         //   id: 0,
@@ -144,6 +148,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       image: "",
       email: "",
       bio: "",
+      link:"",
     },
     loggedin: false,
     posts: [],
@@ -156,6 +161,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       image: "",
       email: "",
       bio: "",
+      link: "",
     },
     selectedchat: {
       id: 0,
@@ -166,6 +172,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       image: "",
       email: "",
       bio: "",
+      link: ""
     },
     groups: [],
     selectedGroup: {

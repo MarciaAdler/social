@@ -11,6 +11,7 @@ export default function ProfileForm() {
   const stateRef = useRef();
   const emailRef = useRef();
   const bioRef = useRef();
+  const linkRef = useRef();
   const [successMessage, setSuccessMessage] = useState("");
   const [image, setImage] = useState("");
   const [imagename, setImageName] = useState(state.currentUser.image);
@@ -23,8 +24,8 @@ export default function ProfileForm() {
       city: cityRef.current.value,
       state: stateRef.current.value,
       email: emailRef.current.value,
-
       bio: bioRef.current.value,
+      link: linkRef.current.value,
     })
       .then((response) => {
         console.log(response.data);
@@ -53,6 +54,7 @@ export default function ProfileForm() {
             email: results.data.email,
             image: results.data.image,
             bio: results.data.bio,
+            link: results.data.link,
           },
         });
         let localStorageUser = {
@@ -64,6 +66,7 @@ export default function ProfileForm() {
           email: results.data.email,
           image: results.data.image,
           bio: results.data.bio,
+          link: results.data.link,
         };
         window.localStorage.setItem(
           "currentUser",
@@ -241,6 +244,19 @@ export default function ProfileForm() {
                 </Form.Group>
               </div>
             </Form.Row>
+            <Form.Group as={Row} className="justify-content-center">
+              <Form.Label column sm={3}>
+                Link
+              </Form.Label>
+              <Col sm={6}>
+                <Form.Control
+                  type="url"
+                  name="link"
+                  ref={linkRef}
+                  defaultValue={state.currentUser.link}
+                ></Form.Control>
+              </Col>
+            </Form.Group>
             <Button
               className="button"
               onClick={() => {
