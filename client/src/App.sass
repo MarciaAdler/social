@@ -32,7 +32,7 @@ a
     height: 150px
     width: auto
     margin-top: 20px
-    border-radius: 2em
+    border-radius: 50%
 .button
     background-color: $keppel
     border-color: $keppel
@@ -46,10 +46,11 @@ a
     color: $blackcoffee
     &--icon
         height: 50px
+        width: 50px
         border-radius: 50%
     &--profileimage
         height: 50px
-        border-radius: .5em
+        border-radius: 50%
     &--rightlink
         @include media-breakpoint-only(lg)
             padding-top: 20px
@@ -116,6 +117,7 @@ a
         margin-top: 40px
         height: 250px
         width: auto
+        border-radius: 50%
         @include media-breakpoint-only(xs)
             height: 200px
     &--container
@@ -144,8 +146,9 @@ a
         @include media-breakpoint-only(xs)
             width: 100%
     &--profileimage
-        height: 150px
-        border-radius: 1em
+        height: 100px
+        width: 100px
+        border-radius: 50%
     &--city-state
         display: flex
         flex-direction: row
@@ -232,7 +235,8 @@ a
             color: $middleblue
     &--profileimage
         height: 25px
-        border-radius: .5rem
+        width: 25px
+        border-radius: 50%
 .home
     &--container
         width: 80%
@@ -277,8 +281,8 @@ a
             width: 50%
     &--profileimage
         height: 50px
-        border-radius: .5em
-
+        width: 50px
+        border-radius: 50%
     &--delete-btn
         color: $red
         border: none
@@ -306,7 +310,8 @@ a
 .comments
     &--profileimage
         height: 30px
-        border-radius: .5em
+        width: 30px
+        border-radius: 50%
     &--button
         background-color: white
         border: 0
@@ -340,6 +345,7 @@ a
         width: auto
         height: 300px
         border-radius: 1em
+        color: $blackcoffee
     &--post
         margin-left: 10px
         margin-top: 10px
@@ -355,6 +361,7 @@ a
     &--cardbody2
         padding: 5px 2px 2px 2px
         overflow: scroll
+        padding: 20px
     &--cardfooter
         padding-top: 1px
         padding-bottom: 1px
@@ -407,7 +414,7 @@ a
         height: 30px
         margin-right: 5px
         margin-bottom: 5px
-        border-radius: .5em
+        border-radius: 50%
     &--about
         margin-top: 5px
     &--aboutlink

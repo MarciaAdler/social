@@ -48,7 +48,7 @@ export default function WriteChat() {
     })
       .then((res) => {
         console.log(res.data);
-        
+        getMessages(state.currentUser.id, state.selectedchat.id)
        
       })
       .catch((err) => {

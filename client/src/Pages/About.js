@@ -6,6 +6,7 @@ export default function About(){
         <div>
         Attributes:<br></br> 
         icon: <a href='https://www.freepik.com/vectors/people'>People vector created by rawpixel.com - www.freepik.com</a>
+        icon: <a href='https://www.freepik.com/vectors/people'>People vector created by studiogstock - www.freepik.com</a>
         </div>
     </Container>)
 }

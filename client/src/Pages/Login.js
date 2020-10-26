@@ -7,8 +7,8 @@ export default function Login() {
       <Row>
         <Col className="d-flex justify-content-center col-12 col-md-6">
           <img
-            src={require("../images/Neighbor-icon.png")}
-            alt="Neighbor"
+            src={require("../images/communitysocial-icon.jpg")}
+            alt="Social Neighbor"
             className="login--icon"
           />
         </Col>

@@ -154,16 +154,16 @@ export default function Header() {
         {state.loggedin === true ? (
           <Navbar.Brand href="/">
             <img
-              src={require("../images/social-icon.jpg")}
-              alt="Social"
+              src={require("../images/communitysocial-icon.jpg")}
+              alt="Social Neighbor"
               className="header--icon"
             ></img>
           </Navbar.Brand>
         ) : (
           <Navbar.Brand href="/signin">
             <img
-              src={require("../images/Neighbor-icon.png")}
-              alt="Neighbor"
+              src={require("../images/communitysocial-icon.jpg")}
+              alt="Social Neighbor"
               className="header--icon"
             ></img>
           </Navbar.Brand>

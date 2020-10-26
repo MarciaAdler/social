@@ -1,19 +1,61 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
-import { SET_MESSAGES } from "../utils/actions";
+import { SET_SELECTED_USER } from "../utils/actions";
 import API from "../utils/API";
 import dateFormat from "dateformat";
+import { Redirect } from "react-router-dom";
+
 export default function ViewChat(props) {
-  // function getMessages(currentuser, receiver) {
-  //   API.getMessages(state.currentUser.id, state.selectedchat.id)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       dispatch({ type: SET_MESSAGES, messages: res.data });
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
   const [state, dispatch] = useStoreContext();
+  const [redirect, setRedirect] = useState(false);
+
+  const renderRedirect = () => {
+    if (state.selecteduser && redirect) {
+      return (
+        <Redirect
+          push
+          to={{
+            pathname: "/viewprofile/",
+            search: `?${state.selecteduser.username}`,
+          }}
+        />
+      );
+    }
+  };
+  
+  function selectUser(user) {
+    console.log(user);
+    const selected = {
+      id: user.id,
+      username: user.username,
+      firstName: user.firstName,
+      city: user.city,
+      state: user.state,
+      image: user.image,
+      email: user.email,
+      bio: user.bio,
+    };
+    dispatch({
+      type: SET_SELECTED_USER,
+      selecteduser: selected,
+    });
+    let localStorageSelectedUser = {
+      id: user.id,
+      username: user.username,
+      firstName: user.firstName,
+      city: user.city,
+      state: user.state,
+      image: user.image,
+      email: user.email,
+      bio: user.bio,
+    };
+    window.localStorage.setItem(
+      "selecteduser",
+      JSON.stringify(localStorageSelectedUser)
+    );
+    setRedirect(true);
+  }
   return (
     <Container className="chat--viewchat mt-2 feed--feed">
       <div>
@@ -31,6 +73,9 @@ export default function ViewChat(props) {
                         `/profileimages/${message.Sender.image}`
                       }
                       alt="author image"
+                      onClick={() => {
+                        selectUser(message.Sender);
+                      }}
                     />
                   
                 ) : (
@@ -75,6 +120,7 @@ export default function ViewChat(props) {
           : " no messages"}
           
       </div>
+      {renderRedirect()}
     </Container>
   );
 }
