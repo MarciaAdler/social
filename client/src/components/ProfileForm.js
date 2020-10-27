@@ -246,7 +246,7 @@ export default function ProfileForm() {
             </Form.Row>
             <Form.Group as={Row} className="justify-content-center">
               <Form.Label column sm={3}>
-                Link
+                Link (include https://)
               </Form.Label>
               <Col sm={6}>
                 <Form.Control

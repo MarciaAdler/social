@@ -121,7 +121,10 @@ export default function UserProfile() {
         <strong>About Me: </strong>
         {state.selecteduser.bio}
       </p>
-      <p className="text-left">link: <a target="_blank" href={state.selecteduser.link}>{state.selecteduser.link}</a></p>
+      {state.selecteduser.link !== null ? (
+        <p className="text-left">link: <a target="_blank" href={state.selecteduser.link}>{state.selecteduser.link}</a></p>
+        ): ""}
+      
       <p className="text-left">
         <strong>
           What is {state.selecteduser.username} saying on the feed:

@@ -71,7 +71,7 @@ const reducer = (state, action) => {
           image: action.selectedchat.image,
           email: action.selectedchat.email,
           bio: action.selectedchat.bio,
-          link: action.selectchat.link,
+          link: action.selectedchat.link,
         },
       };
     case SET_GROUPS:

@@ -11,6 +11,7 @@ module.exports = {
       city: req.body.city,
       state: req.body.state,
       image: req.body.image,
+      link: req.body.link,
     })
       .then(function () {
         res.json(req.body);

@@ -80,6 +80,7 @@ export default function GroupFeed() {
       image: user.image,
       email: user.email,
       bio: user.bio,
+      link: user.link,
     };
     dispatch({
       type: SET_SELECTED_USER,
@@ -94,6 +95,7 @@ export default function GroupFeed() {
       image: user.image,
       email: user.email,
       bio: user.bio,
+      link: user.link,
     };
     window.localStorage.setItem(
       "selecteduser",

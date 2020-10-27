@@ -35,6 +35,7 @@ export default function ViewChat(props) {
       image: user.image,
       email: user.email,
       bio: user.bio,
+      link: user.link,
     };
     dispatch({
       type: SET_SELECTED_USER,
@@ -49,6 +50,7 @@ export default function ViewChat(props) {
       image: user.image,
       email: user.email,
       bio: user.bio,
+      link: user.link,
     };
     window.localStorage.setItem(
       "selecteduser",
@@ -67,7 +69,7 @@ export default function ViewChat(props) {
                     {message.Sender.image !== null ? (
                     
                     <img
-                      className="chat--profileimage mr-2 mt-2 mb-2"
+                      className="chat--profileimage chat--viewprofile mr-2 mt-2 mb-2"
                       src={
                         process.env.PUBLIC_URL +
                         `/profileimages/${message.Sender.image}`
