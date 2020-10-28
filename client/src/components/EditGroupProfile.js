@@ -1,8 +1,8 @@
 import React, { useState, useRef, Fragment, useEffect } from "react";
 import { Col, Form, Button, Container } from "react-bootstrap";
 import API from "../utils/API";
-import { SET_SELECTED_GROUP, SET_GROUPS } from "../utils/actions";
-import { Link, Redirect } from "react-router-dom";
+import { SET_SELECTED_GROUP } from "../utils/actions";
+import { Link } from "react-router-dom";
 import { useStoreContext } from "../utils/GlobalState";
 export default function EditGroupProfile() {
   const [state, dispatch] = useStoreContext();

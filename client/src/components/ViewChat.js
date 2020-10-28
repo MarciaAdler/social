@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_SELECTED_USER } from "../utils/actions";
 import API from "../utils/API";

@@ -1,14 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   ListGroup,
   Row,
   Col,
   Card,
-  InputGroup,
-  FormControl,
-  Collapse,
-  Button,
+  
 } from "react-bootstrap";
 import API from "../utils/API";
 import { useStoreContext } from "../utils/GlobalState";
@@ -16,7 +13,7 @@ import { SET_POSTS, SET_SELECTED_USER } from "../utils/actions";
 import dateFormat from "dateformat";
 import { Redirect } from "react-router-dom";
 import FeedComment from "./FeedComment";
-import CommentCount from "./CommentCount";
+
 import Comments from "./Comments";
 
 export default function Feed() {

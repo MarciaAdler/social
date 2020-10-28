@@ -7,7 +7,7 @@ import { useStoreContext } from "../utils/GlobalState";
 export default function Comments(props) {
   const [state, dispatch] = useStoreContext();
   const [collapse, setCollapse] = useState(false);
-  const [number, setNumber] = useState(0);
+  
   useEffect(() => {
     props.commentCount(props.id);
   }, []);

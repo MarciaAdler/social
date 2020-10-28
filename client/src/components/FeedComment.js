@@ -1,11 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
-import { InputGroup, FormControl, Collapse, Form } from "react-bootstrap";
+import { InputGroup, FormControl, Form } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
 
-export default function FeedComment({ post, getComments2, getComments }) {
+export default function FeedComment({ post, getComments2 }) {
   const [state, dispatch] = useStoreContext();
-  const [comments, setComments] = useState([]);
   const [number, setNumber] = useState([]);
   const commentRef = useRef();
 

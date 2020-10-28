@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import { useStoreContext } from "../utils/GlobalState";
-import { Form, Button, Col } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import API from "../utils/API";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { LOGGEDIN, SET_CURRENT_USER } from "../utils/actions";
 
 export default function LoginForm() {

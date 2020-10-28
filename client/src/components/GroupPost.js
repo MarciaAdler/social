@@ -1,4 +1,4 @@
-import React, { useRef, useState, Fragment, useEffect } from "react";
+import React, { useRef, useState, Fragment } from "react";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
 import { SET_GROUP_POSTS } from "../utils/actions";

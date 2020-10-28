@@ -4,12 +4,12 @@ import { useStoreContext } from "../utils/GlobalState";
 import { SET_SELECTED_GROUP, SET_GROUP_POSTS } from "../utils/actions";
 import API from "../utils/API";
 import GroupFeed from "./GroupFeed";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Comments from "./Comments";
 
 export default function GroupPage() {
   const [state, dispatch] = useStoreContext();
-  const [page, setPage] = useState(false);
+  
   const [comments, setComments] = useState([]);
   const [number, setNumber] = useState(0);
   const [redirect, setRedirect] = useState(false);
