@@ -21,10 +21,11 @@ export default function PostToFeed() {
   useEffect(() => {
     getPosts(state.posts);
   }, []);
-  function getPosts() {
-    API.getPosts()
+  function getPosts(posts) {
+    console.log(posts)
+    API.getPosts(posts)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         dispatch({ type: SET_POSTS, posts: res.data });
       })
       .catch((err) => console.log(err));
@@ -37,12 +38,12 @@ export default function PostToFeed() {
     }).then((res) => {
       if (image1name) {
         uploadPostImage();
-        getPosts(res);
+        getPosts(res.data);
         const form = document.getElementById("myForm");
         form.reset();
         setImage1Name(null);
       } else {
-        getPosts(res);
+        getPosts(res.data);
         const form = document.getElementById("myForm");
         form.reset();
       }
