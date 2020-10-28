@@ -75,7 +75,7 @@ app.post("/api/profileimage", (req, res) => {
   const username = req.body.username.replace(/\s+/g, "_");
   //  mv() method places the file inside public directory
   myFile.mv(
-    `${__dirname}/client/public/profileimages/${username}-${name}`,
+    `${__dirname}/client/build/profileimages/${username}-${name}`,
     function (err) {
       if (err) {
         console.log(err);
@@ -96,7 +96,7 @@ app.post("/api/postimages", (req, res) => {
   const name = myFile.name.replace(/\s+/g, "_");
   //  mv() method places the file inside public directory
   myFile.mv(
-    `${__dirname}/client/public/postimages/${req.body.id}-${name}`,
+    `${__dirname}/client/build/postimages/${req.body.id}-${name}`,
     function (err) {
       if (err) {
         console.log(err);
@@ -119,7 +119,7 @@ app.post("/api/groupimage", (req, res) => {
   const groupname = req.body.groupname.replace(/\s+/g, "_");
   //  mv() method places the file inside public directory
   myFile.mv(
-    `${__dirname}/client/public/groupimages/${groupname}-${name}`,
+    `${__dirname}/client/build/groupimages/${groupname}-${name}`,
     function (err) {
       if (err) {
         console.log(err);
@@ -142,7 +142,7 @@ app.post("/api/grouppostimage", (req, res) => {
   const groupname = req.body.groupname.replace(/\s+/g, "_");
   //  mv() method places the file inside public directory
   myFile.mv(
-    `${__dirname}/client/public/grouppostimages/${groupname}-${req.body.id}-${name}`,
+    `${__dirname}/client/build/grouppostimages/${groupname}-${req.body.id}-${name}`,
     function (err) {
       if (err) {
         console.log(err);
