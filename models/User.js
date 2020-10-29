@@ -46,7 +46,7 @@ module.exports = function (sequelize, DataTypes) {
       },
       image: {
         type: DataTypes.STRING,
-        defaultValue: "",
+        defaultValue: "profile-placeholdericon.png",
       },
       bio: {
         type: DataTypes.STRING,
