@@ -140,7 +140,7 @@ export default function Feed() {
                 <ListGroup.Item key={post.id} className="mt-1 feed--postitem">
                   <Row>
                     <Col className="col-3 col-lg-2">
-                      {post.User.image !== null ? (
+                      {post.User.image === null ? (
                         <img
                           onClick={() => {
                             selectUser(post.User);
