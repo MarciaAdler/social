@@ -14,7 +14,7 @@ export default function ProfileForm() {
   const linkRef = useRef();
   const [successMessage, setSuccessMessage] = useState("");
   const [image, setImage] = useState("");
-  const [imagename, setImageName] = useState(state.currentUser.image);
+  const [imagename, setImageName] = useState("");
 
   function updateProfile(profile) {
     API.updateProfile({
@@ -139,7 +139,7 @@ export default function ProfileForm() {
                 ></Form.Control>
               </Col>
             </Form.Group>
-            {state.currentUser.image !== null ? (
+            {state.currentUser.image !== "profile-placeholericon.png" ? (
               <h3>
                 <img
                   className="profileform--profileimage"
@@ -164,7 +164,7 @@ export default function ProfileForm() {
                       className="custom-file-input"
                       id="customFile"
                     />
-                    {imagename !== "profile-placeholdericon.png" ? (
+                    {state.currentUser.image === "profile-placeholdericon.png" ? (
                       <label className="custom-file-label" htmlFor="customFile">
                         {imagename}
                       </label>
