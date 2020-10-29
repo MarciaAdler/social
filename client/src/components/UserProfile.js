@@ -102,16 +102,21 @@ export default function UserProfile() {
   return (
     <Container className="text-align-left">
       <h4>{state.selecteduser.username}</h4>
-      {state.selecteduser.image !== "" ? (
+      {state.selecteduser.image !== null ? (
         <img
           className="profileform--profileimage"
           src={
             process.env.PUBLIC_URL +
             `/profileimages/${state.selecteduser.image}`
           }
+          alt="Profile Image"
         />
       ) : (
-        ""
+        <img
+          className="profileform--profileimage"
+          src={require("../images/profile-placeholdericon.png")}
+          alt="Profile Image"
+        />
       )}
       <h6 className="mt-2">{state.selecteduser.firstName}</h6>
       <h6>

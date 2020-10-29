@@ -53,7 +53,6 @@ export default function Feed() {
       .catch((err) => console.log(err));
   }
   function getComments2(id) {
-    console.log(id);
     API.getComments2(id)
       .then((response) => {
         console.log(response.data);
@@ -141,7 +140,7 @@ export default function Feed() {
                 <ListGroup.Item key={post.id} className="mt-1 feed--postitem">
                   <Row>
                     <Col className="col-3 col-lg-2">
-                      {post.User.image !== "" ? (
+                      {post.User.image !== null ? (
                         <img
                           onClick={() => {
                             selectUser(post.User);
@@ -153,7 +152,15 @@ export default function Feed() {
                           }
                         />
                       ) : (
-                        ""
+                        <img
+                          onClick={() => {
+                            selectUser(post.User);
+                          }}
+                          className="feed--profileimage feed--poster"
+                          src={require("../images/profile-placeholdericon.png")}
+                          alt="profile pic"
+                          
+                        />
                       )}
                     </Col>
                     <Col className="col-8 col-lg-10">
@@ -201,6 +208,7 @@ export default function Feed() {
                       getComments={getComments}
                       getComments2={getComments2}
                       commentCount={commentCount}
+                      postnumber={post.number}
                     ></FeedComment>
                   ) : (
                     ""

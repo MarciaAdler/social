@@ -185,6 +185,7 @@ const StoreProvider = ({ value = [], ...props }) => {
     },
     userlist: [],
     messages: [],
+    groupposts: [],
   });
   return <Provider value={[state, dispatch]} {...props} />;
 };

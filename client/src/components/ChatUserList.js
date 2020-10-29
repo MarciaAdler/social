@@ -90,7 +90,11 @@ export default function ChatUserList() {
                         alt="author image"
                       />
                     ) : (
-                      ""
+                      <img
+                        className="chat--profileimage mr-2"
+                        src={require("../images/profile-placeholdericon.png")}
+                        alt="author image"
+                      />
                     )}
                     {user.username}
                   </div>

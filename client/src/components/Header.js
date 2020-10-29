@@ -50,8 +50,16 @@ export default function Header() {
     });
     localStorage.clear();
 
-    // setHome(true);
-    // renderRedirect();
+    setHome(true);
+    renderHomePage()
+  }
+
+  const renderHomePage=()=> {
+    if(state.loggedin === true && home){
+      return (
+        <Redirect href="/signin" />
+      )
+    }
   }
   // const renderRedirect = () => {
   //   if (home === true) {
@@ -278,6 +286,7 @@ export default function Header() {
         )}
       </Navbar>
       {renderGroupPage()}
+      
     </div>
   );
 }

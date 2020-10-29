@@ -81,7 +81,14 @@ export default function ViewChat(props) {
                     />
                   
                 ) : (
-                  ""
+                    <img
+                      className="chat--profileimage mr-2"
+                        src={require("../images/profile-placeholdericon.png")}
+                        alt="author image"
+                        onClick={() => {
+                          selectUser(message.Sender);
+                        }}
+                    />
                 )}
                 
                   <strong className="ml-2">{message.Sender.username} says: </strong>
