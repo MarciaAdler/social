@@ -172,7 +172,7 @@ export default function GroupFeed() {
                   <br />
                   <br />
 
-                  {state.currentUser.id !== 0 ? (
+                  
                     <GroupComment
                       post={post}
                       getGroupComments={getGroupComments}
@@ -181,9 +181,7 @@ export default function GroupFeed() {
                       // getComments2={getComments2}
                       // commentCount={commentCount}
                     ></GroupComment>
-                  ) : (
-                    ""
-                  )}
+                  
 
                   <Card.Footer className="mt-2">
                     <small>

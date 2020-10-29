@@ -37,9 +37,10 @@ export default function GroupComment({ post, getGroupComments, comments }) {
   }
   return (
     <Container>
+      
       <div className="text-left">
         <small>{number} Comments</small>
-
+        {state.loggedin === true ? (<div>
         <Form className="text-left" id="myForm">
           <InputGroup size="sm" className="mb-3 feed--commentinput">
             <InputGroup.Prepend>
@@ -64,12 +65,14 @@ export default function GroupComment({ post, getGroupComments, comments }) {
             />
           </InputGroup>
         </Form>
+      
+        <GroupPostComments
+          id={post}
+          comments={comments}
+          getGroupComments={getGroupComments}
+        ></GroupPostComments>
+        </div>):<p className="text-center"><small><a href="/signing">Signin</a> to write and view comments</small></p>}
       </div>
-      <GroupPostComments
-        id={post}
-        comments={comments}
-        getGroupComments={getGroupComments}
-      ></GroupPostComments>
     </Container>
   );
 }

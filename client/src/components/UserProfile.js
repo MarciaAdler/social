@@ -139,7 +139,7 @@ export default function UserProfile() {
         {userPosts.length > 0
           ? userPosts.map((post) => {
               return (
-                <Col className="col-12 col-md-6 col-sm-12 mt-2" key={post.id}>
+                <Col className="col-12 col-lg-4 col-md-6 col-sm-12 mt-2" key={post.id}>
                   <Card className="userprofile--card">
                     <h6 className="userprofile--post">{post.post}</h6>
                     <Card.Body className="userprofile--cardbody">
@@ -158,16 +158,22 @@ export default function UserProfile() {
                     </Card.Body>
                     <Card.Body className="userprofile--cardbody2">
                       <small>
-                        <FeedComment post={post} getComments2={getComments2} />
+                        {state.loggedin === true ? (<div>
+                          <FeedComment post={post} getComments2={getComments2} />
+                        
+                        
 
                         <span>Scroll to view comments</span>
-                        <Comments
+                        
+                          <Comments
                           id={post}
                           getComments2={getComments2}
                           getComments={getComments}
                           commentCount={commentCount}
                           comments={comments}
                         />
+                        </div>
+                        ):<p> <a href="/signin">Sign in</a> to write and view comments</p>}
                       </small>
                     </Card.Body>
                     <Card.Footer className="userprofile--cardfooter">
