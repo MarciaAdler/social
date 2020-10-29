@@ -164,7 +164,7 @@ export default function ProfileForm() {
                       className="custom-file-input"
                       id="customFile"
                     />
-                    {imagename != "" ? (
+                    {imagename !== "profile-placeholdericon.png" ? (
                       <label className="custom-file-label" htmlFor="customFile">
                         {imagename}
                       </label>
