@@ -55,9 +55,9 @@ export default function Header() {
   }
 
   const renderHomePage=()=> {
-    if(state.loggedin === true && home){
+    if(home){
       return (
-        <Redirect href="/signin" />
+      <Redirect push to={{pathname:"/signin/"}}/>
       )
     }
   }
@@ -286,7 +286,7 @@ export default function Header() {
         )}
       </Navbar>
       {renderGroupPage()}
-      
+      {renderHomePage()}
     </div>
   );
 }
