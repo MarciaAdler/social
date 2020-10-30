@@ -70,15 +70,18 @@ export default function Comments(props) {
                       `/profileimages/${comment.Commenter.image}`
                     }
                     alt="Profile Image"
-                  />
-                   ): (
+                    />
+                  ): 
                     <img
                     className="comments--profileimage mr-2"
-                    src={require("../images/profile-placeholdericon.png")}
+                    src={
+                      process.env.PUBLIC_URL +
+                      `/profileimages/profile-placeholdericon.png`
+                    }
                     alt="Profile Image"
-                  />
-                   )}
-                  
+                    />
+                  }
+        
                   {comment.Commenter.username} commented "{comment.comment}"
                   <br />
                   <small>

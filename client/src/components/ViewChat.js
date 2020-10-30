@@ -80,16 +80,20 @@ export default function ViewChat(props) {
                       }}
                     />
                   
-                ) : (
-                    <img
-                      className="chat--profileimage mr-2"
-                        src={require("../images/profile-placeholdericon.png")}
+                    ) : (
+                      <img
+                        className="chat--profileimage mr-2"
+                        src={
+                          process.env.PUBLIC_URL +
+                          `/profileimages/profile-placeholdericon.png`
+                        }
                         alt="author image"
                         onClick={() => {
                           selectUser(message.Sender);
                         }}
-                    />
-                )}
+                      />
+                    )
+                  }
                 
                   <strong className="ml-2">{message.Sender.username} says: </strong>
                   {message.message}
@@ -115,7 +119,14 @@ export default function ViewChat(props) {
                     />
                   
                 ) : (
-                  ""
+                  <img
+                      className="chat--profileimage mr-2 mt-2 mb-2"
+                      src={
+                        process.env.PUBLIC_URL +
+                        `/profileimages/profile-placeholdericon.png`
+                      }
+                      alt="author image"
+                    />
                 )}
                 
                   <strong className="ml-2">{message.username} says: </strong>

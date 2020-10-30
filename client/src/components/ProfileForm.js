@@ -139,7 +139,7 @@ export default function ProfileForm() {
                 ></Form.Control>
               </Col>
             </Form.Group>
-            {state.currentUser.image !== "profile-placeholericon.png" ? (
+            {state.currentUser.image !== null ? (
               <h3>
                 <img
                   className="profileform--profileimage"

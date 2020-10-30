@@ -151,17 +151,19 @@ export default function Feed() {
                             `/profileimages/${post.User.image}`
                           }
                         />
-                      ) : (
+                        ):
                         <img
                           onClick={() => {
                             selectUser(post.User);
                           }}
                           className="feed--profileimage feed--poster"
-                          src={require("../images/profile-placeholdericon.png")}
-                          alt="profile pic"
-                          
-                        />
-                      )}
+                          src={
+                            process.env.PUBLIC_URL +
+                            `/profileimages/profile-placeholdericon.png`
+                          }
+                        /> 
+                      }
+                      
                     </Col>
                     <Col className="col-8 col-lg-10">
                       <h6

@@ -119,8 +119,8 @@ export default function GroupFeed() {
                 <ListGroup.Item key={post.id}>
                   <Row>
                     <Col className="col-3 col-lg-2">
-                      {post.User.image !== null ? (
-                        <img
+                     {post.User.image !== null ? (
+                      <img
                           onClick={() => {
                             selectUser(post.User);
                           }}
@@ -130,16 +130,18 @@ export default function GroupFeed() {
                             `/profileimages/${post.User.image}`
                           }
                         />
-                      ) : (
-                        <img
+                     ): 
+                     <img
                           onClick={() => {
                             selectUser(post.User);
                           }}
                           className="feed--profileimage mr-2 feed--poster"
-                          src={require("../images/profile-placeholdericon.png")}
-                          alt="profile image"
+                          src={
+                            process.env.PUBLIC_URL +
+                            `/profileimages/profile-placeholdericon.png`
+                          }
                         />
-                      )}
+                      }
                     </Col>
                     <Col className="col-8 col-lg-10">
                       <h6

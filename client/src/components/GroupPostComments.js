@@ -47,7 +47,6 @@ export default function GroupPostComments(props) {
             return (
               <Collapse in={collapse} key={comment.id}>
                 <div className="text-left" key={comment.id}>
-                
                   {comment.Commenter.image !== null ? (
                     <img
                     className="comments--profileimage mr-2"
@@ -56,14 +55,17 @@ export default function GroupPostComments(props) {
                       `/profileimages/${comment.Commenter.image}`
                     }
                     alt="Profile Image"
-                  />
-                   ): (
+                    />
+                    ): 
                     <img
-                    className="comments--profileimage mr-2"
-                    src={require("../images/profile-placeholdericon.png")}
-                    alt="Profile Image"
-                  />
-                   )}
+                      className="comments--profileimage mr-2"
+                      src={
+                        process.env.PUBLIC_URL +
+                        `/profileimages/profile-placeholdericon.png`
+                      }
+                      alt="Profile Image"
+                    />
+                  }
                   {comment.Commenter.username} commented "{comment.comment}"
                   <br />
                   <small>

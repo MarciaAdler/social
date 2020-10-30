@@ -44,6 +44,7 @@ export default function ChatUserList() {
       image: user.image,
       email: user.email,
       bio: user.bio,
+      link: user.link,
     };
     dispatch({
       type: SET_SELECTED_CHAT,
@@ -58,6 +59,7 @@ export default function ChatUserList() {
       image: user.image,
       email: user.email,
       bio: user.bio,
+      link: user.link,
     };
     window.localStorage.setItem(
       "selectedchat",
@@ -92,7 +94,10 @@ export default function ChatUserList() {
                     ) : (
                       <img
                         className="chat--profileimage mr-2"
-                        src={require("../images/profile-placeholdericon.png")}
+                        src={
+                          process.env.PUBLIC_URL +
+                          `/profileimages/profile-placeholdericon.png`
+                        }
                         alt="author image"
                       />
                     )}
