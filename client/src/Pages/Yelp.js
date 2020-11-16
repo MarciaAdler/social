@@ -6,11 +6,12 @@ import API from "../utils/API";
 
 export default function Yelp() {
   const [formObject, setFormObject] = useState({});
+  const [formObject2, setFormObject2] = useState({});
   const [results, setResults] = useState([]);
 
   // get the results from the yelp API for the business entered in the form
-  function searchYelp(business) {
-    API.search(business)
+  function searchYelp(business, location) {
+    API.search(business, location)
       .then((res) => {
         setResults(res.data);
       })
@@ -22,9 +23,14 @@ export default function Yelp() {
     setFormObject({ [name]: value });
   }
 
+  function handleInputChange2(event) {
+    const { name, value } = event.target;
+    setFormObject2({ [name]: value });
+  }
+
   function handleFormSubmit(event) {
     event.preventDefault();
-    searchYelp(formObject.search);
+    searchYelp(formObject.search, formObject2.location);
   }
   return (
     <div>
@@ -36,6 +42,11 @@ export default function Yelp() {
             onChange={handleInputChange}
             name="search"
             placeholder="business type"
+          />
+          <input
+            onChange={handleInputChange2}
+            name="location"
+            placeholder="enter location"
           />
           <button className="post" onClick={handleFormSubmit}>
             Search

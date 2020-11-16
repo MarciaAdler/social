@@ -49,9 +49,10 @@ export default {
   deleteComment: function (comment) {
     return axios.delete("/api/deletecomment/" + comment);
   },
-  search: function (business) {
+  search: function (business, location) {
     console.log(business);
-    return axios.get("/api/search/" + business);
+    console.log(location);
+    return axios.get("/api/search/" + business + "/" + location);
   },
   uploadGroupImage: function (image) {
     return axios.post("/api/groupimage", image);
@@ -109,10 +110,8 @@ export default {
   writeMessage: function (message) {
     return axios.post("/api/writemessage", message);
   },
-  getMessages: function (sender,receiver) {
-    console.log(sender,receiver);
-    return axios.get(
-      "/api/getchatmessages/" + sender + "/" + receiver
-    );
+  getMessages: function (sender, receiver) {
+    console.log(sender, receiver);
+    return axios.get("/api/getchatmessages/" + sender + "/" + receiver);
   },
 };
