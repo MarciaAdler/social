@@ -129,7 +129,7 @@ export default function ViewChat(props) {
                     />
                 )}
                 
-                  <strong className="ml-2">{message.username} says: </strong>
+                  <strong className="ml-2">{message.author} says: </strong>
                   {message.message}
                   </div>)}
                   

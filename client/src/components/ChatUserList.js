@@ -14,13 +14,10 @@ export default function ChatUserList() {
     getUsers();
   }, []);
   async function getMessages(currentuser, receiver) {
-   const { data }  = await API.getMessages(
-      currentuser,
-      receiver,
-    );
-    
+    const { data } = await API.getMessages(currentuser, receiver);
+
     dispatch({ type: SET_MESSAGES, messages: data });
-    console.log(data) 
+    console.log(data);
   }
   function getUsers() {
     API.getUsers()

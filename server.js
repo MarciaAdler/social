@@ -16,23 +16,25 @@ const yelp = require("./routes/yelp");
 var session = require("express-session");
 var compression = require("compression");
 var socket = require("socket.io");
-
-server = app.listen(8080, function () {
-  console.log("server is running on port 8080");
-});
+app.use(cors());
+const server = require("http").createServer(app);
+// const io = require("socket.io")(server);
+// server = app.listen(80, function () {
+//   console.log("server is running on port 80");
+// });
 
 // socket.io connection
-io = socket(server);
+var io = require("socket.io")(server, { origins: "*:*" });
 
 io.on("connection", (socket) => {
   // here you can start emitting events to the client
   console.log("socket.id", socket.id);
 
   socket.on("SEND_MESSAGE", function (data) {
-    io.emit("RECIEVE_MESSAGE", data);
+    io.emit("RECEIVE_MESSAGE", data);
   });
 });
-
+server.listen(80);
 // io.listen(port);
 // console.log("listening on port ", port);
 
@@ -45,7 +47,7 @@ app.use(express.static("public")); //to access the files in public folder
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-app.use(cors());
+
 app.use(fileUpload());
 
 // We need to use sessions to keep track of our user's login status
