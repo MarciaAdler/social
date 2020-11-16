@@ -4,6 +4,7 @@ const yelp = require("yelp-fusion");
 const client = yelp.client(process.env.YELP_APIKEY);
 
 router.route("/api/search/:business/:location").get((req, res) => {
+  console.log(req.params);
   client
     .search({
       term: req.params.business,
