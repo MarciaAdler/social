@@ -15,7 +15,9 @@ import io from "socket.io-client";
 export default function WriteChat() {
   const [state, dispatch] = useStoreContext();
 
-  const socket = io("wss://social.appsbymarcia.com");
+  const socket = io("wss://social.appsbymarcia.com", {
+    transports: ["polling"],
+  });
   let messageRef = useRef();
   socket.on("connection", () => {
     console.log("connected to backend");
