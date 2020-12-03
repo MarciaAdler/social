@@ -13,11 +13,23 @@ export default function ChatUserList() {
   useEffect(() => {
     getUsers();
   }, []);
-  async function getMessages(currentuser, receiver) {
-    const { data } = await API.getMessages(currentuser, receiver);
+  // async function getMessages(currentuser, receiver) {
+  //   console.log(currentuser, receiver);
+  //   const { data } = await API.getMessages(currentuser, receiver);
 
-    dispatch({ type: SET_MESSAGES, messages: data });
-    console.log(data);
+  //   dispatch({ type: SET_MESSAGES, messages: data });
+  //   console.log(data);
+  // }
+
+  function getMessages(currentuser, receiver) {
+    API.getMessages(currentuser, receiver)
+      .then((res) => {
+        dispatch({
+          type: SET_MESSAGES,
+          messages: res.data,
+        });
+      })
+      .catch((err) => console.log(err));
   }
   function getUsers() {
     API.getUsers()
@@ -62,7 +74,7 @@ export default function ChatUserList() {
       "selectedchat",
       JSON.stringify(localStorageSelectedChat)
     );
-    getMessages(state.currentUser.id, selected.id);
+    getMessages(state.currentUser.id, user.id);
   }
 
   return (

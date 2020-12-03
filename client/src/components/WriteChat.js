@@ -46,6 +46,7 @@ export default function WriteChat() {
         author: state.currentUser.username,
         image: state.currentUser.image,
       },
+      console.log("connected_send"),
 
       writeMessage()
     );
@@ -53,12 +54,21 @@ export default function WriteChat() {
     const form = document.getElementById("myForm");
     form.reset();
   };
-  async function getMessages(currentuser, receiver) {
-    const { data } = await API.getMessages(currentuser, receiver);
-    console.log(data);
-    dispatch({ type: SET_MESSAGES, messages: data });
+  // async function getMessages(currentuser, receiver) {
+  //   const { data } = await API.getMessages(currentuser, receiver);
+  //   console.log(data);
+  //   dispatch({ type: SET_MESSAGES, messages: data });
+  // }
+  function getMessages(currentuser, receiver) {
+    API.getMessages(currentuser, receiver)
+      .then((res) => {
+        dispatch({
+          type: SET_MESSAGES,
+          messages: res.data,
+        });
+      })
+      .catch((err) => console.log(err));
   }
-
   function writeMessage() {
     API.writeMessage({
       message: messageRef.current.value,
