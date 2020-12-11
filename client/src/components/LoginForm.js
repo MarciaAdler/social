@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useStoreContext } from "../utils/GlobalState";
 import { Form, Button } from "react-bootstrap";
 import API from "../utils/API";
@@ -7,6 +7,7 @@ import { LOGGEDIN, SET_CURRENT_USER } from "../utils/actions";
 
 export default function LoginForm() {
   const [state, dispatch] = useStoreContext();
+  const [errormessage, setErrorMessasge] = useState("");
   const nameRef = useRef();
   const passwordRef = useRef();
   const renderRedirect = () => {
@@ -58,11 +59,15 @@ export default function LoginForm() {
           type: LOGGEDIN,
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setErrorMessasge("Username or password is incorrect");
+      });
   }
 
   return (
     <div className="loginform--wrapper">
+      <p className="error-message">{errormessage}</p>
       <Form className="loginform--form div-to-align justify-content-center">
         <Form.Group controlId="formUsername">
           <Form.Label>
