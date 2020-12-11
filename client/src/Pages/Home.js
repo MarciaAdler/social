@@ -12,11 +12,19 @@ export default function Home() {
       {state.loggedin === true ? <Chat /> : ""}
 
       <Container className="home--container">
-        <img
-          className="icon mb-3"
-          src={require("../images/communitysocial-icon.jpg")}
-          alt="icon"
-        />
+        {state.loggedin === false ? (
+          <img
+            className="icon mb-3"
+            src={require("../images/communitysocial-icon.jpg")}
+            alt="icon"
+          />
+        ) : (
+          <img
+            className="icon-loggedin mb-3"
+            src={require("../images/communitysocial-icon.jpg")}
+            alt="icon"
+          />
+        )}
 
         {state.loggedin === true ? <PostToFeed /> : ""}
 
