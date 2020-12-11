@@ -16,6 +16,7 @@ export default function SignupForm() {
   const stateRef = useRef();
   const [image, setImage] = useState("");
   const [imagename, setImageName] = useState(null);
+  const [errormessage, setErrorMessage] = useState("");
   const renderRedirect = () => {
     if (sendLogin && state.currentUser.id === 0) {
       return <Redirect to="/signin" />;
@@ -24,7 +25,7 @@ export default function SignupForm() {
   function signUp(event) {
     event.preventDefault();
     if (passwordRef.current.value !== confirmRef.current.value) {
-      return alert("Passwords must match");
+      setErrorMessage("Passwords must match");
     } else {
       API.createUser({
         firstName: firstRef.current.value,
@@ -40,7 +41,7 @@ export default function SignupForm() {
           uploadProfileImage();
           setSendLogin(true);
         })
-        .catch((err) => alert("Username already exists"));
+        .catch((err) => setErrorMessage("Username or Email already in use"));
     }
   }
   const onChange = (e) => {
@@ -202,6 +203,7 @@ export default function SignupForm() {
             {renderRedirect()}
           </Col>
         </Form.Row>
+        <p className="error-message text-center">{errormessage}</p>
       </Form>
     </Container>
   );
