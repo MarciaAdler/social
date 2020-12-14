@@ -51,16 +51,14 @@ export default function Header() {
     localStorage.clear();
 
     setHome(true);
-    renderHomePage()
+    renderHomePage();
   }
 
-  const renderHomePage=()=> {
-    if(home){
-      return (
-      <Redirect push to={{pathname:"/signin/"}}/>
-      )
+  const renderHomePage = () => {
+    if (home) {
+      return <Redirect push to={{ pathname: "/signin/" }} />;
     }
-  }
+  };
   // const renderRedirect = () => {
   //   if (home === true) {
   //     return <Redirect to="/signin" />;
@@ -233,6 +231,7 @@ export default function Header() {
                   alt="profile image"
                   className="header--icon"
                 ></img>
+                <span className="header--profile-label">Profile</span>
               </Navbar.Brand>
             ) : (
               <Navbar.Brand href="/profile">
