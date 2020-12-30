@@ -258,38 +258,45 @@ export default function Header() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="/" className="header--dropdownitem">
-                Feed
+                <i className="fas fa-rss-square text-align-center header--icons"></i>
+                <span className="header--profile-label">Feed</span>
               </Nav.Link>
               <Nav.Link href="/search" className="header--dropdownitem">
-                Search for buinesses
+                <i className="fas fa-search text-align-center header--icons"></i>
+                <span className="header--profile-label">Search</span>
               </Nav.Link>
-              <NavDropdown
-                title="Groups"
-                id="nav-dropdown"
-                className="header--dropdownitem"
-              >
-                {state.groups.length > 0
-                  ? state.groups.map((group) => {
-                      return (
-                        <NavDropdown.Item
-                          key={group.id}
-                          onClick={() => {
-                            selectGroup(group);
-                          }}
-                        >
-                          {group.name}
-                        </NavDropdown.Item>
-                      );
-                    })
-                  : ""}
-              </NavDropdown>
+              <div className="header--dropdownitem nav-link">
+                <i className="fas fa-user-friends header--icons"></i>
+                <NavDropdown
+                  className="header--profile-label"
+                  id="nav-dropdown"
+                  title="Groups"
+                >
+                  {state.groups.length > 0
+                    ? state.groups.map((group) => {
+                        return (
+                          <NavDropdown.Item
+                            key={group.id}
+                            onClick={() => {
+                              selectGroup(group);
+                            }}
+                          >
+                            {group.name}
+                          </NavDropdown.Item>
+                        );
+                      })
+                    : ""}
+                </NavDropdown>
+              </div>
             </Nav>
             <Nav>
               <Nav.Link href="/signup" className="header--dropdownitem">
-                Signup
+                <i className="fas fa-user-plus"></i>
+                <span className="header--profile-label">Signup</span>
               </Nav.Link>
               <Nav.Link href="/signin" className="header--dropdownitem">
-                Login
+                <i className="fas fa-sign-in-alt"></i>
+                <span className="header--profile-label">Login</span>
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
