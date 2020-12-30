@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import {
   SET_CURRENT_USER,
@@ -164,6 +164,7 @@ export default function Header() {
               alt="Social Neighbor"
               className="header--icon"
             ></img>
+            <span className="header--profile-label">Home</span>
           </Navbar.Brand>
         ) : (
           <Navbar.Brand href="/signin">
@@ -172,6 +173,7 @@ export default function Header() {
               alt="Social Neighbor"
               className="header--icon"
             ></img>
+            <span className="header--profile-label">Signin</span>
           </Navbar.Brand>
         )}
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -182,15 +184,18 @@ export default function Header() {
           >
             <Nav className="mr-auto">
               <Nav.Link href="/" className="header--dropdownitem">
-                Feed
+                <i className="fas fa-rss-square text-align-center header--icons"></i>
+                <span className="header--profile-label">Feed</span>
               </Nav.Link>
               <Nav.Link href="/search" className="header--dropdownitem">
-                Search for businesses
+                <i className="fas fa-search text-align-center header--icons"></i>
+                <span className="header--profile-label">Search</span>
               </Nav.Link>
+              <i className="fas fa-user-friends header--icons"></i>
               <NavDropdown
-                title="Groups"
-                className="header--dropdownitem"
+                className="header--dropdownitem header--profile-label"
                 id="nav-dropdown"
+                title="Groups"
               >
                 {state.groups.length > 0
                   ? state.groups.map((group) => {
@@ -218,7 +223,8 @@ export default function Header() {
             </Nav>
             <Nav>
               <Nav.Link className="header--dropdownitem" onClick={logOut}>
-                Logout
+                <i className="fas fa-sign-out-alt header--icons"></i>
+                <span className="header--profile-label">Logout</span>
               </Nav.Link>
             </Nav>
             {state.currentUser.image !== null ? (
@@ -229,17 +235,20 @@ export default function Header() {
                     `/profileimages/${state.currentUser.image}`
                   }
                   alt="profile image"
-                  className="header--icon"
+                  className="header--profileimage"
                 ></img>
                 <span className="header--profile-label">Profile</span>
               </Navbar.Brand>
             ) : (
               <Navbar.Brand href="/profile">
-                <img
-                  className="header--icon"
-                  src={require("../images/profile-placeholdericon.png")}
-                  alt="profile"
-                />
+                <div>
+                  <img
+                    className="header--icon"
+                    src={require("../images/profile-placeholdericon.png")}
+                    alt="profile"
+                  />
+                  <span className="header--profile-label">Profile</span>
+                </div>
               </Navbar.Brand>
             )}
           </Navbar.Collapse>
