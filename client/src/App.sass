@@ -59,11 +59,17 @@ a
     height: 70px
     color: $blackcoffee
     &--icon
-        height: 45px
-        width: 45px
+        height: 25px
+        width: 25px
         border-radius: 50%
+    &--icons
+        text-align: center
+        height: 26px
+        padding-top: 8px
+        margin-bottom: 4px
     &--profileimage
-        height: 50px
+        height: 25px
+        width: 25px
         border-radius: 50%
     &--rightlink
         @include media-breakpoint-only(lg)
@@ -74,8 +80,10 @@ a
         font-size: 12px
         text-align: center
         color: $blackcoffee
-
+        padding-top: 0px
     &--dropdownitem
+        position: relative
+        text-align: center
         @include media-breakpoint-only(md)
             color: $blackcoffee !important
             padding-left: 10px
@@ -96,7 +104,11 @@ a
 
     @include media-breakpoint-only(xs)
         color: $blackcoffee !important
-
+.navbar-brand
+    @include media-breakpoint-only(md)
+        margin-right: 0
+    @include media-breakpoint-only(xs)
+        margin-right: 0
 // .navbar-nav
 //     @include media-breakpoint-only(md)
 //         padding-left: 10px
@@ -104,7 +116,9 @@ a
 //     @include media-breakpoint-only(xs)
 //         padding-left: 10px
 //         color: white !important
-// .nav-link
+#nav-dropdown
+    padding: 0px 0px
+    color: $blackcoffee
 //     @include media-breakpoint-only(md)
 //         color: white
 //     @include media-breakpoint-only(xs)
