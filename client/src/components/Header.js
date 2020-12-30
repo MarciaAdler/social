@@ -159,21 +159,25 @@ export default function Header() {
       >
         {state.loggedin === true ? (
           <Navbar.Brand href="/">
-            <img
-              src={require("../images/communitysocial-icon.jpg")}
-              alt="Social Neighbor"
-              className="header--icon"
-            ></img>
-            <span className="header--profile-label">Home</span>
+            <div className="header--dropdownitem">
+              <img
+                src={require("../images/communitysocial-icon.jpg")}
+                alt="Social Neighbor"
+                className="header--icon"
+              ></img>
+              <span className="header--profile-label">Home</span>
+            </div>
           </Navbar.Brand>
         ) : (
           <Navbar.Brand href="/signin">
-            <img
-              src={require("../images/communitysocial-icon.jpg")}
-              alt="Social Neighbor"
-              className="header--icon"
-            ></img>
-            <span className="header--profile-label">Signin</span>
+            <div className="header--dropdownitem">
+              <img
+                src={require("../images/communitysocial-icon.jpg")}
+                alt="Social Neighbor"
+                className="header--icon"
+              ></img>
+              <span className="header--profile-label">Signin</span>
+            </div>
           </Navbar.Brand>
         )}
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -231,19 +235,21 @@ export default function Header() {
             </Nav>
             {state.currentUser.image !== null ? (
               <Navbar.Brand href="/profile">
-                <img
-                  src={
-                    process.env.PUBLIC_URL +
-                    `/profileimages/${state.currentUser.image}`
-                  }
-                  alt="profile image"
-                  className="header--profileimage"
-                ></img>
-                <span className="header--profile-label">Profile</span>
+                <div className="header--dropdownitem">
+                  <img
+                    src={
+                      process.env.PUBLIC_URL +
+                      `/profileimages/${state.currentUser.image}`
+                    }
+                    alt="profile image"
+                    className="header--profileimage"
+                  ></img>
+                  <span className="header--profile-label">Profile</span>
+                </div>
               </Navbar.Brand>
             ) : (
               <Navbar.Brand href="/profile">
-                <div>
+                <div className="header--dropdownitem">
                   <img
                     className="header--icon"
                     src={require("../images/profile-placeholdericon.png")}
