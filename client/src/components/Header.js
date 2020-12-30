@@ -159,7 +159,7 @@ export default function Header() {
       >
         {state.loggedin === true ? (
           <Navbar.Brand href="/">
-            <div className="header--dropdownitem">
+            <div className="header--dropdownitem header--homelink">
               <img
                 src={require("../images/communitysocial-icon.jpg")}
                 alt="Social Neighbor"
@@ -170,7 +170,7 @@ export default function Header() {
           </Navbar.Brand>
         ) : (
           <Navbar.Brand href="/signin">
-            <div className="header--dropdownitem">
+            <div className="header--dropdownitem header--homelink">
               <img
                 src={require("../images/communitysocial-icon.jpg")}
                 alt="Social Neighbor"
@@ -235,7 +235,7 @@ export default function Header() {
             </Nav>
             {state.currentUser.image !== null ? (
               <Navbar.Brand href="/profile">
-                <div className="header--dropdownitem">
+                <div className="header--dropdownitem header--headerlink">
                   <img
                     src={
                       process.env.PUBLIC_URL +
@@ -249,7 +249,7 @@ export default function Header() {
               </Navbar.Brand>
             ) : (
               <Navbar.Brand href="/profile">
-                <div className="header--dropdownitem">
+                <div className="header--dropdownitem header--headerlink">
                   <img
                     className="header--icon"
                     src={require("../images/profile-placeholdericon.png")}
@@ -300,7 +300,10 @@ export default function Header() {
                 <i className="fas fa-user-plus"></i>
                 <span className="header--profile-label">Signup</span>
               </Nav.Link>
-              <Nav.Link href="/signin" className="header--dropdownitem">
+              <Nav.Link
+                href="/signin"
+                className="header--dropdownitem header--headerlink"
+              >
                 <i className="fas fa-sign-in-alt"></i>
                 <span className="header--profile-label">Login</span>
               </Nav.Link>
