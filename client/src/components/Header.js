@@ -191,35 +191,37 @@ export default function Header() {
                 <i className="fas fa-search text-align-center header--icons"></i>
                 <span className="header--profile-label">Search</span>
               </Nav.Link>
-              <i className="fas fa-user-friends header--icons"></i>
-              <NavDropdown
-                className="header--dropdownitem header--profile-label"
-                id="nav-dropdown"
-                title="Groups"
-              >
-                {state.groups.length > 0
-                  ? state.groups.map((group) => {
-                      return (
-                        <NavDropdown.Item
-                          key={group.id}
-                          onClick={() => {
-                            selectGroup(group);
-                          }}
-                        >
-                          {group.name}
-                          <hr />
-                        </NavDropdown.Item>
-                      );
-                    })
-                  : ""}
-                {state.currentUser.id !== 0 ? (
-                  <NavDropdown.Item href="/addgroup">
-                    Add New Group
-                  </NavDropdown.Item>
-                ) : (
-                  ""
-                )}
-              </NavDropdown>
+              <div className="header--dropdownitem nav-link">
+                <i className="fas fa-user-friends header--icons"></i>
+                <NavDropdown
+                  className="header--profile-label"
+                  id="nav-dropdown"
+                  title="Groups"
+                >
+                  {state.groups.length > 0
+                    ? state.groups.map((group) => {
+                        return (
+                          <NavDropdown.Item
+                            key={group.id}
+                            onClick={() => {
+                              selectGroup(group);
+                            }}
+                          >
+                            {group.name}
+                            <hr />
+                          </NavDropdown.Item>
+                        );
+                      })
+                    : ""}
+                  {state.currentUser.id !== 0 ? (
+                    <NavDropdown.Item href="/addgroup">
+                      Add New Group
+                    </NavDropdown.Item>
+                  ) : (
+                    ""
+                  )}
+                </NavDropdown>
+              </div>
             </Nav>
             <Nav>
               <Nav.Link className="header--dropdownitem" onClick={logOut}>
