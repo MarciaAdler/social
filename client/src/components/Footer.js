@@ -8,10 +8,10 @@ export default function Footer() {
         <Col>
           <img
             src={require("../images/communitysocial-icon.jpg")}
-            alt="Social Neighbor icon"
+            alt="Social Community icon"
             className="footer--icon"
           />
-          Social Neighbor
+          Social Community
         </Col>
         <Col className="footer--about">
           <a href="/About" className="footer--aboutlink">
