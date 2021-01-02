@@ -20,7 +20,6 @@ export default function AddResource() {
       .then((res) => {
         console.log(res);
         uploadDoc();
-        // setDocs();
         const form = document.getElementById("myForm");
         form.reset();
       })

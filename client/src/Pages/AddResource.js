@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { useStoreContext } from "../utils/GlobalState";
 import { Container } from "react-bootstrap";
-import Resource from "../components/Resource";
+import AddResourceForm from "../components/AddResourceForm";
 import Chat from "../components/Chat";
 export default function Resources() {
   const [state, dispatch] = useStoreContext();
   return (
     <Container className="home--chat">
       {state.loggedin === true ? <Chat /> : ""}
-      <Container className="resource--container">
-        Click <a href="/addresource">here</a> to add a new document
-        <Resource />
+      <Container className="home--container">
+        <AddResourceForm />
       </Container>
     </Container>
   );

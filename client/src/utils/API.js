@@ -120,4 +120,11 @@ export default {
   uploadResource: function (resource) {
     return axios.post("/api/resource", resource);
   },
+  getDocs: function () {
+    return axios.get("/api/doc");
+  },
+  deleteDoc: function (doc) {
+    console.log(doc);
+    return axios.delete("/api/doc/" + doc);
+  },
 };

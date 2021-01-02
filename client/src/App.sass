@@ -449,6 +449,36 @@ a
         color: $shadows
         &:hover
             color: $middleblue
+.resource
+    &--doclink
+        color: $blackcoffee
+        &:hover
+            color: $babypowder
+    &--doctext
+        color: $blackcoffee
+        text-align: left
+        &:hover
+            background-color: $lightgray
+    &--delete-btn
+        color: $red
+        border: none
+        font-weight: bold
+        background-color: white
+        position: absolute
+        top: 5px
+        right: 10px
+    &--container
+        width: 90%
+        text-align: center
+        @include media-breakpoint-only(xs)
+            width: 100%
+            text-align: left
+    &--description
+        font-size: 12px
+
+    &--name
+        font-size: 16px
+
 .footer
     &--container
         background-color: $middleblue

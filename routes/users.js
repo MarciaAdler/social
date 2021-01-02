@@ -72,4 +72,9 @@ router
   .get(usersController.getMessages);
 
 router.route("/api/doc").post(usersController.createDoc);
+
+router.route("/api/doc").get(usersController.getDocs);
+
+router.route("/api/doc/:id").delete(usersController.deleteDoc);
+
 module.exports = router;

@@ -432,7 +432,6 @@ module.exports = {
       });
   },
   createDoc: function (req, res) {
-    console.log(req.body);
     db.Resource.create({
       name: req.body.name,
       document: req.body.document,
@@ -442,6 +441,32 @@ module.exports = {
       .then(function () {
         res.json(req.body);
       })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getDocs: function (req, res) {
+    db.Resource.findAll({
+      include: [
+        {
+          model: db.User,
+          as: "Admin",
+        },
+      ],
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  deleteDoc: function (req, res) {
+    console.log(req.params);
+    db.Resource.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
       .catch(function (err) {
         res.status(401).json(err);
       });
