@@ -114,4 +114,10 @@ export default {
     console.log(sender, receiver);
     return axios.get("/api/getchatmessages/" + sender + "/" + receiver);
   },
+  createDoc: function (doc) {
+    return axios.post("/api/doc", doc);
+  },
+  uploadResource: function (resource) {
+    return axios.post("/api/resource", resource);
+  },
 };

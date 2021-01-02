@@ -400,7 +400,7 @@ module.exports = {
   },
   getMessages: function (req, res) {
     console.log("body", req.body);
-    console.log("params", req.params)
+    console.log("params", req.params);
     db.ChatMessage.findAll({
       where: {
         [Op.or]: [
@@ -427,6 +427,21 @@ module.exports = {
       ],
     })
       .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  createDoc: function (req, res) {
+    console.log(req.body);
+    db.Resource.create({
+      name: req.body.name,
+      document: req.body.document,
+      description: req.body.description,
+      AdminId: req.body.AdminId,
+    })
+      .then(function () {
+        res.json(req.body);
+      })
       .catch(function (err) {
         res.status(401).json(err);
       });

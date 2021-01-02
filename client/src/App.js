@@ -11,7 +11,8 @@ import AddGroup from "./Pages/AddGroup";
 import Group from "./Pages/Group";
 import EditGroup from "./Pages/EditGroup";
 import ChatPage from "./Pages/ChatPage";
-import About from "./Pages/About"
+import About from "./Pages/About";
+import Resources from "./Pages/Resources";
 import "./App.sass";
 import { StoreProvider } from "../src/utils/GlobalState";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -34,6 +35,7 @@ function App() {
             <Route path="/editgroup" component={EditGroup} />
             <Route path="/chat" component={ChatPage} />
             <Route path="/about" component={About} />
+            <Route path="/resources" component={Resources} />
           </Switch>
         </Router>
       </StoreProvider>

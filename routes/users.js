@@ -70,4 +70,6 @@ router.route("/api/writemessage").post(usersController.writeMessage);
 router
   .route("/api/getchatmessages/:SenderId/:ReceiverId")
   .get(usersController.getMessages);
+
+router.route("/api/doc").post(usersController.createDoc);
 module.exports = router;
