@@ -20,9 +20,10 @@ export default function AddResource() {
       .then((res) => {
         console.log(res);
         uploadDoc();
+        confirmUpload();
         const form = document.getElementById("myForm");
         form.reset();
-        setSuccessMessage("Document Uploaded");
+        setDocName("");
       })
       .catch((err) => console.log(err));
   }
@@ -50,6 +51,12 @@ export default function AddResource() {
       .catch((err) => {
         console.log(err);
       });
+  }
+  function confirmUpload() {
+    setSuccessMessage("Document Uploaded");
+    setTimeout(() => {
+      document.getElementById("success-message").style.display = "none";
+    }, 1000);
   }
   return (
     <Container className="signupform--wrapper">
@@ -89,7 +96,7 @@ export default function AddResource() {
               </Fragment>
             </Form.Row>
           </Form.Group>
-          <Form.Row className="justify-content-center signupform--row">
+          <Form.Row className="justify-content-end signupform--row">
             <Col className="col-8 signupform--submitbuttoncol">
               <Button
                 variant="secondary"
@@ -99,7 +106,14 @@ export default function AddResource() {
               >
                 Upload
               </Button>
-              <span>{successMessage}</span>
+            </Col>
+            <Col className="col-3">
+              <span
+                className="addResource--success text-align-left"
+                id="success-message"
+              >
+                {successMessage}
+              </span>
             </Col>
           </Form.Row>
           <Form.Row>
