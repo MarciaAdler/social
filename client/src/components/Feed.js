@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Container,
-  ListGroup,
-  Row,
-  Col,
-  Card,
-  
-} from "react-bootstrap";
+import { Container, ListGroup, Row, Col, Card } from "react-bootstrap";
 import API from "../utils/API";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_POSTS, SET_SELECTED_USER } from "../utils/actions";
@@ -104,7 +97,7 @@ export default function Feed() {
       image: user.image,
       email: user.email,
       bio: user.bio,
-      link: user.link
+      link: user.link,
     };
     dispatch({
       type: SET_SELECTED_USER,
@@ -151,7 +144,7 @@ export default function Feed() {
                             `/profileimages/${post.User.image}`
                           }
                         />
-                        ):
+                      ) : (
                         <img
                           onClick={() => {
                             selectUser(post.User);
@@ -161,9 +154,8 @@ export default function Feed() {
                             process.env.PUBLIC_URL +
                             `/profileimages/profile-placeholdericon.png`
                           }
-                        /> 
-                      }
-                      
+                        />
+                      )}
                     </Col>
                     <Col className="col-8 col-lg-10">
                       <h6

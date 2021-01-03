@@ -6,6 +6,7 @@ import API from "../utils/API";
 export default function FeedComment({ post, getComments2 }) {
   const [state, dispatch] = useStoreContext();
   const [number, setNumber] = useState([]);
+  const [comments, setComments] = useState([]);
   const commentRef = useRef();
 
   useEffect(() => {
@@ -21,6 +22,7 @@ export default function FeedComment({ post, getComments2 }) {
       .then((res) => {
         getComments2(post);
         commentCount2(post);
+        getComments(post);
         commentRef.current.value = "";
       })
       .catch((err) => console.log(err));
@@ -37,6 +39,16 @@ export default function FeedComment({ post, getComments2 }) {
       .then((res) => {
         console.log(res.data.length);
         setNumber(res.data.length);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function getComments(id) {
+    console.log(id);
+    API.getComments2(id)
+      .then((response) => {
+        console.log(response.data);
+        setComments(response.data);
       })
       .catch((err) => console.log(err));
   }
