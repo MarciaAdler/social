@@ -7,11 +7,22 @@ import { useStoreContext } from "../utils/GlobalState";
 export default function GroupPostComments(props) {
   const [state, dispatch] = useStoreContext();
   const [collapse, setCollapse] = useState(false);
+  const [comments, setComments] = useState([]);
 
   function deleteGroupComment(comment) {
     API.deleteGroupComment(comment)
       .then((res) => {
-        props.getGroupComments(props.id.id);
+        getGroupComments(props.id.id);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function getGroupComments(post) {
+    console.log(post);
+    API.getGroupComments(post)
+      .then((res) => {
+        console.log(res);
+        setComments(res.data);
       })
       .catch((err) => console.log(err));
   }
@@ -24,7 +35,7 @@ export default function GroupPostComments(props) {
           aria-controls="example-collapse-text"
           aria-expanded={collapse}
           onClick={() => {
-            props.getGroupComments(props.id.id);
+            getGroupComments(props.id.id);
 
             setCollapse(true);
           }}
@@ -42,21 +53,21 @@ export default function GroupPostComments(props) {
         </Button>
       )}
 
-      {props.comments
-        ? props.comments.map((comment) => {
+      {comments
+        ? comments.map((comment) => {
             return (
               <Collapse in={collapse} key={comment.id}>
                 <div className="text-left" key={comment.id}>
                   {comment.Commenter.image !== null ? (
                     <img
-                    className="comments--profileimage mr-2"
-                    src={
-                      process.env.PUBLIC_URL +
-                      `/profileimages/${comment.Commenter.image}`
-                    }
-                    alt="Profile Image"
+                      className="comments--profileimage mr-2"
+                      src={
+                        process.env.PUBLIC_URL +
+                        `/profileimages/${comment.Commenter.image}`
+                      }
+                      alt="Profile Image"
                     />
-                    ): 
+                  ) : (
                     <img
                       className="comments--profileimage mr-2"
                       src={
@@ -65,7 +76,7 @@ export default function GroupPostComments(props) {
                       }
                       alt="Profile Image"
                     />
-                  }
+                  )}
                   {comment.Commenter.username} commented "{comment.comment}"
                   <br />
                   <small>
