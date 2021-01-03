@@ -447,6 +447,7 @@ module.exports = {
   },
   getDocs: function (req, res) {
     db.Resource.findAll({
+      order: [["createdAt", "DESC"]],
       include: [
         {
           model: db.User,

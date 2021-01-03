@@ -8,7 +8,7 @@ export default function AddResource() {
   const [docname, setDocName] = useState("");
   const docNameRef = useRef();
   const descriptionRef = useRef();
-
+  const [successMessage, setSuccessMessage] = useState("");
   function createDoc(event) {
     event.preventDefault();
     API.createDoc({
@@ -22,19 +22,21 @@ export default function AddResource() {
         uploadDoc();
         const form = document.getElementById("myForm");
         form.reset();
+        setSuccessMessage("Document Uploaded");
       })
       .catch((err) => console.log(err));
   }
   const onChange = (e) => {
     setDoc(e.target.files[0]);
-    const name = docNameRef.current.value.replace(" ", "");
-    setDocName(name + "-" + e.target.files[0].name);
+    const docName = e.target.files[0].name.replace(/\s+/g, "_");
+    const name = docNameRef.current.value.replace(/\s+/g, "");
+    setDocName(name + "-" + docName);
   };
 
   function uploadDoc(e) {
     const formData = new FormData();
     formData.append("doc", doc);
-    const name = docNameRef.current.value.replace(" ", "");
+    const name = docNameRef.current.value.replace(/\s+/g, "");
     formData.append("name", name);
     API.uploadResource(formData, {
       headers: {
@@ -97,7 +99,12 @@ export default function AddResource() {
               >
                 Upload
               </Button>
+              <span>{successMessage}</span>
             </Col>
+          </Form.Row>
+          <Form.Row>
+            Click&nbsp; <a href="/resources"> here </a>&nbsp; to return to
+            Resources.
           </Form.Row>
         </Form>
       ) : (
