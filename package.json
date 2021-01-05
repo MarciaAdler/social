@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MarciaAdler/neighbor.git"
+    "url": "git+https://github.com/MarciaAdler/social.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MarciaAdler/neighbor/issues"
+    "url": "https://github.com/MarciaAdler/social/issues"
   },
-  "homepage": "https://github.com/MarciaAdler/neighbor#readme",
+  "homepage": "https://github.com/MarciaAdler/social#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
