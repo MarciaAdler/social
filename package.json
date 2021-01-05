@@ -1,5 +1,5 @@
 {
-  "name": "social_community",
+  "name": "socialcommunity",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MarciaAdler/social.git"
+    "url": "git+https://github.com/MarciaAdler/neighbor.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MarciaAdler/social/issues"
+    "url": "https://github.com/MarciaAdler/neighbor/issues"
   },
-  "homepage": "https://github.com/MarciaAdler/social#readme",
+  "homepage": "https://github.com/MarciaAdler/neighbor#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
