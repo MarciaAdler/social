@@ -298,6 +298,10 @@ export default function Header() {
                     : ""}
                 </NavDropdown>
               </div>
+              <Nav.Link href="/resources" className="header--dropdownitem">
+                <i className="fas fa-archive text-align-center header--icons"></i>
+                <span className="header--profile-label">Resources</span>
+              </Nav.Link>
             </Nav>
             <Nav>
               <Nav.Link href="/signup" className="header--dropdownitem">

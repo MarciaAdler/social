@@ -9,8 +9,14 @@ export default function Resources() {
     <Container className="home--chat">
       {state.loggedin === true ? <Chat /> : ""}
       <Container className="resource--container">
-        Click <a href="/addresource">here</a> to add a new document
-        <Resource />
+        {state.loggedin === true ? (
+          <div>
+            Click <a href="/addresource">here</a> to add a new document
+            <Resource />
+          </div>
+        ) : (
+          <Resource />
+        )}
       </Container>
     </Container>
   );
