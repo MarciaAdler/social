@@ -3,9 +3,9 @@ import { InputGroup, FormControl, Form } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
 
-export default function FeedComment({ post, getComments2 }) {
+export default function FeedComment({ post, getComments2, getComments }) {
   const [state, dispatch] = useStoreContext();
-  const [number, setNumber] = useState([]);
+  const [number, setNumber] = useState(0);
   const [comments, setComments] = useState([]);
   const commentRef = useRef();
 
@@ -20,6 +20,7 @@ export default function FeedComment({ post, getComments2 }) {
       CommenterId: state.currentUser.id,
     })
       .then((res) => {
+        getComments(post);
         getComments2(post);
         commentCount2(post);
         getComments(post);
@@ -43,15 +44,15 @@ export default function FeedComment({ post, getComments2 }) {
       .catch((err) => console.log(err));
   }
 
-  function getComments(id) {
-    console.log(id);
-    API.getComments2(id)
-      .then((response) => {
-        console.log(response.data);
-        setComments(response.data);
-      })
-      .catch((err) => console.log(err));
-  }
+  // function getComments(id) {
+  //   console.log(id);
+  //   API.getComments2(id)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setComments(response.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
   // function getComments(id) {
   //   API.getComments(id)
   //     .then((response) => {

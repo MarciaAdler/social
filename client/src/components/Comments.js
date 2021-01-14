@@ -8,38 +8,58 @@ export default function Comments(props) {
   const [state, dispatch] = useStoreContext();
   const [collapse, setCollapse] = useState(false);
   const [comments, setComments] = useState([]);
+
   useEffect(() => {
     props.commentCount(props.id);
-    // getComments(props.id);
+    getComments(props.id);
   }, []);
 
-  function getComments(id) {
-    console.log(id);
-    API.getComments(id)
-      .then((response) => {
-        console.log(response.data);
-        setComments(response.data);
-      })
-      .catch((err) => console.log(err));
-  }
   // function getComments(id) {
   //   console.log(id);
   //   API.getComments(id)
-  //     .then((res) => {
-  //       setComments(res.data);
-  //       // commentCount(id);
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setComments(response.data);
+  //       commentCount(id.id);
   //     })
   //     .catch((err) => console.log(err));
   // }
 
-  function deleteComment(comment) {
-    API.deleteComment(comment)
+  function getComments(id) {
+    console.log(id);
+    API.getComments(id)
       .then((res) => {
-        props.getComments2(props.id);
-        props.commentCount(props.id);
+        setComments(res.data);
+        // commentCount(id);
       })
       .catch((err) => console.log(err));
   }
+  // function getComments2(id) {
+  //   API.getComments2(id)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setComments(response.data);
+  //       commentCount(id);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
+  function deleteComment(comment) {
+    API.deleteComment(comment)
+      .then((res) => {
+        console.log(props.id);
+        getComments(props.id);
+        // props.commentCount(props.id);
+      })
+      .catch((err) => console.log(err));
+  }
+  // function commentCount(id) {
+  //   API.getComments2(id)
+  //     .then((res) => {
+  //       console.log(res.data.length);
+  //       setNumber(res.data.length);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
   return (
     <div className="text-left">
       {collapse === false ? (

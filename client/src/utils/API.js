@@ -43,7 +43,7 @@ export default {
     return axios.get("/api/getcomments/" + post.id);
   },
   getComments2: function (post) {
-    console.log(post);
+    console.log("getComments2", post);
     return axios.get("/api/getcomments2/" + post);
   },
   deleteComment: function (comment) {

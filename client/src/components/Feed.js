@@ -30,6 +30,7 @@ export default function Feed() {
           getComments2(post.id);
           API.getComments2(post.id).then((response) => {
             post["number"] = response.data.length;
+            console.log(post);
           });
         });
       })
@@ -42,6 +43,8 @@ export default function Feed() {
       .then((response) => {
         console.log(response.data);
         setComments(response.data);
+        setNumber(response.data.length);
+        console.log(response.data.length);
       })
       .catch((err) => console.log(err));
   }
@@ -202,7 +205,7 @@ export default function Feed() {
                       getComments={getComments}
                       getComments2={getComments2}
                       commentCount={commentCount}
-                      postnumber={post.number}
+                      postnumber={number}
                     ></FeedComment>
                   ) : (
                     ""
@@ -214,6 +217,7 @@ export default function Feed() {
                     getComments={getComments}
                     getComments2={getComments2}
                     commentCount={commentCount}
+                    number={number}
                   ></Comments>
 
                   <Card.Footer className="mt-2">
