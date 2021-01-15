@@ -12,7 +12,7 @@ export default function Comments(props) {
   useEffect(() => {
     props.commentCount(props.id);
     getComments(props.id);
-  }, []);
+  }, [props.comments]);
 
   function getComments(id) {
     console.log(id);

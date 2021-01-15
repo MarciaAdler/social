@@ -105,6 +105,7 @@ export default function FeedComment(props) {
             getComments2={getComments2}
             commentCount={commentCount}
             number={number}
+            comments={comments}
           ></Comments>
         </div>
       ) : (
