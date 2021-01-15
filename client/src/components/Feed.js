@@ -192,24 +192,24 @@ export default function Feed() {
                     id={post}
                     commentCount={commentCount}
                   ></CommentCount> */}
-                  {state.loggedin === false ? (
+                  {/* {state.loggedin === false ? (
                     <div className="text-left ml-2">
                       <small>{post.number} comments</small>{" "}
                     </div>
                   ) : (
                     ""
-                  )}
-                  {state.currentUser.id !== 0 ? (
-                    <FeedComment
-                      post={post}
-                      getComments={getComments}
-                      getComments2={getComments2}
-                      commentCount={commentCount}
-                      postnumber={number}
-                    ></FeedComment>
-                  ) : (
+                  )} */}
+                  {/* {state.currentUser.id !== 0 ? ( */}
+                  <FeedComment
+                    post={post}
+                    getComments={getComments}
+                    getComments2={getComments2}
+                    commentCount={commentCount}
+                    postnumber={number}
+                  ></FeedComment>
+                  {/* ) : (
                     ""
-                  )}
+                  )} */}
 
                   <Card.Footer className="mt-2">
                     <small>

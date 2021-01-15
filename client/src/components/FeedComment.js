@@ -73,38 +73,43 @@ export default function FeedComment(props) {
   return (
     <div className="text-left">
       <small>{number} Comments</small>
-
-      <Form className="text-left" id="myForm">
-        <InputGroup size="sm" className="mb-3 feed--commentinput">
-          <InputGroup.Prepend>
-            <InputGroup.Text
-              type="reset"
-              className="feed--submitcomment"
-              id="inputGroup-sizing-sm"
-              onClick={() => {
-                addComment(props.post.id);
-              }}
-            >
-              Add Comment
-            </InputGroup.Text>
-          </InputGroup.Prepend>
-          <FormControl
-            as="textarea"
-            rows="1"
-            ref={commentRef}
-            aria-label="Small"
-            aria-describedby="inputGroup-sizing-sm"
-            id="myInput"
-          />
-        </InputGroup>
-      </Form>
-      <Comments
-        id={props.post}
-        // getComments={props.getComments}
-        getComments2={getComments2}
-        commentCount={commentCount}
-        number={number}
-      ></Comments>
+      {state.loggedin === true ? (
+        <div>
+          <Form className="text-left" id="myForm">
+            <InputGroup size="sm" className="mb-3 feed--commentinput">
+              <InputGroup.Prepend>
+                <InputGroup.Text
+                  type="reset"
+                  className="feed--submitcomment"
+                  id="inputGroup-sizing-sm"
+                  onClick={() => {
+                    addComment(props.post.id);
+                  }}
+                >
+                  Add Comment
+                </InputGroup.Text>
+              </InputGroup.Prepend>
+              <FormControl
+                as="textarea"
+                rows="1"
+                ref={commentRef}
+                aria-label="Small"
+                aria-describedby="inputGroup-sizing-sm"
+                id="myInput"
+              />
+            </InputGroup>
+          </Form>
+          <Comments
+            id={props.post}
+            // getComments={props.getComments}
+            getComments2={getComments2}
+            commentCount={commentCount}
+            number={number}
+          ></Comments>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
