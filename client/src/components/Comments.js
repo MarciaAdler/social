@@ -14,17 +14,6 @@ export default function Comments(props) {
     getComments(props.id);
   }, []);
 
-  // function getComments(id) {
-  //   console.log(id);
-  //   API.getComments(id)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       setComments(response.data);
-  //       commentCount(id.id);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
-
   function getComments(id) {
     console.log(id);
     API.getComments(id)
@@ -52,14 +41,7 @@ export default function Comments(props) {
       })
       .catch((err) => console.log(err));
   }
-  // function commentCount(id) {
-  //   API.getComments2(id)
-  //     .then((res) => {
-  //       console.log(res.data.length);
-  //       setNumber(res.data.length);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
+
   return (
     <div className="text-left">
       {collapse === false ? (
