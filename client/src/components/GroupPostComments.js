@@ -13,6 +13,7 @@ export default function GroupPostComments(props) {
     API.deleteGroupComment(comment)
       .then((res) => {
         getGroupComments(props.id.id);
+        props.groupCommentCount(props.id.id);
       })
       .catch((err) => console.log(err));
   }
