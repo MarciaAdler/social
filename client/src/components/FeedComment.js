@@ -2,15 +2,15 @@ import React, { useRef, useState, useEffect } from "react";
 import { InputGroup, FormControl, Form } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
-
-export default function FeedComment({ post, getComments2, getComments }) {
+import Comments from "../components/Comments";
+export default function FeedComment(props) {
   const [state, dispatch] = useStoreContext();
   const [number, setNumber] = useState(0);
   const [comments, setComments] = useState([]);
   const commentRef = useRef();
 
   useEffect(() => {
-    commentCount(post);
+    commentCount(props.post);
   }, []);
 
   function addComment(post) {
@@ -20,10 +20,10 @@ export default function FeedComment({ post, getComments2, getComments }) {
       CommenterId: state.currentUser.id,
     })
       .then((res) => {
-        getComments(post);
-        getComments2(post);
+        getComments2(props.post);
+        // props.getComments2(props.post);
         commentCount2(post);
-        getComments(post);
+
         commentRef.current.value = "";
       })
       .catch((err) => console.log(err));
@@ -53,20 +53,23 @@ export default function FeedComment({ post, getComments2, getComments }) {
   //     })
   //     .catch((err) => console.log(err));
   // }
-  // function getComments(id) {
-  //   API.getComments(id)
-  //     .then((response) => {
-  //       setComments(response.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
-  // function getComments2(id) {
-  //   API.getComments2(id)
-  //     .then((response) => {
-  //       setComments(response.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
+
+  function getComments3(id) {
+    console.log(id);
+    API.getComments(id)
+      .then((res) => {
+        setComments(res.data);
+        // commentCount(id);
+      })
+      .catch((err) => console.log(err));
+  }
+  function getComments2(id) {
+    API.getComments2(id)
+      .then((response) => {
+        setComments(response.data);
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <div className="text-left">
       <small>{number} Comments</small>
@@ -79,7 +82,7 @@ export default function FeedComment({ post, getComments2, getComments }) {
               className="feed--submitcomment"
               id="inputGroup-sizing-sm"
               onClick={() => {
-                addComment(post.id);
+                addComment(props.post.id);
               }}
             >
               Add Comment
@@ -95,6 +98,13 @@ export default function FeedComment({ post, getComments2, getComments }) {
           />
         </InputGroup>
       </Form>
+      <Comments
+        id={props.post}
+        // getComments={props.getComments}
+        getComments2={getComments2}
+        commentCount={commentCount}
+        number={number}
+      ></Comments>
     </div>
   );
 }

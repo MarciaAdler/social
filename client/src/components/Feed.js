@@ -211,15 +211,6 @@ export default function Feed() {
                     ""
                   )}
 
-                  <Comments
-                    id={post}
-                    comments={comments}
-                    getComments={getComments}
-                    getComments2={getComments2}
-                    commentCount={commentCount}
-                    number={number}
-                  ></Comments>
-
                   <Card.Footer className="mt-2">
                     <small>
                       Posted On:{" "}

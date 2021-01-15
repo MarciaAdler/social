@@ -48,7 +48,7 @@ export default function Comments(props) {
       .then((res) => {
         console.log(props.id);
         getComments(props.id);
-        // props.commentCount(props.id);
+        props.commentCount(props.id);
       })
       .catch((err) => console.log(err));
   }
