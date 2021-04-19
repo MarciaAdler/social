@@ -1,6 +1,7 @@
 const db = require("../models");
 var fs = require("fs");
 const { Op } = require("sequelize");
+const { Sequelize } = require("sequelize");
 module.exports = {
   createUser: function (req, res) {
     db.User.create({
@@ -483,10 +484,22 @@ module.exports = {
       });
   },
   feedpostCount: function (req, res) {
-    console.log("test");
     db.FeedPost.count({
       distinct: "id",
     })
+      .then((count) => res.json(count))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  uniqueFeedPosters: function (req, res) {
+    console.log("working");
+    db.FeedPost.findAll({
+      attributes: [
+        [Sequelize.fn("distinct", Sequelize.col("UserId")), "usercount"],
+      ],
+    })
+
       .then((count) => res.json(count))
       .catch(function (err) {
         res.status(401).json(err);

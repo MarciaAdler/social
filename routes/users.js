@@ -81,4 +81,6 @@ router.route("/api/countusers").get(usersController.countUsers);
 
 router.route("/api/feedpostcount").get(usersController.feedpostCount);
 
+router.route("/api/uniquefeedposters").get(usersController.uniqueFeedPosters);
+
 module.exports = router;

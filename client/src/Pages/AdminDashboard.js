@@ -5,9 +5,11 @@ import API from "../utils/API";
 export default function AdminDashboard() {
   const [usercount, setUserCount] = useState(0);
   const [feedPosts, setFeedPosts] = useState(0);
+  const [uniquefeedposters, setUniqueFeedPosters] = useState(0);
   useEffect(() => {
     countUsers();
     feedposts();
+    uniqueFeedPosters();
   }, []);
   function countUsers() {
     API.countUsers()
@@ -29,6 +31,16 @@ export default function AdminDashboard() {
       });
   }
 
+  function uniqueFeedPosters() {
+    API.uniqueFeedPosters()
+      .then((res) => {
+        setUniqueFeedPosters(res.data[res.data.length - 1].usercount);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <Container className="home--chat text-center">
       <h1>Admin Dashboard</h1>
@@ -40,6 +52,10 @@ export default function AdminDashboard() {
         <Col>
           Total number of posts in feed: <br />
           {feedPosts}
+        </Col>
+        <Col>
+          Number of active posters on feed: <br />
+          {uniquefeedposters}
         </Col>
         <Col>Top five users</Col>
       </Row>

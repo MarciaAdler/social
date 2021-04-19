@@ -133,4 +133,7 @@ export default {
   feedposts: function () {
     return axios.get("/api/feedpostcount");
   },
+  uniqueFeedPosters: function () {
+    return axios.get("/api/uniquefeedposters");
+  },
 };

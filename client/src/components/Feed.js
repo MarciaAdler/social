@@ -129,115 +129,117 @@ export default function Feed() {
       <Container>
         <h3>Here is what's happening in the neighborhood...</h3>
       </Container>
-      <ListGroup className="feed--feed">
-        {state.posts.length > 0
-          ? state.posts.map((post) => {
-              return (
-                <ListGroup.Item key={post.id} className="mt-1 feed--postitem">
-                  <Row>
-                    <Col className="col-3 col-lg-2">
-                      {post.User.image !== null ? (
-                        <img
+      <div>
+        <ListGroup className="feed--feed">
+          {state.posts.length > 0
+            ? state.posts.map((post) => {
+                return (
+                  <ListGroup.Item key={post.id} className="mt-1 feed--postitem">
+                    <Row>
+                      <Col className="col-3 col-lg-2">
+                        {post.User.image !== null ? (
+                          <img
+                            onClick={() => {
+                              selectUser(post.User);
+                            }}
+                            className="feed--profileimage feed--poster"
+                            src={
+                              process.env.PUBLIC_URL +
+                              `/profileimages/${post.User.image}`
+                            }
+                          />
+                        ) : (
+                          <img
+                            onClick={() => {
+                              selectUser(post.User);
+                            }}
+                            className="feed--profileimage feed--poster"
+                            src={
+                              process.env.PUBLIC_URL +
+                              `/profileimages/profile-placeholdericon.png`
+                            }
+                          />
+                        )}
+                      </Col>
+                      <Col className="col-8 col-lg-10">
+                        <h6
+                          className="text-left"
                           onClick={() => {
                             selectUser(post.User);
                           }}
-                          className="feed--profileimage feed--poster"
-                          src={
-                            process.env.PUBLIC_URL +
-                            `/profileimages/${post.User.image}`
-                          }
-                        />
-                      ) : (
-                        <img
-                          onClick={() => {
-                            selectUser(post.User);
-                          }}
-                          className="feed--profileimage feed--poster"
-                          src={
-                            process.env.PUBLIC_URL +
-                            `/profileimages/profile-placeholdericon.png`
-                          }
-                        />
-                      )}
-                    </Col>
-                    <Col className="col-8 col-lg-10">
-                      <h6
-                        className="text-left"
-                        onClick={() => {
-                          selectUser(post.User);
-                        }}
-                      >
-                        <strong className="feed--poster">
-                          {post.User.username} says:{" "}
-                        </strong>
+                        >
+                          <strong className="feed--poster">
+                            {post.User.username} says:{" "}
+                          </strong>
 
-                        {post.post}
-                      </h6>
-                    </Col>
-                  </Row>
-                  {post.image1 !== null ? (
-                    <img
-                      className="feed--image"
-                      src={
-                        process.env.PUBLIC_URL + `/postimages/${post.image1}`
-                      }
-                      alt={post.id}
-                    />
-                  ) : (
-                    ""
-                  )}
-                  <br />
-                  <br />
-                  {/* <CommentCount
+                          {post.post}
+                        </h6>
+                      </Col>
+                    </Row>
+                    {post.image1 !== null ? (
+                      <img
+                        className="feed--image"
+                        src={
+                          process.env.PUBLIC_URL + `/postimages/${post.image1}`
+                        }
+                        alt={post.id}
+                      />
+                    ) : (
+                      ""
+                    )}
+                    <br />
+                    <br />
+                    {/* <CommentCount
                     id={post}
                     commentCount={commentCount}
                   ></CommentCount> */}
-                  {/* {state.loggedin === false ? (
+                    {/* {state.loggedin === false ? (
                     <div className="text-left ml-2">
                       <small>{post.number} comments</small>{" "}
                     </div>
                   ) : (
                     ""
                   )} */}
-                  {/* {state.currentUser.id !== 0 ? ( */}
-                  <FeedComment
-                    post={post}
-                    getComments={getComments}
-                    getComments2={getComments2}
-                    commentCount={commentCount}
-                    postnumber={number}
-                  ></FeedComment>
-                  {/* ) : (
+                    {/* {state.currentUser.id !== 0 ? ( */}
+                    <FeedComment
+                      post={post}
+                      getComments={getComments}
+                      getComments2={getComments2}
+                      commentCount={commentCount}
+                      postnumber={number}
+                    ></FeedComment>
+                    {/* ) : (
                     ""
                   )} */}
 
-                  <Card.Footer className="mt-2">
-                    <small>
-                      Posted On:{" "}
-                      {dateFormat(
-                        `${post.createdAt}`,
-                        "dddd, mmmm, dS, yyyy, h:MM TT"
-                      )}{" "}
-                      {"EST"}
-                    </small>
-                  </Card.Footer>
-                  {state.currentUser.id === post.User.id ? (
-                    <button
-                      className="feed--delete-btn"
-                      onClick={() => {
-                        deletePost(post.id);
-                      }}
-                    >
-                      X
-                    </button>
-                  ) : (
-                    ""
-                  )}
-                </ListGroup.Item>
-              );
-            })
-          : ""}
-      </ListGroup>
+                    <Card.Footer className="mt-2">
+                      <small>
+                        Posted On:{" "}
+                        {dateFormat(
+                          `${post.createdAt}`,
+                          "dddd, mmmm, dS, yyyy, h:MM TT"
+                        )}{" "}
+                        {"EST"}
+                      </small>
+                    </Card.Footer>
+                    {state.currentUser.id === post.User.id ? (
+                      <button
+                        className="feed--delete-btn"
+                        onClick={() => {
+                          deletePost(post.id);
+                        }}
+                      >
+                        X
+                      </button>
+                    ) : (
+                      ""
+                    )}
+                  </ListGroup.Item>
+                );
+              })
+            : ""}
+        </ListGroup>
+      </div>
       {renderRedirect()}
     </div>
   );
