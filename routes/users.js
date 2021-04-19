@@ -77,4 +77,8 @@ router.route("/api/doc").get(usersController.getDocs);
 
 router.route("/api/doc/:id").delete(usersController.deleteDoc);
 
+router.route("/api/countusers").get(usersController.countUsers);
+
+router.route("/api/feedpostcount").get(usersController.feedpostCount);
+
 module.exports = router;

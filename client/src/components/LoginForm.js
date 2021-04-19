@@ -35,6 +35,7 @@ export default function LoginForm() {
             image: results.data.image,
             bio: results.data.bio,
             link: results.data.link,
+            role: results.data.role,
           },
         });
 
@@ -48,6 +49,7 @@ export default function LoginForm() {
           image: results.data.image,
           bio: results.data.bio,
           link: results.data.link,
+          role: results.data.role,
         };
 
         window.localStorage.setItem(

@@ -14,6 +14,7 @@ import ChatPage from "./Pages/ChatPage";
 import About from "./Pages/About";
 import Resources from "./Pages/Resources";
 import AddResource from "./Pages/AddResource";
+import AdminDashboard from "./Pages/AdminDashboard";
 import "./App.sass";
 import { StoreProvider } from "../src/utils/GlobalState";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -38,6 +39,7 @@ function App() {
             <Route path="/about" component={About} />
             <Route path="/resources" component={Resources} />
             <Route path="/addresource" component={AddResource} />
+            <Route path="/admindashboard" component={AdminDashboard} />
           </Switch>
         </Router>
       </StoreProvider>

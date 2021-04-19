@@ -472,4 +472,24 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  countUsers: function (req, res) {
+    db.User.count({
+      where: { role: "Neighbor" },
+      distinct: "id",
+    })
+      .then((count) => res.json(count))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  feedpostCount: function (req, res) {
+    console.log("test");
+    db.FeedPost.count({
+      distinct: "id",
+    })
+      .then((count) => res.json(count))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

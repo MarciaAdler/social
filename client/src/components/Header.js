@@ -232,6 +232,17 @@ export default function Header() {
               </Nav.Link>
             </Nav>
             <Nav>
+              {state.currentUser.role === "Admin" ? (
+                <Nav.Link
+                  href="/admindashboard"
+                  className="header--dropdownitem"
+                >
+                  <i className="fas fa-chart-line header--icons"></i>
+                  <span className="header--profile-label">Dashboard</span>
+                </Nav.Link>
+              ) : (
+                ""
+              )}
               <Nav.Link className="header--dropdownitem" onClick={logOut}>
                 <i className="fas fa-sign-out-alt header--icons"></i>
                 <span className="header--profile-label">Logout</span>

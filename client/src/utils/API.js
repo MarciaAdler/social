@@ -127,4 +127,10 @@ export default {
     console.log(doc);
     return axios.delete("/api/doc/" + doc);
   },
+  countUsers: function () {
+    return axios.get("/api/countusers");
+  },
+  feedposts: function () {
+    return axios.get("/api/feedpostcount");
+  },
 };
