@@ -493,14 +493,35 @@ module.exports = {
       });
   },
   uniqueFeedPosters: function (req, res) {
-    console.log("working");
     db.FeedPost.findAll({
       attributes: [
-        [Sequelize.fn("distinct", Sequelize.col("UserId")), "usercount"],
+        [Sequelize.fn("distinct", Sequelize.col("UserId")), "userid"],
       ],
     })
+      .then((dbmodel) => {
+        res.json(dbmodel);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 
-      .then((count) => res.json(count))
+  getUniqueFeedPostersInfo: function (req, res) {
+    console.log(req.params);
+    db.FeedPost.findAll({
+      where: {
+        UserId: req.params.userid,
+      },
+      include: [
+        {
+          model: db.User,
+          as: "User",
+        },
+      ],
+    })
+      .then((dbmodel) => {
+        res.json(dbmodel);
+      })
       .catch(function (err) {
         res.status(401).json(err);
       });

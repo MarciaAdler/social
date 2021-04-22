@@ -136,4 +136,8 @@ export default {
   uniqueFeedPosters: function () {
     return axios.get("/api/uniquefeedposters");
   },
+  getUniqueFeedPostsInfo: function (user) {
+    console.log(user);
+    return axios.get("/api/uniquefeedpostersinfo/" + user);
+  },
 };
