@@ -8,11 +8,12 @@ export default function AdminDashboard() {
   const [uniquefeedposters, setUniqueFeedPosters] = useState([]);
   const [topusers, setTopUsers] = useState([]);
   const [postcount, setPostCount] = useState([]);
-
+  const [newusers, setNewUsers] = useState([]);
   useEffect(() => {
     countUsers();
     feedposts();
     uniqueFeedPosters();
+    getNewUsers();
   }, []);
   function countUsers() {
     API.countUsers()
@@ -61,6 +62,16 @@ export default function AdminDashboard() {
     }
   }
 
+  function getNewUsers() {
+    API.getNewUsers()
+      .then((res) => {
+        setNewUsers(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <Container className="home--chat text-center">
       <h1>Admin Dashboard</h1>
@@ -80,7 +91,39 @@ export default function AdminDashboard() {
       </Row>
       <Row>
         <Col className="col-4">
-          Top five users: <br />
+          New users (those who signed up in the last 3 days): <br />
+          <ListGroup>
+            {newusers.length > 0 ? (
+              newusers.map((user, index) => {
+                return (
+                  <ListGroup.Item key={index} className="admindash--topusers">
+                    {user.image !== null ? (
+                      <img
+                        className="admindash--profileimage"
+                        src={
+                          process.env.PUBLIC_URL +
+                          `/profileimages/${user.image}`
+                        }
+                      />
+                    ) : (
+                      <img
+                        className="admindash--profileimage"
+                        src={require("../images/profile-placeholdericon.png")}
+                      />
+                    )}
+                    {user.username}
+                  </ListGroup.Item>
+                );
+              })
+            ) : (
+              <ListGroup.Item className="admindash--topusers">
+                No Data
+              </ListGroup.Item>
+            )}
+          </ListGroup>
+        </Col>
+        <Col className="col-4">
+          Top users: <br />
           <ListGroup>
             {topusers.length > 0 ? (
               topusers.map((user, index) => {

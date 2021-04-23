@@ -137,7 +137,9 @@ export default {
     return axios.get("/api/uniquefeedposters");
   },
   getUniqueFeedPostsInfo: function (user) {
-    console.log(user);
     return axios.get("/api/uniquefeedpostersinfo/" + user);
+  },
+  getNewUsers: function () {
+    return axios.get("/api/getnewusers");
   },
 };
