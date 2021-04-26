@@ -512,6 +512,10 @@ module.exports = {
     db.FeedPost.findAll({
       where: {
         UserId: req.params.userid,
+        createdAt: {
+          [Op.gte]: new Date(new Date().setDate(new Date().getDate() - 3)),
+          [Op.lt]: new Date(),
+        },
       },
       include: [
         {

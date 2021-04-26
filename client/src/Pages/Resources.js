@@ -15,7 +15,9 @@ export default function Resources() {
             <Resource />
           </div>
         ) : (
-          <Resource />
+          <div>
+            <Resource />
+          </div>
         )}
       </Container>
     </Container>

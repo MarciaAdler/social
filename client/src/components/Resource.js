@@ -6,10 +6,12 @@ import dateFormat from "dateformat";
 export default function Resource() {
   const [state, dispatch] = useStoreContext();
   const [docs, setDocuments] = useState([]);
+  let componentMounted = true;
+
   useEffect(() => {
-    setDocs();
+    setResources();
   }, []);
-  function setDocs() {
+  function setResources() {
     API.getDocs()
       .then((res) => {
         console.log(res.data);
@@ -20,7 +22,7 @@ export default function Resource() {
   function deleteResource(doc) {
     API.deleteDoc(doc)
       .then((res) => {
-        setDocs();
+        setResources();
       })
       .catch((err) => console.log(err));
   }

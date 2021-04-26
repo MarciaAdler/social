@@ -52,9 +52,11 @@ export default function AdminDashboard() {
       const user = users[i].userid;
       API.getUniqueFeedPostsInfo(user)
         .then((res) => {
-          console.log(res.data.length);
-          setTopUsers((topusers) => [...topusers, res.data[0].User]);
-          setPostCount((postcount) => [...postcount, res.data.length]);
+          if (res.data.length > 0) {
+            res.data[0].User["count"] = res.data.length;
+            setTopUsers((topusers) => [...topusers, res.data[0].User]);
+            //   setPostCount((postcount) => [...postcount, res.data.length]);
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -77,21 +79,23 @@ export default function AdminDashboard() {
       <h1>Admin Dashboard</h1>
       <Row>
         <Col className="col-4">
-          Total number of users (non-admins): <br />
+          <strong>Total number of users (non-admins):</strong> <br />
           {usercount}
         </Col>
         <Col className="col-4">
-          Total number of posts in feed: <br />
+          <strong>Total number of posts in feed:</strong> <br />
           {feedPosts}
         </Col>
         <Col className="col-4">
-          Number of unique active posters on feed: <br />
+          <strong>Number of unique active posters on feed:</strong> <br />
           {uniquefeedposters}
         </Col>
       </Row>
       <Row>
         <Col className="col-4">
-          New users (those who signed up in the last 3 days): <br />
+          <strong>New users (those who signed up in the last 3 days):</strong>{" "}
+          <br />
+          {newusers.length}
           <ListGroup>
             {newusers.length > 0 ? (
               newusers.map((user, index) => {
@@ -123,7 +127,7 @@ export default function AdminDashboard() {
           </ListGroup>
         </Col>
         <Col className="col-4">
-          Top users: <br />
+          <strong>Active Users in the last 3 days:</strong> <br />
           <ListGroup>
             {topusers.length > 0 ? (
               topusers.map((user, index) => {
@@ -143,7 +147,8 @@ export default function AdminDashboard() {
                         src={require("../images/profile-placeholdericon.png")}
                       />
                     )}
-                    {user.username} &nbsp; {postcount[index]}
+                    {user.username} &nbsp;{" "}
+                    <small>{user.count}&nbsp; posts</small>
                   </ListGroup.Item>
                 );
               })
