@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
 import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import API from "../utils/API";
-
+import DashboardGraph from "../components/DashboardGraphs";
 export default function AdminDashboard() {
   const [usercount, setUserCount] = useState(0);
   const [feedPosts, setFeedPosts] = useState(0);
@@ -9,11 +10,15 @@ export default function AdminDashboard() {
   const [topusers, setTopUsers] = useState([]);
   const [postcount, setPostCount] = useState([]);
   const [newusers, setNewUsers] = useState([]);
+  const [dashgraph, setDashGraph] = useState([]);
+  let data = [];
+
   useEffect(() => {
     countUsers();
     feedposts();
     uniqueFeedPosters();
     getNewUsers();
+    dashboardGetNewUsers();
   }, []);
   function countUsers() {
     API.countUsers()
@@ -68,6 +73,16 @@ export default function AdminDashboard() {
     API.getNewUsers()
       .then((res) => {
         setNewUsers(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  function dashboardGetNewUsers() {
+    API.dashboardGetNewUsers()
+      .then((res) => {
+        console.log(res.data);
+        setDashGraph(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -159,6 +174,20 @@ export default function AdminDashboard() {
               </ListGroup.Item>
             )}
           </ListGroup>
+        </Col>
+        <Col className="col-4">
+          <strong>Count of new users over last 5 days:</strong>
+          <br />
+          {dashgraph.length ? (
+            <DashboardGraph dashgraph={dashgraph} />
+          ) : (
+            "No new users over the last 5 days"
+          )}
+        </Col>
+      </Row>
+      <Row>
+        <Col className="col-4">
+          <strong>Posts over last five days</strong>
         </Col>
       </Row>
     </Container>

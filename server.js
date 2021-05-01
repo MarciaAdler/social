@@ -12,6 +12,7 @@ const fileUpload = require("express-fileupload");
 const passport = require("passport");
 const uploads = require("./routes/uploads");
 const users = require("./routes/users");
+const dashboard = require("./routes/dashboard");
 const yelp = require("./routes/yelp");
 var session = require("express-session");
 var compression = require("compression");
@@ -65,6 +66,7 @@ app.use(compression());
 
 app.use(users);
 app.use(yelp);
+app.use(dashboard);
 // app.use(uploads);
 // create image file for profiles
 app.post("/api/profileimage", (req, res) => {

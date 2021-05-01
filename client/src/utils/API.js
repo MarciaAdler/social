@@ -149,4 +149,7 @@ export default {
   updateLike: function (post) {
     return axios.delete("/api/updatelike/" + post.userId + "/" + post.postId);
   },
+  dashboardGetNewUsers: function () {
+    return axios.get("/api/dashboardnewusers");
+  },
 };
