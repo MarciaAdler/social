@@ -24,6 +24,7 @@ module.exports = {
         },
       },
       group: "date_col_formed",
+      order: [[Sequelize.col("date_col_formed"), "ASC"]],
     })
       .then((dbmodel) => {
         res.json(dbmodel);
