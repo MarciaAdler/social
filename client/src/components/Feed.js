@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, ListGroup, Row, Col, Card } from "react-bootstrap";
 import API from "../utils/API";
 import { useStoreContext } from "../utils/GlobalState";
-import { SET_POSTS, SET_SELECTED_USER } from "../utils/actions";
+import { SET_POSTS, SET_SELECTED_USER, SET_USER_LIKES } from "../utils/actions";
 import dateFormat from "dateformat";
 import { Redirect } from "react-router-dom";
 import FeedComment from "./FeedComment";
@@ -14,11 +14,21 @@ export default function Feed() {
   const [redirect, setRedirect] = useState(false);
   const [comments, setComments] = useState([]);
   const [number, setNumber] = useState(0);
-
+  const [likes, setLikes] = useState(0);
+  const [like, setLike] = useState(false);
   // let commentcount = 0;
 
   useEffect(() => {
     getPosts();
+
+    if (state.currentUser.id !== 0) {
+      getUserLikes(state.currentUser.id);
+    } else {
+      const currentUserLs = JSON.parse(
+        window.localStorage.getItem("currentUser")
+      );
+      getUserLikes(currentUserLs.id);
+    }
   }, []);
 
   function getPosts() {
@@ -26,11 +36,15 @@ export default function Feed() {
       .then((res) => {
         console.log(res.data);
         dispatch({ type: SET_POSTS, posts: res.data });
+
         res.data.map((post) => {
           getComments2(post.id);
           API.getComments2(post.id).then((response) => {
             post["number"] = response.data.length;
             console.log(post);
+          });
+          API.getAllLikes(post.id).then((res) => {
+            setLikes(res.data.length);
           });
         });
       })
@@ -124,6 +138,95 @@ export default function Feed() {
     setRedirect(true);
   }
 
+  function getUserLikes(user) {
+    API.getUserLikes(user)
+      .then((response) => {
+        console.log(response.data);
+        dispatch({
+          type: SET_USER_LIKES,
+          userlikedposts: response.data,
+        });
+        window.localStorage.setItem(
+          "userlikedposts",
+          JSON.stringify(response.data)
+        );
+      })
+      .catch((err) => console.log(err));
+  }
+  // function likePost(post) {
+  //   if (like === false) {
+  //     API.likePost({
+  //       userId: state.currentUser.id,
+  //       postId: post,
+  //     })
+  //       .then((res) => {
+  //         setLike(true);
+  //         console.log(res.data);
+  //         updateUserLikes(state.currentUser);
+  //         getAllLikes(post);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   } else {
+  //     API.updateLike({
+  //       userId: state.currentUser.id,
+  //       postId: post,
+  //     })
+  //       .then((res) => {
+  //         setLike(false);
+  //         console.log(res.data);
+  //         updateUserLikes(state.currentUser);
+  //         getAllLikes(post);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }
+
+  function checkIfLiked(liked, post) {
+    for (let i = 0; i < liked.length; i++) {
+      if (liked[i].postId === post.id) {
+        setLike(true);
+        return (
+          <span>
+            <i className="fas fa-heart"></i>
+          </span>
+        );
+      }
+    }
+    return (
+      <span>
+        <i className="far fa-heart"></i>
+      </span>
+    );
+  }
+
+  function updateUserLikes(userId) {
+    console.log("updatelikes", userId);
+    API.getUserLiked(userId)
+      .then((response) => {
+        console.log(response.data);
+        dispatch({
+          type: SET_USER_LIKES,
+          userlikedposts: response.data,
+        });
+        window.localStorage.setItem(
+          "userlikedposts",
+          JSON.stringify(response.data)
+        );
+      })
+      .catch((err) => console.log(err));
+  }
+  function getAllLikes(post) {
+    console.log(post);
+    API.getAllLikes(post).then((res) => {
+      console.log(res.data);
+      setLikes(res.data.length);
+      console.log(res.data.length);
+    });
+  }
   return (
     <div>
       <Container>
@@ -201,7 +304,12 @@ export default function Feed() {
                     ""
                   )} */}
                     {/* {state.currentUser.id !== 0 ? ( */}
+
                     <FeedComment
+                      updateUserLikes={updateUserLikes}
+                      checkIfLiked={checkIfLiked}
+                      // likePost={likePost}
+                      postlikes={likes}
                       post={post}
                       getComments={getComments}
                       getComments2={getComments2}
@@ -211,7 +319,6 @@ export default function Feed() {
                     {/* ) : (
                     ""
                   )} */}
-
                     <Card.Footer className="mt-2">
                       <small>
                         Posted On:{" "}

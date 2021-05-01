@@ -3,7 +3,7 @@ import { useStoreContext } from "../utils/GlobalState";
 import { Form, Button } from "react-bootstrap";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
-import { LOGGEDIN, SET_CURRENT_USER } from "../utils/actions";
+import { LOGGEDIN, SET_CURRENT_USER, SET_USER_LIKES } from "../utils/actions";
 
 export default function LoginForm() {
   const [state, dispatch] = useStoreContext();
@@ -60,13 +60,29 @@ export default function LoginForm() {
         dispatch({
           type: LOGGEDIN,
         });
+        getLikes(results.data);
       })
       .catch((err) => {
         console.log(err);
         setErrorMessasge("Username or password is incorrect");
       });
   }
-
+  function getLikes(userId) {
+    console.log("getuserlikes", userId);
+    API.getUserLiked(userId)
+      .then((response) => {
+        console.log(response.data);
+        dispatch({
+          type: SET_USER_LIKES,
+          userlikedposts: response.data,
+        });
+        window.localStorage.setItem(
+          "userlikedposts",
+          JSON.stringify(response.data)
+        );
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <div className="loginform--wrapper">
       <p className="error-message">{errormessage}</p>

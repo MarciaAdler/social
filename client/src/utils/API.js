@@ -142,4 +142,24 @@ export default {
   getNewUsers: function () {
     return axios.get("/api/getnewusers");
   },
+  likePost: function (post) {
+    return axios.post("/api/likePost", post);
+  },
+  getUserLiked: function (req) {
+    return axios.get("/api/getuserliked/" + req.id);
+  },
+  updateUserLike: function (req) {
+    return axios.delete("/api/getliked/" + req);
+  },
+  getUserLikes: function (user) {
+    return axios.get("/api/getuserlikes/" + user);
+  },
+  getAllLikes: function (post) {
+    console.log(post);
+    return axios.get("/api/getalllikes/" + post);
+  },
+  updateLike: function (post) {
+    console.log(post);
+    return axios.delete("/api/updatelike/" + post.userId + "/" + post.postId);
+  },
 };

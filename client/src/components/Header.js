@@ -8,6 +8,7 @@ import {
   SET_GROUPS,
   SET_SELECTED_GROUP,
   SET_GROUP_POSTS,
+  SET_USER_LIKES,
 } from "../utils/actions";
 import { Link, Redirect } from "react-router-dom";
 import API from "../utils/API";

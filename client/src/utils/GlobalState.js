@@ -12,6 +12,7 @@ import {
   SET_USER_LIST,
   SET_SELECTED_CHAT,
   SET_MESSAGES,
+  SET_USER_LIKES,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -107,6 +108,11 @@ const reducer = (state, action) => {
         ...state,
         messages: action.messages,
       };
+    case SET_USER_LIKES:
+      return {
+        ...state,
+        userlikedposts: action.userlikedposts,
+      };
     case CLEAR_ALL:
       return {
         ...state,
@@ -132,6 +138,7 @@ const reducer = (state, action) => {
         loggedin: false,
         // posts: [],
         messages: [],
+        userlikedposts: [],
       };
     default:
       return state;
@@ -187,6 +194,7 @@ const StoreProvider = ({ value = [], ...props }) => {
     userlist: [],
     messages: [],
     groupposts: [],
+    userlikedposts: [],
   });
   return <Provider value={[state, dispatch]} {...props} />;
 };

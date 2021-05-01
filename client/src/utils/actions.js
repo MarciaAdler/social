@@ -9,3 +9,4 @@ export const SET_GROUP_POSTS = "SET_GROUP_POSTS";
 export const SET_USER_LIST = "SET_USER_LIST";
 export const SET_SELECTED_CHAT = "SET_SELECTED_CHAT";
 export const SET_MESSAGES = "SET_MESSAGES";
+export const SET_USER_LIKES = "SET_USER_LIKES";

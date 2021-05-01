@@ -8,10 +8,13 @@ export default function FeedComment(props) {
   const [number, setNumber] = useState(0);
   const [comments, setComments] = useState([]);
   const commentRef = useRef();
-
+  const [postlikes, setPostLikes] = useState(0);
+  const [like, setLike] = useState(true);
+  let iLike = false;
   useEffect(() => {
     commentCount(props.post);
-  }, []);
+    getAllLikes(props.post);
+  }, [state.userlikedposts]);
 
   function addComment(post) {
     API.addComment({
@@ -70,8 +73,78 @@ export default function FeedComment(props) {
       })
       .catch((err) => console.log(err));
   }
+  function getAllLikes(post) {
+    console.log(post);
+    API.getAllLikes(post.id).then((res) => {
+      console.log(res.data);
+      setPostLikes(res.data.length);
+      console.log(res.data.length);
+    });
+  }
+  function likePost(post) {
+    if (
+      (like === false && iLike === false) ||
+      (like === true && iLike === false)
+    ) {
+      API.likePost({
+        userId: state.currentUser.id,
+        postId: post,
+      })
+        .then((res) => {
+          setLike(true);
+          console.log(res.data);
+          props.updateUserLikes(state.currentUser);
+          getAllLikes(post);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      API.updateLike({
+        userId: state.currentUser.id,
+        postId: post,
+      })
+        .then((res) => {
+          setLike(false);
+          console.log(res.data);
+          props.updateUserLikes(state.currentUser);
+          getAllLikes(post);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+  function checkIfLiked(liked, post) {
+    for (let i = 0; i < liked.length; i++) {
+      if (liked[i].postId === post.id) {
+        iLike = true;
+        return (
+          <span>
+            <i className="fas fa-heart"></i>
+          </span>
+        );
+      }
+    }
+    return (
+      <span>
+        <i className="far fa-heart"></i>
+      </span>
+    );
+  }
   return (
     <div className="text-left">
+      <div className="feed--likes">
+        <div
+          onClick={() => {
+            likePost(props.post.id);
+          }}
+        >
+          {checkIfLiked(state.userlikedposts, props.post)}
+          &nbsp;
+        </div>
+      </div>
+      <small>{postlikes} Likes</small> &nbsp;
       <small>{number} Comments</small>
       {state.loggedin === true ? (
         <div>

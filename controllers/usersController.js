@@ -548,4 +548,52 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  likePost: function (req, res) {
+    db.LikePost.create({
+      userId: req.body.userId,
+      postId: req.body.postId,
+    })
+      .then(function () {
+        res.json(req.body);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getUserLiked: function (req, res) {
+    console.log(req.params);
+    db.LikePost.findAll({
+      where: {
+        userId: req.params.userid,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  getAllLikes: function (req, res) {
+    db.LikePost.findAll({
+      where: {
+        postId: req.params.postid,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  updateLike: function (req, res) {
+    console.log(req.params);
+    db.LikePost.destroy({
+      where: {
+        userId: req.params.userid,
+        postId: req.params.postid,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

@@ -89,4 +89,16 @@ router
 
 router.route("/api/getnewusers").get(usersController.getNewUsers);
 
+router.route("/api/likepost").post(usersController.likePost);
+
+router.route("/api/getuserliked/:userid").get(usersController.getUserLiked);
+
+router.route("/api/getuserlikes/:userid").get(usersController.getUserLiked);
+
+router.route("/api/getalllikes/:postid").get(usersController.getAllLikes);
+
+router
+  .route("/api/updatelike/:userid/:postid")
+  .delete(usersController.updateLike);
+
 module.exports = router;

@@ -121,13 +121,14 @@ export default function AdminDashboard() {
               })
             ) : (
               <ListGroup.Item className="admindash--topusers">
-                No Data
+                No New Users
               </ListGroup.Item>
             )}
           </ListGroup>
         </Col>
         <Col className="col-4">
           <strong>Active Users in the last 3 days:</strong> <br />
+          {topusers.length}
           <ListGroup>
             {topusers.length > 0 ? (
               topusers.map((user, index) => {
@@ -148,13 +149,13 @@ export default function AdminDashboard() {
                       />
                     )}
                     {user.username} &nbsp;{" "}
-                    <small>{user.count}&nbsp; posts</small>
+                    <small>{user.count}&nbsp; post(s)</small>
                   </ListGroup.Item>
                 );
               })
             ) : (
               <ListGroup.Item className="admindash--topusers">
-                No Data
+                No Active Users
               </ListGroup.Item>
             )}
           </ListGroup>
