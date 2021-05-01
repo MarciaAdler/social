@@ -230,7 +230,7 @@ export default function Feed() {
   return (
     <div>
       <Container>
-        <h3>Here is what's happening in the neighborhood...</h3>
+        <h3>Here is what's happening in the community...</h3>
       </Container>
       <div>
         <ListGroup className="feed--feed">
