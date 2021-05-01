@@ -41,7 +41,6 @@ export default function FeedComment(props) {
   function commentCount2(id) {
     API.getComments2(id)
       .then((res) => {
-        console.log(res.data.length);
         setNumber(res.data.length);
       })
       .catch((err) => console.log(err));
@@ -74,11 +73,8 @@ export default function FeedComment(props) {
       .catch((err) => console.log(err));
   }
   function getAllLikes(post) {
-    console.log(post);
     API.getAllLikes(post.id).then((res) => {
-      console.log(res.data);
       setPostLikes(res.data.length);
-      console.log(res.data.length);
     });
   }
   function likePost(post) {
@@ -92,7 +88,7 @@ export default function FeedComment(props) {
       })
         .then((res) => {
           setLike(true);
-          console.log(res.data);
+
           props.updateUserLikes(state.currentUser);
           getAllLikes(post);
         })
@@ -106,7 +102,7 @@ export default function FeedComment(props) {
       })
         .then((res) => {
           setLike(false);
-          console.log(res.data);
+
           props.updateUserLikes(state.currentUser);
           getAllLikes(post);
         })

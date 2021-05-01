@@ -34,14 +34,12 @@ export default function Feed() {
   function getPosts() {
     API.getPosts()
       .then((res) => {
-        console.log(res.data);
         dispatch({ type: SET_POSTS, posts: res.data });
 
         res.data.map((post) => {
           getComments2(post.id);
           API.getComments2(post.id).then((response) => {
             post["number"] = response.data.length;
-            console.log(post);
           });
           API.getAllLikes(post.id).then((res) => {
             setLikes(res.data.length);
@@ -55,17 +53,14 @@ export default function Feed() {
     console.log(id);
     API.getComments(id)
       .then((response) => {
-        console.log(response.data);
         setComments(response.data);
         setNumber(response.data.length);
-        console.log(response.data.length);
       })
       .catch((err) => console.log(err));
   }
   function getComments2(id) {
     API.getComments2(id)
       .then((response) => {
-        console.log(response.data);
         setComments(response.data);
         // commentCount(id);
       })
@@ -75,7 +70,6 @@ export default function Feed() {
   function commentCount(id) {
     API.getComments2(id)
       .then((res) => {
-        console.log(res.data.length);
         setNumber(res.data.length);
       })
       .catch((err) => console.log(err));
@@ -141,7 +135,6 @@ export default function Feed() {
   function getUserLikes(user) {
     API.getUserLikes(user)
       .then((response) => {
-        console.log(response.data);
         dispatch({
           type: SET_USER_LIKES,
           userlikedposts: response.data,
@@ -153,37 +146,6 @@ export default function Feed() {
       })
       .catch((err) => console.log(err));
   }
-  // function likePost(post) {
-  //   if (like === false) {
-  //     API.likePost({
-  //       userId: state.currentUser.id,
-  //       postId: post,
-  //     })
-  //       .then((res) => {
-  //         setLike(true);
-  //         console.log(res.data);
-  //         updateUserLikes(state.currentUser);
-  //         getAllLikes(post);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   } else {
-  //     API.updateLike({
-  //       userId: state.currentUser.id,
-  //       postId: post,
-  //     })
-  //       .then((res) => {
-  //         setLike(false);
-  //         console.log(res.data);
-  //         updateUserLikes(state.currentUser);
-  //         getAllLikes(post);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }
 
   function checkIfLiked(liked, post) {
     for (let i = 0; i < liked.length; i++) {
@@ -207,7 +169,6 @@ export default function Feed() {
     console.log("updatelikes", userId);
     API.getUserLiked(userId)
       .then((response) => {
-        console.log(response.data);
         dispatch({
           type: SET_USER_LIKES,
           userlikedposts: response.data,
@@ -219,14 +180,14 @@ export default function Feed() {
       })
       .catch((err) => console.log(err));
   }
-  function getAllLikes(post) {
-    console.log(post);
-    API.getAllLikes(post).then((res) => {
-      console.log(res.data);
-      setLikes(res.data.length);
-      console.log(res.data.length);
-    });
-  }
+  // function getAllLikes(post) {
+  //   console.log(post);
+  //   API.getAllLikes(post).then((res) => {
+
+  //     setLikes(res.data.length);
+
+  //   });
+  // }
   return (
     <div>
       <Container>

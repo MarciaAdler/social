@@ -1,7 +1,6 @@
 const axios = require("axios");
 export default {
   createUser: function (req) {
-    console.log(req);
     return axios.post("/api/signup", req);
   },
   getUser: function (req) {
@@ -35,23 +34,18 @@ export default {
     return axios.get("/api/userposts/" + user);
   },
   addComment: function (comment) {
-    console.log(comment);
     return axios.post("/api/addcomment", comment);
   },
   getComments: function (post) {
-    console.log(post.id);
     return axios.get("/api/getcomments/" + post.id);
   },
   getComments2: function (post) {
-    console.log("getComments2", post);
     return axios.get("/api/getcomments2/" + post);
   },
   deleteComment: function (comment) {
     return axios.delete("/api/deletecomment/" + comment);
   },
   search: function (business, location) {
-    console.log(business);
-    console.log(location);
     return axios.get("/api/search/" + business + "/" + location);
   },
   uploadGroupImage: function (image) {
@@ -88,20 +82,16 @@ export default {
     return axios.delete("/api/deletegroupcomment/" + comment);
   },
   updateGroup: function (group) {
-    console.log(group);
     return axios.put("/api/updategroup", group);
   },
   refreshGroup: function (group) {
-    console.log("group", group);
     return axios.get("/api/group/" + group);
   },
   updateImageName: function (group) {
-    console.log(group);
     return axios.put("/api/groupimage", group);
   },
 
   updateProfileImageName: function (user) {
-    console.log("user", user);
     return axios.put("/api/userimage", user);
   },
   getUsers: function (req) {
@@ -111,7 +101,6 @@ export default {
     return axios.post("/api/writemessage", message);
   },
   getMessages: function (sender, receiver) {
-    console.log(sender, receiver);
     return axios.get("/api/getchatmessages/" + sender + "/" + receiver);
   },
   createDoc: function (doc) {
@@ -155,11 +144,9 @@ export default {
     return axios.get("/api/getuserlikes/" + user);
   },
   getAllLikes: function (post) {
-    console.log(post);
     return axios.get("/api/getalllikes/" + post);
   },
   updateLike: function (post) {
-    console.log(post);
     return axios.delete("/api/updatelike/" + post.userId + "/" + post.postId);
   },
 };
