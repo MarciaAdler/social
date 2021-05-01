@@ -131,17 +131,17 @@ export default function FeedComment(props) {
   return (
     <div className="text-left">
       <div className="feed--likes">
-        <div
+        <span
           onClick={() => {
             likePost(props.post.id);
           }}
         >
           {checkIfLiked(state.userlikedposts, props.post)}
           &nbsp;
-        </div>
+        </span>
+        <small>{postlikes} Likes</small> &nbsp;
+        <small>{number} Comments</small>
       </div>
-      <small>{postlikes} Likes</small> &nbsp;
-      <small>{number} Comments</small>
       {state.loggedin === true ? (
         <div>
           <Form className="text-left" id="myForm">
