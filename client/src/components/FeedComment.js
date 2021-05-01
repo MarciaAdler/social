@@ -130,8 +130,9 @@ export default function FeedComment(props) {
   }
   return (
     <div className="text-left">
-      <div className="feed--likes">
+      <div>
         <span
+          className="feed--likes"
           onClick={() => {
             likePost(props.post.id);
           }}

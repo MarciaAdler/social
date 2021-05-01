@@ -166,7 +166,6 @@ export default function Feed() {
   }
 
   function updateUserLikes(userId) {
-    console.log("updatelikes", userId);
     API.getUserLiked(userId)
       .then((response) => {
         dispatch({
@@ -180,14 +179,7 @@ export default function Feed() {
       })
       .catch((err) => console.log(err));
   }
-  // function getAllLikes(post) {
-  //   console.log(post);
-  //   API.getAllLikes(post).then((res) => {
 
-  //     setLikes(res.data.length);
-
-  //   });
-  // }
   return (
     <div>
       <Container>
