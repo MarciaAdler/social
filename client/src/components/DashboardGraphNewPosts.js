@@ -2,27 +2,34 @@ import { Line } from "react-chartjs-2";
 import React from "react";
 import API from "../utils/API";
 import moment from "moment";
-export default function dashboardGetNewUsers({ dashgraph }) {
-  const usercount = [];
+import dateFormat from "dateformat";
+export default function dashboardGetNewUsers({ dashgraphposts }) {
+  const postcount = [];
   const dates = [
     moment().subtract(4, "days").format("YYYY-MM-DD"),
+
     moment().subtract(3, "days").format("YYYY-MM-DD"),
+
     moment().subtract(2, "days").format("YYYY-MM-DD"),
+
     moment().subtract(1, "days").format("YYYY-MM-DD"),
+
     moment().format("YYYY-MM-DD"),
   ];
-  const counts = dashgraph.map((count) => {
+  const counts = dashgraphposts.map((count) => {
     for (let i = 0; i < dates.length; i++) {
       const date = dates[i];
+
       if (count.date_col_formed === date) {
         console.log(count.date_col_formed);
-        usercount.push(count.count);
+
+        postcount.push(count.count);
       } else {
-        usercount.push(0);
+        postcount.push(0);
       }
     }
-    console.log(usercount);
-    return usercount;
+    console.log(postcount);
+    return postcount;
   });
   const data = {
     labels: dates,
@@ -30,7 +37,7 @@ export default function dashboardGetNewUsers({ dashgraph }) {
     datasets: [
       {
         label: "Count of new users",
-        data: usercount,
+        data: postcount,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",

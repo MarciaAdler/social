@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import API from "../utils/API";
-import DashboardGraph from "../components/DashboardGraphs";
+import DashboardGraphNewUsers from "../components/DashboardGraphNewUsers";
+import DashboardGraphNewPosts from "../components/DashboardGraphNewPosts";
 export default function AdminDashboard() {
   const [usercount, setUserCount] = useState(0);
   const [feedPosts, setFeedPosts] = useState(0);
@@ -11,7 +12,7 @@ export default function AdminDashboard() {
   const [postcount, setPostCount] = useState([]);
   const [newusers, setNewUsers] = useState([]);
   const [dashgraph, setDashGraph] = useState([]);
-  let data = [];
+  const [dashgraphposts, setDashGraphPosts] = useState([]);
 
   useEffect(() => {
     countUsers();
@@ -19,6 +20,7 @@ export default function AdminDashboard() {
     uniqueFeedPosters();
     getNewUsers();
     dashboardGetNewUsers();
+    dashboardGetNewPosts();
   }, []);
   function countUsers() {
     API.countUsers()
@@ -89,107 +91,126 @@ export default function AdminDashboard() {
       });
   }
 
+  function dashboardGetNewPosts() {
+    API.dashboardGetNewPosts()
+      .then((res) => {
+        console.log(res.data);
+        setDashGraphPosts(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <Container className="home--chat text-center">
       <h1>Admin Dashboard</h1>
-      <Row>
-        <Col className="col-4">
-          <strong>Total number of users (non-admins):</strong> <br />
-          {usercount}
-        </Col>
-        <Col className="col-4">
-          <strong>Total number of posts in feed:</strong> <br />
-          {feedPosts}
-        </Col>
-        <Col className="col-4">
-          <strong>Number of unique active posters on feed:</strong> <br />
-          {uniquefeedposters}
-        </Col>
-      </Row>
-      <Row>
-        <Col className="col-4">
-          <strong>New users (those who signed up in the last 3 days):</strong>{" "}
-          <br />
-          {newusers.length}
-          <ListGroup>
-            {newusers.length > 0 ? (
-              newusers.map((user, index) => {
-                return (
-                  <ListGroup.Item key={index} className="admindash--topusers">
-                    {user.image !== null ? (
-                      <img
-                        className="admindash--profileimage"
-                        src={
-                          process.env.PUBLIC_URL +
-                          `/profileimages/${user.image}`
-                        }
-                      />
-                    ) : (
-                      <img
-                        className="admindash--profileimage"
-                        src={require("../images/profile-placeholdericon.png")}
-                      />
-                    )}
-                    {user.username}
-                  </ListGroup.Item>
-                );
-              })
+      <div className="home--container">
+        <Row>
+          <Col className="col-12 col-lg-4 col-md-6 col-sm-12">
+            <strong>Total number of users (non-admins):</strong> <br />
+            {usercount}
+          </Col>
+          <Col className="col-12 col-lg-4 col-md-6 col-sm-12">
+            <strong>Total number of posts in feed:</strong> <br />
+            {feedPosts}
+          </Col>
+          <Col className="col-12 col-lg-4 col-md-6 col-sm-12">
+            <strong>Number of unique active posters on feed:</strong> <br />
+            {uniquefeedposters}
+          </Col>
+
+          <Col className="col-12 col-lg-4 col-md-6 col-sm-12">
+            <strong>New users (those who signed up in the last 3 days):</strong>{" "}
+            <br />
+            {newusers.length}
+            <ListGroup>
+              {newusers.length > 0 ? (
+                newusers.map((user, index) => {
+                  return (
+                    <ListGroup.Item key={index} className="admindash--topusers">
+                      {user.image !== null ? (
+                        <img
+                          className="admindash--profileimage"
+                          src={
+                            process.env.PUBLIC_URL +
+                            `/profileimages/${user.image}`
+                          }
+                        />
+                      ) : (
+                        <img
+                          className="admindash--profileimage"
+                          src={require("../images/profile-placeholdericon.png")}
+                        />
+                      )}
+                      {user.username}
+                    </ListGroup.Item>
+                  );
+                })
+              ) : (
+                <ListGroup.Item className="admindash--topusers">
+                  No New Users
+                </ListGroup.Item>
+              )}
+            </ListGroup>
+          </Col>
+          <Col className="col-12 col-lg-4 col-md-6 col-sm-12">
+            <strong>Active Users in the last 3 days:</strong> <br />
+            {topusers.length}
+            <ListGroup>
+              {topusers.length > 0 ? (
+                topusers.map((user, index) => {
+                  return (
+                    <ListGroup.Item
+                      key={user.id}
+                      className="admindash--topusers"
+                    >
+                      {user.image !== null ? (
+                        <img
+                          className="admindash--profileimage"
+                          src={
+                            process.env.PUBLIC_URL +
+                            `/profileimages/${user.image}`
+                          }
+                        />
+                      ) : (
+                        <img
+                          className="admindash--profileimage"
+                          src={require("../images/profile-placeholdericon.png")}
+                        />
+                      )}
+                      {user.username} &nbsp;{" "}
+                      <small>{user.count}&nbsp; post(s)</small>
+                    </ListGroup.Item>
+                  );
+                })
+              ) : (
+                <ListGroup.Item className="admindash--topusers">
+                  No Active Users
+                </ListGroup.Item>
+              )}
+            </ListGroup>
+          </Col>
+          <Col className="col-12 col-lg-4 col-md-6 col-sm-12">
+            <strong>Count of new users over last 5 days:</strong>
+            <br />
+            {dashgraph.length ? (
+              <DashboardGraphNewUsers dashgraph={dashgraph} />
             ) : (
-              <ListGroup.Item className="admindash--topusers">
-                No New Users
-              </ListGroup.Item>
+              "No new users over the last 5 days"
             )}
-          </ListGroup>
-        </Col>
-        <Col className="col-4">
-          <strong>Active Users in the last 3 days:</strong> <br />
-          {topusers.length}
-          <ListGroup>
-            {topusers.length > 0 ? (
-              topusers.map((user, index) => {
-                return (
-                  <ListGroup.Item key={user.id} className="admindash--topusers">
-                    {user.image !== null ? (
-                      <img
-                        className="admindash--profileimage"
-                        src={
-                          process.env.PUBLIC_URL +
-                          `/profileimages/${user.image}`
-                        }
-                      />
-                    ) : (
-                      <img
-                        className="admindash--profileimage"
-                        src={require("../images/profile-placeholdericon.png")}
-                      />
-                    )}
-                    {user.username} &nbsp;{" "}
-                    <small>{user.count}&nbsp; post(s)</small>
-                  </ListGroup.Item>
-                );
-              })
+          </Col>
+
+          <Col className="col-12 col-lg-4 col-md-6">
+            <strong>Count of new posts over last five days:</strong>
+            <br />
+            {dashgraphposts.length ? (
+              <DashboardGraphNewPosts dashgraphposts={dashgraphposts} />
             ) : (
-              <ListGroup.Item className="admindash--topusers">
-                No Active Users
-              </ListGroup.Item>
+              "No new users over the last 5 days"
             )}
-          </ListGroup>
-        </Col>
-        <Col className="col-4">
-          <strong>Count of new users over last 5 days:</strong>
-          <br />
-          {dashgraph.length ? (
-            <DashboardGraph dashgraph={dashgraph} />
-          ) : (
-            "No new users over the last 5 days"
-          )}
-        </Col>
-      </Row>
-      <Row>
-        <Col className="col-4">
-          <strong>Posts over last five days</strong>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      </div>
     </Container>
   );
 }

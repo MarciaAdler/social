@@ -6,4 +6,6 @@ router
   .route("/api/dashboardnewusers")
   .get(dashboardController.getDashboardNewUserInfo);
 
+router.route("/api/dashboardposts").get(dashboardController.getDashboardPosts);
+
 module.exports = router;

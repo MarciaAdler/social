@@ -152,4 +152,7 @@ export default {
   dashboardGetNewUsers: function () {
     return axios.get("/api/dashboardnewusers");
   },
+  dashboardGetNewPosts: function () {
+    return axios.get("/api/dashboardposts");
+  },
 };
