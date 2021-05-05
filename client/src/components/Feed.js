@@ -21,7 +21,10 @@ export default function Feed() {
 
   useEffect(() => {
     getPosts();
-
+    const currentUserLs = JSON.parse(
+      window.localStorage.getItem("currentUser")
+    );
+    getUserLikes(currentUserLs.id);
     if (state.currentUser.id !== 0) {
       getUserLikes(state.currentUser.id);
     } else if (state.currentUser.id === 0 && state.loggedin === true) {
@@ -134,6 +137,7 @@ export default function Feed() {
   }
 
   function getUserLikes(user) {
+    console.log("getuserlikes", user);
     API.getUserLikes(user)
       .then((response) => {
         dispatch({
