@@ -151,7 +151,7 @@ export default function FeedComment(props) {
         <div>
           <Form className="text-left" id="myForm">
             <InputGroup size="sm" className="mb-3 feed--commentinput">
-              <InputGroup.Prepend>
+              <InputGroup.Prepend className="feed--submitcomment">
                 <InputGroup.Text
                   type="reset"
                   className="feed--submitcomment"

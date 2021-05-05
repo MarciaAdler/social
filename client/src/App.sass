@@ -351,10 +351,14 @@ a
     &--commentinput
 
     &--submitcomment
+
         &:hover
             cursor: pointer
             background-color: $jet
             color: white
+        @include media-breakpoint-only(xs)
+            height: auto
+            border-radius: 0
     &--likes
         text-align: left
         color: #3C6997

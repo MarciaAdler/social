@@ -28,7 +28,7 @@ export default function GroupPostComments(props) {
       .catch((err) => console.log(err));
   }
   return (
-    <Container className="text-left">
+    <div className="text-left">
       {collapse === false ? (
         <Button
           className="comments--button"
@@ -106,6 +106,6 @@ export default function GroupPostComments(props) {
             );
           })
         : ""}
-    </Container>
+    </div>
   );
 }

@@ -36,51 +36,49 @@ export default function GroupComment({ post, getGroupComments, comments }) {
       .catch((err) => console.log(err));
   }
   return (
-    <Container>
-      <div className="text-left">
-        <small>{number} Comments</small>
-        {state.loggedin === true ? (
-          <div>
-            <Form className="text-left" id="myForm">
-              <InputGroup size="sm" className="mb-3 feed--commentinput">
-                <InputGroup.Prepend>
-                  <InputGroup.Text
-                    type="reset"
-                    className="feed--submitcomment"
-                    id="inputGroup-sizing-sm"
-                    onClick={() => {
-                      addGroupComment(post.id);
-                    }}
-                  >
-                    Add Comment
-                  </InputGroup.Text>
-                </InputGroup.Prepend>
-                <FormControl
-                  as="textarea"
-                  rows="1"
-                  ref={commentRef}
-                  aria-label="Small"
-                  aria-describedby="inputGroup-sizing-sm"
-                  id="myInput"
-                />
-              </InputGroup>
-            </Form>
+    <div className="text-left">
+      <small>{number} Comments</small>
+      {state.loggedin === true ? (
+        <div>
+          <Form className="text-left" id="myForm">
+            <InputGroup size="sm" className="mb-3 feed--commentinput">
+              <InputGroup.Prepend>
+                <InputGroup.Text
+                  type="reset"
+                  className="feed--submitcomment"
+                  id="inputGroup-sizing-sm"
+                  onClick={() => {
+                    addGroupComment(post.id);
+                  }}
+                >
+                  Add Comment
+                </InputGroup.Text>
+              </InputGroup.Prepend>
+              <FormControl
+                as="textarea"
+                rows="1"
+                ref={commentRef}
+                aria-label="Small"
+                aria-describedby="inputGroup-sizing-sm"
+                id="myInput"
+              />
+            </InputGroup>
+          </Form>
 
-            <GroupPostComments
-              id={post}
-              comments={comments}
-              getGroupComments={getGroupComments}
-              groupCommentCount={groupCommentCount}
-            ></GroupPostComments>
-          </div>
-        ) : (
-          <p className="text-center">
-            <small>
-              <a href="/signing">Signin</a> to write and view comments
-            </small>
-          </p>
-        )}
-      </div>
-    </Container>
+          <GroupPostComments
+            id={post}
+            comments={comments}
+            getGroupComments={getGroupComments}
+            groupCommentCount={groupCommentCount}
+          ></GroupPostComments>
+        </div>
+      ) : (
+        <p className="text-center">
+          <small>
+            <a href="/signing">Signin</a> to write and view comments
+          </small>
+        </p>
+      )}
+    </div>
   );
 }
