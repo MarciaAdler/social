@@ -18,20 +18,20 @@ export default function Feed() {
   const [likes, setLikes] = useState(0);
   const [like, setLike] = useState(false);
   // let commentcount = 0;
-
+  const currentUserLs1 = JSON.parse(window.localStorage.getItem("currentUser"));
   useEffect(() => {
     getPosts();
     const currentUserLs = JSON.parse(
       window.localStorage.getItem("currentUser")
     );
-    getUserLikes(currentUserLs.id);
-    if (state.currentUser.id !== 0) {
+
+    if (state.currentUser.id !== 0 && state.loggedin === true) {
       getUserLikes(state.currentUser.id);
     } else if (state.currentUser.id === 0 && state.loggedin === true) {
-      const currentUserLs = JSON.parse(
+      const currentUserLs2 = JSON.parse(
         window.localStorage.getItem("currentUser")
       );
-      getUserLikes(currentUserLs.id);
+      getUserLikes(currentUserLs2.id);
     }
   }, []);
 
@@ -48,6 +48,7 @@ export default function Feed() {
           API.getAllLikes(post.id).then((res) => {
             setLikes(res.data.length);
           });
+          getUserLikes(currentUserLs1.id);
         });
       })
       .catch((err) => console.log(err));
