@@ -3,7 +3,7 @@ var fs = require("fs");
 const { Op } = require("sequelize");
 const { Sequelize } = require("sequelize");
 const moment = require("moment");
-const dateformat = require("dateformat");
+
 module.exports = {
   getDashboardNewUserInfo: function (req, res) {
     db.User.findAll({
