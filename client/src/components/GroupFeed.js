@@ -116,11 +116,11 @@ export default function GroupFeed() {
         {state.groupposts
           ? state.groupposts.map((post) => {
               return (
-                <ListGroup.Item key={post.id}>
+                <ListGroup.Item className="mt-1 feed--postitem" key={post.id}>
                   <Row>
                     <Col className="col-3 col-lg-2">
-                     {post.User.image !== null ? (
-                      <img
+                      {post.User.image !== null ? (
+                        <img
                           onClick={() => {
                             selectUser(post.User);
                           }}
@@ -130,8 +130,8 @@ export default function GroupFeed() {
                             `/profileimages/${post.User.image}`
                           }
                         />
-                     ): 
-                     <img
+                      ) : (
+                        <img
                           onClick={() => {
                             selectUser(post.User);
                           }}
@@ -141,7 +141,7 @@ export default function GroupFeed() {
                             `/profileimages/profile-placeholdericon.png`
                           }
                         />
-                      }
+                      )}
                     </Col>
                     <Col className="col-8 col-lg-10">
                       <h6
@@ -174,16 +174,14 @@ export default function GroupFeed() {
                   <br />
                   <br />
 
-                  
-                    <GroupComment
-                      post={post}
-                      getGroupComments={getGroupComments}
-                      number={number}
-                      comments={comments}
-                      // getComments2={getComments2}
-                      // commentCount={commentCount}
-                    ></GroupComment>
-                  
+                  <GroupComment
+                    post={post}
+                    getGroupComments={getGroupComments}
+                    number={number}
+                    comments={comments}
+                    // getComments2={getComments2}
+                    // commentCount={commentCount}
+                  ></GroupComment>
 
                   <Card.Footer className="mt-2">
                     <small>

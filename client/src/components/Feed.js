@@ -8,6 +8,7 @@ import { Redirect } from "react-router-dom";
 import FeedComment from "./FeedComment";
 
 import Comments from "./Comments";
+import { STATUS_CODES } from "http";
 
 export default function Feed() {
   const [state, dispatch] = useStoreContext();
@@ -23,7 +24,7 @@ export default function Feed() {
 
     if (state.currentUser.id !== 0) {
       getUserLikes(state.currentUser.id);
-    } else {
+    } else if (state.currentUser.id === 0 && state.loggedin === true) {
       const currentUserLs = JSON.parse(
         window.localStorage.getItem("currentUser")
       );
