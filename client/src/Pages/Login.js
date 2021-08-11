@@ -16,6 +16,32 @@ export default function Login() {
           <LoginForm />
         </Col>
       </Row>
+      <Row className="mt-2">
+        <Col className="text-center login--testaccounts">
+          <p className="mt-2 ml-2">
+            <strong>
+              If you are interested in testing out the app, please use the test
+              accounts listed below
+            </strong>
+          </p>
+          <p className="ml-2">
+            <strong>Usernames:</strong>
+            <br />
+            <em>Admin account</em> - Marcia
+            <br />
+            <em>User account</em> - Brooklyn
+            <br />
+          </p>
+          <p className="ml-2">
+            <strong>Password for test accounts*:</strong> Test
+            <br />
+            <small>
+              *Please note, the usernames are not case sensitive, but the
+              password is
+            </small>
+          </p>
+        </Col>
+      </Row>
     </Container>
   );
 }
