@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/MarciaAdler/social#readme",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "bcryptjs": "^2.4.3",
     "chart.js": "^3.2.0",
     "compression": "^1.7.4",
