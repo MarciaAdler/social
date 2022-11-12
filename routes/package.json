@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/MarciaAdler/social#readme",
   "dependencies": {
-    "axios": "^0.21.2",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "chart.js": "^3.2.0",
     "compression": "^1.7.4",
@@ -34,7 +34,7 @@
     "express-fileupload": "^1.1.7-alpha.3",
     "express-session": "^1.17.1",
     "if-env": "^1.0.4",
-    "moment": "^2.29.4",
+    "moment": "^2.29.1",
     "mysql2": "^2.1.0",
     "node": "^13.13.0",
     "node-fetch": "^3.1.1",
